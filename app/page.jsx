@@ -114,8 +114,9 @@ export default function Home() {
                 Modern Vastu for business and home.
               </h2>
 
-              <p className="hero-description">
-                A clear, practical way to understand your space and make the changes that truly matter.
+              <p className="hero-description" style={{ fontSize: '17px', lineHeight: '1.65' }}>
+                Because what happens at work follows you home.<br />
+                And what happens at home follows you back to work.
               </p>
 
               <div className="hero-cta-group">
@@ -157,7 +158,59 @@ export default function Home() {
           </div>
 
           <div className="hero-footer-bar">
-            Gold Medalist in Vastu &nbsp;&bull;&nbsp; Author of <em>The Space on Your Side</em>
+            Gold Medalist in Vastu &nbsp;&bull;&nbsp; Trained under Aashish Patidar &nbsp;&bull;&nbsp; Author of <em>The Space on Your Side</em>
+          </div>
+        </div>
+      </section>
+
+      {/* Human Insight: Work-to-Home Tension */}
+      <section className="section" id="insight" style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
+            <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
+            <h2 className="large-section-title" style={{ marginBottom: '24px' }}>
+              You may leave the office.<br />
+              <em>But the office doesn’t always leave you.</em>
+            </h2>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4" style={{ marginTop: '36px', marginBottom: '36px' }}>
+              {[
+                'The pending payment.',
+                'The difficult decision.',
+                'The team issue.',
+                'The number you missed.'
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    padding: '24px 16px',
+                    border: '1px solid var(--border-subtle)',
+                    background: '#FFFFFF',
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: '20px',
+                    color: 'var(--text-primary)',
+                    lineHeight: '1.35',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+                  }}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+              You carry some of it home.<br />
+              And the next morning, poor sleep, stress, or tension at home comes back with you.
+            </p>
+
+            <div style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
+
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
+              Two spaces. One life.
+            </h3>
+            <p style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
+              Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
+            </p>
           </div>
         </div>
       </section>
@@ -235,66 +288,125 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header" style={{ marginBottom: '50px' }}>
             <h2 className="large-section-title">
-              Which space would you<br />
-              <em>like to look at?</em>
+              You don’t need to know Vastu.<br />
+              <em>Start with what you are noticing.</em>
             </h2>
+            <p className="header-aside-text">
+              Notice what is happening in the space day to day. Select your space below to understand the deeper flow.
+            </p>
           </div>
 
-          <div className="two-col-bordered">
-            {/* Business */}
-            <div className="bordered-col">
-              <div className="space-card-content">
-                <div>
-                  <div className="section-label">BUSINESS</div>
-                  <h3 className="card-title-serif">
-                    Your business space is used every day by people, customers, teams and decisions.
-                  </h3>
-                  <p className="card-body-text">
-                    Shrijal studies it as a whole, not as a collection of separate rooms.
-                  </p>
-                </div>
-
-                <div>
-                  <div className="tags-line">
-                    Office &middot; Factory &middot; Hotel &middot; Resort &middot; Commercial Space
-                  </div>
-                  <button
-                    onClick={() => openSpaceCheckWith('Business')}
-                    className="btn-outline"
-                    id="check-business-btn"
-                  >
-                    Check My Business Space <span>&rarr;</span>
-                  </button>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-[#E6E4DD]">
+            {/* Business Card */}
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+              <div>
+                <div className="section-label">BUSINESS</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
+                  Business
+                </h3>
+                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Growth feels slow.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Money feels tight.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>The team feels unsettled.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Decisions feel harder.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Something just feels stuck.</span>
+                  </li>
+                </ul>
               </div>
+
+              <button
+                onClick={() => openSpaceCheckWith('Business')}
+                className="btn-outline w-full justify-between"
+                id="check-business-btn"
+              >
+                CHECK MY BUSINESS <span>&rarr;</span>
+              </button>
             </div>
 
-            {/* Home */}
-            <div className="bordered-col">
-              <div className="space-card-content">
-                <div>
-                  <div className="section-label">HOME</div>
-                  <h3 className="card-title-serif">
-                    Your home is where daily life happens.
-                  </h3>
-                  <p className="card-body-text">
-                    How it is planned, used and experienced matters. Shrijal studies the full space before suggesting any change.
-                  </p>
-                </div>
-
-                <div>
-                  <div className="tags-line">
-                    Existing Home &middot; New Home &middot; Renovation
-                  </div>
-                  <button
-                    onClick={() => openSpaceCheckWith('Home')}
-                    className="btn-outline"
-                    id="check-home-btn"
-                  >
-                    Check My Home <span>&rarr;</span>
-                  </button>
-                </div>
+            {/* Home Card */}
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+              <div>
+                <div className="section-label">HOME</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
+                  Home
+                </h3>
+                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Peace feels less.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Sleep feels disturbed.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Stress stays longer.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Relationships feel harder.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>The home simply doesn’t feel the same.</span>
+                  </li>
+                </ul>
               </div>
+
+              <button
+                onClick={() => openSpaceCheckWith('Home')}
+                className="btn-outline w-full justify-between"
+                id="check-home-btn"
+              >
+                CHECK MY HOME <span>&rarr;</span>
+              </button>
+            </div>
+
+            {/* Both Card */}
+            <div className="p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <div className="section-label">BOTH</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
+                  Both
+                </h3>
+                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Work affects home.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>Home affects work.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#A3A19B]">&bull;</span>
+                    <span>And you want to understand the bigger picture.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                onClick={() => openSpaceCheckWith('Both')}
+                className="btn-outline w-full justify-between"
+                id="check-both-btn"
+              >
+                CHECK BOTH SPACES <span>&rarr;</span>
+              </button>
             </div>
           </div>
         </div>
@@ -372,90 +484,84 @@ export default function Home() {
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">
-            <h2 className="large-section-title">
-              Real spaces tell you<br />
-              more<br />
-              <em>than big promises.</em>
-            </h2>
-            <p className="header-aside-text">
-              Shrijal&apos;s work is best understood through the spaces she has studied. Not just what was suggested. Why it was suggested. And what happened after.
-            </p>
+            <div>
+              <div className="section-label">07 &bull; PROOF</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px' }}>
+                Real spaces.<br />
+                <em>Real stories.</em>
+              </h2>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
+                No big promises. No dramatic claims.
+              </p>
+              <p className="header-aside-text">
+                See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
+              </p>
+            </div>
           </div>
 
-          <div className="case-studies-grid">
-            {/* Business Case */}
-            <div className="case-card">
-              <div className="section-label">BUSINESS CASE</div>
-              <h3 className="case-title">
-                A real business concern. Studied through the space.
-              </h3>
-              <p className="case-intro">
-                See what brought the client to Shrijal, what she noticed in the space, what was changed and how the client experienced the change.
-              </p>
-
-              <div className="case-table">
-                <div className="case-table-row">
-                  <div className="case-row-label">The concern</div>
-                  <div className="case-row-val">What was happening in the business.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The observation</div>
-                  <div className="case-row-val">What stood out when Shrijal studied the space.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The change</div>
-                  <div className="case-row-val">What was practically corrected.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The client&apos;s experience</div>
-                  <div className="case-row-val">What they noticed after the change.</div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-[#E6E4DD] mt-12">
+            {/* Business Story */}
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+              <div>
+                <div className="section-label">BUSINESS STORY</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Business Story
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  A business owner who felt something was not moving the way it should.
+                </p>
               </div>
 
               <button
                 onClick={() => setSelectedCaseModal('business')}
-                className="btn-outline"
+                className="btn-outline w-full justify-between"
                 id="see-business-case-btn"
               >
-                See Business Case <span>&rarr;</span>
+                VIEW STORY <span>&rarr;</span>
               </button>
             </div>
 
-            {/* Home Case */}
-            <div className="case-card">
-              <div className="section-label">HOME CASE</div>
-              <h3 className="case-title">
-                A real home. A real reason to look closer.
-              </h3>
-              <p className="case-intro">
-                See what the family was experiencing, what Shrijal found and which changes were actually worth making.
-              </p>
-
-              <div className="case-table">
-                <div className="case-table-row">
-                  <div className="case-row-label">The concern</div>
-                  <div className="case-row-val">What did not feel right.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The observation</div>
-                  <div className="case-row-val">What deserved attention in the space.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The change</div>
-                  <div className="case-row-val">What was changed and what was left alone.</div>
-                </div>
-                <div className="case-table-row">
-                  <div className="case-row-label">The family&apos;s experience</div>
-                  <div className="case-row-val">What they noticed afterwards.</div>
-                </div>
+            {/* Home Story */}
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+              <div>
+                <div className="section-label">HOME STORY</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Home Story
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  A family that wanted to understand why their home no longer felt the same.
+                </p>
               </div>
 
               <button
                 onClick={() => setSelectedCaseModal('home')}
-                className="btn-outline"
+                className="btn-outline w-full justify-between"
                 id="see-home-case-btn"
               >
-                See Home Case <span>&rarr;</span>
+                VIEW STORY <span>&rarr;</span>
+              </button>
+            </div>
+
+            {/* Business + Home Story */}
+            <div className="p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <div className="section-label">BUSINESS + HOME</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Business + Home
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  One business owner. Two spaces. One complete view.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setSelectedCaseModal('both')}
+                className="btn-outline w-full justify-between"
+                id="see-both-case-btn"
+              >
+                VIEW STORY <span>&rarr;</span>
               </button>
             </div>
           </div>
@@ -519,21 +625,46 @@ export default function Home() {
             </div>
 
             <div className="about-content">
-              <h2 className="about-name">Shrijal Talkar</h2>
-              <div className="about-role">Modern Vastu Expert &amp; Author</div>
+              <div className="section-label">WHY SHRIJAL</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
+                You bring the problem.<br />
+                <em>Shrijal studies the space.</em>
+              </h2>
+
+              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '8px' }}>
+                Shrijal Talkar is a Modern Vastu Expert and Author.
+              </div>
+              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+                She studied Vastu under leading Vastu-Astro expert Aashish Patidar and became a Gold Medalist in Vastu.
+              </p>
+
               <div className="about-divider"></div>
 
-              <div className="about-belief-intro">Shrijal&apos;s approach comes from one belief:</div>
-              <h3 className="about-quote-big">
-                Understand the space before you try to change it.
-              </h3>
+              <div className="about-belief-intro" style={{ fontWeight: '500', color: 'var(--text-primary)' }}>
+                Her approach is simple:
+              </div>
 
-              <div className="about-paragraphs">
-                <p>
-                  She studied Vastu under leading Vastu&ndash;Astro expert Aashish Patidar and went on to become a Gold Medalist in Vastu.
+              <ul style={{ listStyle: 'none', margin: '16px 0 24px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Understand the person.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Study the space.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Find what matters.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Suggest what is practical.
+                </li>
+              </ul>
+
+              <div style={{ background: '#F4F2EC', padding: '20px 24px', borderLeft: '3px solid #1C1C1A', marginTop: '20px' }}>
+                <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '6px' }}>
+                  No fear. No unnecessary demolition. No complicated Vastu talk.
                 </p>
-                <p>
-                  Today, she works with business and home spaces through a modern, practical approach to Vastu.
+                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)' }}>
+                  Just clear guidance you can understand and use.
                 </p>
               </div>
             </div>
@@ -546,28 +677,36 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid">
             <div className="book-content">
-              <h2 className="large-section-title">
-                Her thinking<br />
-                also<br />
+              <div className="section-label">THE BOOK</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
+                One idea<br />
                 <em>became a book.</em>
               </h2>
 
               <h3 className="book-title-tag">The Space on Your Side</h3>
-              <div className="book-subtitle-tag">The Modern Vastu of Energy, Light and Flow</div>
+              <div className="book-subtitle-tag">
+                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
+              </div>
 
               <div className="book-desc-content">
                 <p>
-                  The book looks at the parts of a space we often live with every day, but rarely stop to notice.
+                  Your space is not just where life happens.<br />
+                  It is part of how life happens.
                 </p>
                 <div className="book-keywords-serif">
-                  Light. Energy. Movement. Flow.
+                  Light. Movement. Flow. Energy.
                 </div>
                 <p>
-                  And how all of them come together in the way a space is used.
+                  And the way people feel and function inside a space.
                 </p>
-                <p style={{ marginTop: '16px' }}>
-                  Her approach to Modern Vastu, now in a book.
-                </p>
+                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                    Shrijal’s modern Vastu approach is built around one belief:
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
+                    &ldquo;Don’t fear your space. Understand it.&rdquo;
+                  </p>
+                </div>
               </div>
 
               <button
@@ -619,31 +758,30 @@ export default function Home() {
           <div className="spacecheck-grid">
             <div className="spacecheck-left">
               <h2 className="large-section-title">
-                Is Your Space<br />
-                <em>On Your Side?</em>
+                Is your space<br />
+                <em>on your side?</em>
               </h2>
 
-              <p className="spacecheck-p">
-                You do not need to understand Vastu to begin.<br />
-                Start with your space.
-              </p>
-
-              <h3 className="spacecheck-callout">
+              <h3 className="spacecheck-callout" style={{ fontSize: '30px', marginTop: '16px', marginBottom: '12px' }}>
                 Take the 2-Minute Space Check.
               </h3>
+
+              <p className="spacecheck-p" style={{ marginBottom: '28px', fontSize: '17px' }}>
+                A simple first step for business owners.
+              </p>
 
               <button
                 onClick={() => openSpaceCheckWith(spaceCheckType)}
                 className="btn-primary"
                 id="start-space-check-btn"
               >
-                Start My Space Check <span>&rarr;</span>
+                START MY FREE SPACE CHECK <span>&rarr;</span>
               </button>
             </div>
 
             <div className="spacecheck-right">
-              <div className="spacecheck-selector-title">
-                Choose what you want to look at.
+              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
+                Choose: Business &bull; Home &bull; Both.
               </div>
 
               <div className="selector-options-row">
@@ -673,18 +811,19 @@ export default function Home() {
               </div>
 
               <div className="spacecheck-bullets">
-                <p>Answer a few simple questions about the space and what you are noticing.</p>
-                <p>You will first see the areas that may deserve a closer look.</p>
-                <p>Then you can decide whether you want Shrijal to study them further.</p>
-                <p>No technical Vastu knowledge needed. No long form to fill. Just a useful first look at your space.</p>
-                <p className="conclusion">Two minutes. A clearer place to start.</p>
+                <p>Answer a few simple questions.</p>
+                <p>No Vastu knowledge needed. No technical terms. No fear-based predictions.</p>
+                <p className="conclusion" style={{ fontSize: '18px', fontWeight: '500', color: 'var(--text-primary)', marginTop: '8px' }}>
+                  2 minutes. One clearer view of your space.
+                </p>
+                <p style={{ marginTop: '8px' }}>At the end, see which areas may deserve a closer look.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 11. Section 10: Prefer to speak directly with Shrijal? */}
+      {/* 11. Section 10: Before you change your space... understand it. */}
       <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
           size={680}
@@ -697,19 +836,39 @@ export default function Home() {
           opacity={0.4}
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="banner-flex">
-            <h2 className="banner-title">
-              Prefer to speak directly<br />
-              <em>with Shrijal?</em>
-            </h2>
+          <div className="banner-flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div style={{ maxWidth: '640px' }}>
+              <h2 className="banner-title" style={{ marginBottom: '16px' }}>
+                Before you change your space...<br />
+                <em>understand it.</em>
+              </h2>
+              <div style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
+                <p>Maybe your business needs attention.</p>
+                <p>Maybe your home does.</p>
+                <p>Maybe both are already fine.</p>
+                <p style={{ marginTop: '12px', color: 'var(--text-primary)', fontWeight: '600' }}>
+                  The first step is not a remedy. The first step is clarity.
+                </p>
+              </div>
+            </div>
 
-            <button
-              onClick={() => setIsConsultOpen(true)}
-              className="btn-outline"
-              id="banner-consult-btn"
-            >
-              Book a Consultation <span>&rarr;</span>
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <button
+                onClick={() => openSpaceCheckWith('Both')}
+                className="btn-primary justify-center text-center"
+                id="cta-space-check-btn"
+              >
+                TAKE THE 2-MINUTE SPACE CHECK <span>&rarr;</span>
+              </button>
+              <span className="text-center text-xs uppercase tracking-widest text-[#82807A] font-medium px-2">or</span>
+              <button
+                onClick={() => setIsConsultOpen(true)}
+                className="btn-outline justify-center text-center"
+                id="banner-consult-btn"
+              >
+                BOOK A CONSULTATION <span>&rarr;</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -724,23 +883,28 @@ export default function Home() {
                 alt="Shrijal Modern Vastu Expert"
                 width={220}
                 height={64}
-                style={{ height: '50px', width: 'auto', objectFit: 'contain', display: 'block', marginBottom: '18px' }}
+                style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block', marginBottom: '18px' }}
               />
-              <div className="footer-brand-meta">
-                Modern Vastu Expert | Author<br />
-                Gold Medalist in Vastu
+              <div className="footer-brand-meta" style={{ fontSize: '14.5px', lineHeight: '1.65', color: 'var(--text-secondary)' }}>
+                <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '16px' }}>Shrijal Talkar</div>
+                <div>Modern Vastu Expert | Author</div>
+                <div>Gold Medalist in Vastu</div>
+                <div>Trained under Aashish Patidar</div>
+                <div>Author of <em>The Space on Your Side</em></div>
               </div>
             </div>
 
             <div className="footer-right-content">
               <h3 className="footer-slogan">Your Space. On Your Side.</h3>
-              <p className="footer-sub">Modern Vastu for business and home.</p>
+              <p className="footer-sub" style={{ marginBottom: '24px' }}>
+                Business Vastu &nbsp;&bull;&nbsp; Home Vastu &nbsp;&bull;&nbsp; Business + Home
+              </p>
               <button
                 onClick={() => openSpaceCheckWith('Business')}
                 className="btn-outline"
                 id="footer-check-space-btn"
               >
-                Check My Space <span>&rarr;</span>
+                CHECK MY SPACE <span>&rarr;</span>
               </button>
             </div>
           </div>
@@ -748,14 +912,30 @@ export default function Home() {
           <div className="footer-bottom-bar">
             <div>&copy; {new Date().getFullYear()} Shrijal Talkar. All rights reserved.</div>
             <div style={{ display: 'flex', gap: '24px' }}>
-              <a href="#approach" className="nav-link">Approach</a>
+              <a href="#insight" className="nav-link">Insight</a>
               <a href="#spaces" className="nav-link">Spaces</a>
+              <a href="#about" className="nav-link">About</a>
               <a href="#book" className="nav-link">Book</a>
+              <a href="#case-studies" className="nav-link">Stories</a>
               <a href="#space-check" className="nav-link">Space Check</a>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Sticky Bottom CTA */}
+      <aside
+        className="fixed bottom-5 right-5 z-40 bg-[#1C1C1A] text-[#FAF9F5] px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-3 text-xs sm:text-sm border border-[#333330] transition-all hover:bg-[#2B2B28]"
+        aria-label="Quick Action CTA"
+      >
+        <span className="hidden sm:inline text-[#D5D2C8]">Not sure where to begin?</span>
+        <button
+          onClick={() => openSpaceCheckWith('Business')}
+          className="font-semibold text-[#FAF9F5] hover:underline flex items-center gap-1.5"
+        >
+          CHECK YOUR SPACE <span>&rarr;</span>
+        </button>
+      </aside>
 
       {/* MODAL 1: Book a Consultation Modal */}
       {isConsultOpen && (
@@ -1067,16 +1247,16 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-            ) : (
+            ) : selectedCaseModal === 'home' ? (
               <div>
-                <div className="section-label">HOME CASE STUDY</div>
+                <div className="section-label">HOME STORY</div>
                 <h3 className="modal-headline">A Real Home. A Real Reason to Look Closer.</h3>
                 <p className="modal-subtext">Private Family Residence Renovation Case</p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '15px', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
                   <div>
                     <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Concern</h4>
-                    <p>A family reported persistent sleep disturbance and unexplainable irritability after moving into their renovated duplex apartment.</p>
+                    <p>A family that wanted to understand why their home no longer felt the same after renovation, experiencing persistent sleep disturbance and restlessness.</p>
                   </div>
                   <div>
                     <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Observation</h4>
@@ -1101,6 +1281,43 @@ export default function Home() {
                     className="btn-primary"
                   >
                     Book A Home Consultation <span>&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="section-label">BUSINESS + HOME STORY</div>
+                <h3 className="modal-headline">One Business Owner. Two Spaces. One Complete View.</h3>
+                <p className="modal-subtext">Commercial Office &amp; Residence Integrated Case</p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '15px', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
+                  <div>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Concern</h4>
+                    <p>A founder working 14-hour days felt the pressure of delayed business decisions following him home, creating restless evenings and depleted focus the next morning at work.</p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Observation</h4>
+                    <p>Shrijal studied both spaces together: the office leadership desk was placed in a drained energy pocket, while the home study desk was placed right inside the master bedroom, preventing mental and energetic separation.</p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Change</h4>
+                    <p>Re-anchored the executive workspace to a decisive geomagnetic axis, separated the home work desk completely from the bedroom rest zone, and optimized morning natural light flow without civil breaking.</p>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '4px' }}>The Client&apos;s Experience</h4>
+                    <p>&ldquo;The tension stopped following me between work and home. Evenings feel peaceful, and boardroom clarity has returned completely.&rdquo;</p>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '36px' }}>
+                  <button
+                    onClick={() => {
+                      setSelectedCaseModal(null);
+                      setIsConsultOpen(true);
+                    }}
+                    className="btn-primary"
+                  >
+                    Book A Consultation <span>&rarr;</span>
                   </button>
                 </div>
               </div>

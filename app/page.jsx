@@ -58,14 +58,14 @@ export default function Home() {
       <header className="header-wrapper">
         <div className="container">
           <div className="header-container">
-            <a href="#" className="logo-brand" style={{ display: 'flex', alignItems: 'center' }}>
+            <a href="#" className="logo-brand flex items-center shrink-0">
               <Image
                 src="/images/shrijal-logo.png"
                 alt="Shrijal Modern Vastu Expert"
                 width={220}
                 height={64}
                 priority
-                style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
+                className="h-8 sm:h-11 md:h-12 w-auto object-contain"
               />
             </a>
 
@@ -82,10 +82,10 @@ export default function Home() {
 
             <button
               onClick={() => setIsConsultOpen(true)}
-              className="btn-outline-nav"
+              className="btn-outline-nav shrink-0"
               id="nav-consult-btn"
             >
-              Book a Consultation <span>&rarr;</span>
+              <span className="hidden sm:inline">Book a </span>Consultation <span>&rarr;</span>
             </button>
           </div>
         </div>
@@ -345,8 +345,17 @@ export default function Home() {
       </section>
 
       {/* 6. Section 5: Real spaces tell you more than big promises. */}
-      <section className="section" id="case-studies">
-        <div className="container">
+      <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={780}
+          style={{
+            top: '-50px',
+            right: '-240px',
+            pointerEvents: 'none'
+          }}
+          opacity={0.35}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">
             <h2 className="large-section-title">
               Real spaces tell you<br />
@@ -557,9 +566,9 @@ export default function Home() {
 
             <div className="book-mockup-frame" style={{ position: 'relative' }}>
               <OrbitGraphic
-                size={680}
+                size={800}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.45}
+                opacity={0.5}
               />
               <Image
                 src="/images/book-mockup.png"
@@ -574,8 +583,17 @@ export default function Home() {
       </section>
 
       {/* 10. Section 9: 2-Minute Space Check */}
-      <section className="section" id="space-check">
-        <div className="container">
+      <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={780}
+          style={{
+            bottom: '-100px',
+            left: '-240px',
+            pointerEvents: 'none'
+          }}
+          opacity={0.35}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="spacecheck-grid">
             <div className="spacecheck-left">
               <h2 className="large-section-title">

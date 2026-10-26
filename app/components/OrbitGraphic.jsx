@@ -16,6 +16,8 @@ export default function OrbitGraphic({
         position: 'absolute',
         width: size,
         height: size,
+        maxWidth: '120vw',
+        maxHeight: '120vw',
         pointerEvents: 'none',
         zIndex: 1,
         opacity: opacity,

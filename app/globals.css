@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
 :root {
   --bg-primary: #FAF9F5;
@@ -1173,3 +1174,151 @@ button {
     padding: 28px 20px;
   }
 }
+
+/* Small mobile devices (iPhone SE, Galaxy, 320px - 480px) */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header-container {
+    height: 64px;
+  }
+
+  .logo-brand img {
+    height: 36px !important;
+    width: auto !important;
+  }
+
+  .btn-outline-nav {
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .hero-section {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    min-height: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 10vw, 52px);
+    margin-bottom: 20px;
+  }
+
+  .hero-lead-title {
+    font-size: 21px;
+    margin-bottom: 12px;
+  }
+
+  .hero-description {
+    font-size: 14.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta-group button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-image-wrap {
+    min-height: 320px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image-frame {
+    max-width: 260px;
+  }
+
+  .large-section-title {
+    font-size: clamp(30px, 8.5vw, 44px);
+  }
+
+  .card-title-serif {
+    font-size: clamp(23px, 6.5vw, 32px);
+  }
+
+  .case-title {
+    font-size: clamp(23px, 6.5vw, 32px);
+  }
+
+  .about-name {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .about-quote-big {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+
+  .case-table-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .case-row-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .case-row-val {
+    font-size: 14px;
+  }
+
+  .space-card-content button,
+  .case-card button,
+  .book-content button,
+  .spacecheck-left button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .direct-speak-banner {
+    padding: 48px 0;
+  }
+
+  .banner-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .banner-flex button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-dialog {
+    padding: 24px 16px;
+    margin: 8px;
+    max-height: 94vh;
+  }
+
+  .modal-headline {
+    font-size: 24px;
+  }
+}
+

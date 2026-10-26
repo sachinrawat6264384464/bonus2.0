@@ -135,9 +135,9 @@ export default function Home() {
 
             <div className="hero-image-wrap">
               <OrbitGraphic
-                size={520}
+                size={700}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.45}
+                opacity={0.55}
               />
               <div className="hero-image-frame">
                 <Image
@@ -287,8 +287,18 @@ export default function Home() {
       </section>
 
       {/* 5. Section 4: Old wisdom. Today's spaces. */}
-      <section className="section" id="methodology">
-        <div className="container">
+      <section className="section" id="methodology" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={780}
+          style={{
+            top: '-60px',
+            right: '-240px',
+            pointerEvents: 'none'
+          }}
+          opacity={0.35}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <h2 className="large-section-title">
             Old wisdom.<br />
             <em>Today&apos;s spaces.</em>
@@ -469,9 +479,9 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={500}
+                size={680}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.45}
+                opacity={0.55}
               />
               <div className="about-photo-frame">
                 <Image
@@ -545,13 +555,18 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="book-mockup-frame">
+            <div className="book-mockup-frame" style={{ position: 'relative' }}>
+              <OrbitGraphic
+                size={680}
+                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                opacity={0.45}
+              />
               <Image
                 src="/images/book-mockup.png"
                 alt="The Space on Your Side by Shrijal Talkar"
                 width={550}
                 height={620}
-                style={{ display: 'block', width: '100%', maxWidth: '480px', height: 'auto' }}
+                style={{ display: 'block', width: '100%', maxWidth: '480px', height: 'auto', position: 'relative', zIndex: 2 }}
               />
             </div>
           </div>
@@ -630,8 +645,18 @@ export default function Home() {
       </section>
 
       {/* 11. Section 10: Prefer to speak directly with Shrijal? */}
-      <section className="direct-speak-banner" id="consultation">
-        <div className="container">
+      <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={680}
+          style={{
+            top: '50%',
+            right: '-160px',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none'
+          }}
+          opacity={0.4}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="banner-flex">
             <h2 className="banner-title">
               Prefer to speak directly<br />

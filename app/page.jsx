@@ -922,18 +922,19 @@ export default function Home() {
       </footer>
 
       {/* Sticky Bottom CTA */}
-      <aside
-        className="fixed bottom-5 right-5 z-40 bg-[#1C1C1A] text-[#FAF9F5] px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-3 text-xs sm:text-sm border border-[#333330] transition-all hover:bg-[#2B2B28]"
-        aria-label="Quick Action CTA"
+      <button
+        type="button"
+        onClick={() => openSpaceCheckWith('Business')}
+        className="sticky-action-pill"
+        id="sticky-check-space-btn"
+        aria-label="Not sure where to begin? Check your space"
       >
-        <span className="hidden sm:inline text-[#D5D2C8]">Not sure where to begin?</span>
-        <button
-          onClick={() => openSpaceCheckWith('Business')}
-          className="font-semibold text-[#FAF9F5] hover:underline flex items-center gap-1.5"
-        >
-          CHECK YOUR SPACE <span>&rarr;</span>
-        </button>
-      </aside>
+        <span className="sticky-pill-label">Not sure where to begin?</span>
+        <span className="sticky-pill-divider" aria-hidden="true"></span>
+        <span className="sticky-pill-cta">
+          CHECK YOUR SPACE <span className="sticky-pill-arrow">&rarr;</span>
+        </span>
+      </button>
 
       {/* MODAL 1: Book a Consultation Modal */}
       {isConsultOpen && (

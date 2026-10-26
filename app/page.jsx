@@ -579,9 +579,9 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px 20px' }}>
               <OrbitGraphic
-                size={1050}
+                size={1450}
                 style={{
                   top: '50%',
                   left: '50%',
@@ -590,14 +590,14 @@ export default function Home() {
                   maxWidth: 'none',
                   maxHeight: 'none'
                 }}
-                opacity={0.85}
+                opacity={0.92}
               />
               <Image
                 src="/images/book-mockup.png"
                 alt="The Space on Your Side by Shrijal Talkar"
                 width={558}
                 height={666}
-                style={{ display: 'block', width: '100%', maxWidth: '440px', height: 'auto', position: 'relative', zIndex: 2 }}
+                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
               />
             </div>
           </div>

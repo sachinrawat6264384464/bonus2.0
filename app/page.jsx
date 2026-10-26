@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
+import IntroSplash from './components/IntroSplash';
 
 export default function Home() {
   // Modal states
@@ -54,6 +55,9 @@ export default function Home() {
 
   return (
     <div className="site-wrapper">
+      {/* Intro Animation Preloader */}
+      <IntroSplash />
+
       {/* 1. Navigation Header */}
       <header className="header-wrapper">
         <div className="container">

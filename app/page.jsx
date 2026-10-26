@@ -347,13 +347,14 @@ export default function Home() {
       {/* 6. Section 5: Real spaces tell you more than big promises. */}
       <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={780}
+          size={820}
           style={{
-            top: '-50px',
-            right: '-240px',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             pointerEvents: 'none'
           }}
-          opacity={0.35}
+          opacity={0.3}
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">

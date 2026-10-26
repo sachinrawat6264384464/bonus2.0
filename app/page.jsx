@@ -165,6 +165,16 @@ export default function Home() {
 
       {/* Human Insight: Work-to-Home Tension */}
       <section className="section" id="insight" style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--border-subtle)' }}>
+        <OrbitGraphic
+          size={850}
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none'
+          }}
+          opacity={0.32}
+        />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>

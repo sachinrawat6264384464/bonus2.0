@@ -542,8 +542,8 @@ export default function Home() {
       </section>
 
       {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section" id="book">
-        <div className="container">
+      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid">
             <div className="book-content">
               <h2 className="large-section-title">
@@ -579,18 +579,25 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="book-mockup-frame" style={{ position: 'relative' }}>
+            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <OrbitGraphic
-                size={800}
-                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.5}
+                size={1050}
+                style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  pointerEvents: 'none',
+                  maxWidth: 'none',
+                  maxHeight: 'none'
+                }}
+                opacity={0.85}
               />
               <Image
                 src="/images/book-mockup.png"
                 alt="The Space on Your Side by Shrijal Talkar"
-                width={550}
-                height={620}
-                style={{ display: 'block', width: '100%', maxWidth: '480px', height: 'auto', position: 'relative', zIndex: 2 }}
+                width={558}
+                height={666}
+                style={{ display: 'block', width: '100%', maxWidth: '440px', height: 'auto', position: 'relative', zIndex: 2 }}
               />
             </div>
           </div>

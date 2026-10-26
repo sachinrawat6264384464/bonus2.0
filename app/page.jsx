@@ -579,18 +579,18 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px 20px' }}>
+            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <OrbitGraphic
-                size={1450}
+                size={880}
                 style={{
                   top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
+                  right: '-200px',
+                  transform: 'translateY(-50%)',
                   pointerEvents: 'none',
                   maxWidth: 'none',
                   maxHeight: 'none'
                 }}
-                opacity={0.92}
+                opacity={0.85}
               />
               <Image
                 src="/images/book-mockup.png"

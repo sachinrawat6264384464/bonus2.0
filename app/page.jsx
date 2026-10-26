@@ -173,26 +173,14 @@ export default function Home() {
               <em>But the office doesn’t always leave you.</em>
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4" style={{ marginTop: '36px', marginBottom: '36px' }}>
+            <div className="insight-grid">
               {[
                 'The pending payment.',
                 'The difficult decision.',
                 'The team issue.',
                 'The number you missed.'
               ].map((item, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    padding: '24px 16px',
-                    border: '1px solid var(--border-subtle)',
-                    background: '#FFFFFF',
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '20px',
-                    color: 'var(--text-primary)',
-                    lineHeight: '1.35',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-                  }}
-                >
+                <div key={idx} className="insight-item-box">
                   {item}
                 </div>
               ))}
@@ -296,33 +284,33 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-[#E6E4DD]">
+          <div className="spaces-three-col">
             {/* Business Card */}
-            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+            <div className="spaces-card">
               <div>
                 <div className="section-label">BUSINESS</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
                   Business
                 </h3>
-                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                <ul className="clean-bullet-list">
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Growth feels slow.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Money feels tight.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>The team feels unsettled.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Decisions feel harder.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Something just feels stuck.</span>
                   </li>
                 </ul>
@@ -338,31 +326,31 @@ export default function Home() {
             </div>
 
             {/* Home Card */}
-            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+            <div className="spaces-card">
               <div>
                 <div className="section-label">HOME</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
                   Home
                 </h3>
-                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                <ul className="clean-bullet-list">
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Peace feels less.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Sleep feels disturbed.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Stress stays longer.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Relationships feel harder.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>The home simply doesn’t feel the same.</span>
                   </li>
                 </ul>
@@ -378,23 +366,23 @@ export default function Home() {
             </div>
 
             {/* Both Card */}
-            <div className="p-8 md:p-10 flex flex-col justify-between">
+            <div className="spaces-card">
               <div>
                 <div className="section-label">BOTH</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
                   Both
                 </h3>
-                <ul className="space-y-3 mb-8 text-[15.5px] text-[#5A5954]">
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                <ul className="clean-bullet-list">
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Work affects home.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>Home affects work.</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="text-[#A3A19B]">&bull;</span>
+                  <li className="clean-bullet-item">
+                    <span className="clean-bullet-dot">&bull;</span>
                     <span>And you want to understand the bigger picture.</span>
                   </li>
                 </ul>
@@ -501,9 +489,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-[#E6E4DD] mt-12">
+          <div className="stories-three-col">
             {/* Business Story */}
-            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+            <div className="story-card-col">
               <div>
                 <div className="section-label">BUSINESS STORY</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
@@ -524,7 +512,7 @@ export default function Home() {
             </div>
 
             {/* Home Story */}
-            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-[#E6E4DD] flex flex-col justify-between">
+            <div className="story-card-col">
               <div>
                 <div className="section-label">HOME STORY</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
@@ -545,7 +533,7 @@ export default function Home() {
             </div>
 
             {/* Business + Home Story */}
-            <div className="p-8 md:p-10 flex flex-col justify-between">
+            <div className="story-card-col">
               <div>
                 <div className="section-label">BUSINESS + HOME</div>
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">

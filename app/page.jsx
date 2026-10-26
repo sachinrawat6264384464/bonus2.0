@@ -163,8 +163,18 @@ export default function Home() {
       </section>
 
       {/* 3. Section 2: What you see is only part of the space */}
-      <section className="section" id="approach">
-        <div className="container">
+      <section className="section" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={780}
+          style={{
+            top: '50%',
+            right: '-240px',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none'
+          }}
+          opacity={0.35}
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">
             <h2 className="large-section-title">
               What you see is only<br />

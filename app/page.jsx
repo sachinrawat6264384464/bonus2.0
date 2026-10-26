@@ -206,8 +206,19 @@ export default function Home() {
       </section>
 
       {/* 4. Section 3: Which space would you like to look at? */}
-      <section className="section" id="spaces">
-        <div className="container">
+      <section className="section" id="spaces" style={{ position: 'relative', overflow: 'hidden' }}>
+        <OrbitGraphic
+          size={780}
+          style={{
+            top: '50%',
+            left: '-260px',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none'
+          }}
+          opacity={0.35}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header" style={{ marginBottom: '50px' }}>
             <h2 className="large-section-title">
               Which space would you<br />

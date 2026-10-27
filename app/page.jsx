@@ -99,12 +99,12 @@ export default function Home() {
 
             <nav>
               <ul className="nav-links">
-                <li><a href="#approach" className="nav-link">Approach</a></li>
-                <li><a href="#spaces" className="nav-link">Business & Home</a></li>
-                <li><a href="#case-studies" className="nav-link">Case Studies</a></li>
+                <li><a href="#insight" className="nav-link">Insight</a></li>
+                <li><a href="#spaces" className="nav-link">Spaces</a></li>
                 <li><a href="#about" className="nav-link">About</a></li>
-                <li><a href="#book" className="nav-link">Book</a></li>
                 <li><a href="#space-check" className="nav-link">Space Check</a></li>
+                <li><a href="#book" className="nav-link">Book</a></li>
+                <li><a href="#case-studies" className="nav-link">Proof</a></li>
               </ul>
             </nav>
 
@@ -220,68 +220,6 @@ export default function Home() {
             </h3>
             <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
               Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Section 2: What you see is only part of the space */}
-      <section className="section" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Vague poetic elements: Gentle morning sunbeam & floating light motes */}
-        <SunbeamGlow />
-
-        <OrbitGraphic
-          size={720}
-          style={{
-            top: '50%',
-            right: '-200px',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.16}
-          rotation={55}
-          variant="concentric"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="split-headline-header">
-            <h2 className="large-section-title">
-              What you see is only<br />
-              <em>part of the space.</em>
-            </h2>
-            <p className="header-aside-text">
-              A space can look perfectly fine and still deserve a closer look.
-            </p>
-          </div>
-
-          <div className="two-col-bordered">
-            {/* Left Col */}
-            <div className="bordered-col">
-              <div className="section-label">WHAT YOU SEE</div>
-              <div className="grid-2x2-serif">
-                <div className="large-serif-item">Rooms</div>
-                <div className="large-serif-item">Furniture</div>
-                <div className="large-serif-item">Colours</div>
-                <div className="large-serif-item">Layout</div>
-              </div>
-            </div>
-
-            {/* Right Col */}
-            <div className="bordered-col">
-              <div className="section-label">WHAT SHRIJAL STUDIES</div>
-              <div className="vertical-serif-list">
-                <div className="large-serif-item">Direction</div>
-                <div className="large-serif-item">Light</div>
-                <div className="large-serif-item">Energy</div>
-                <div className="large-serif-item">Flow</div>
-                <div className="large-serif-item">How the space is used</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bottom-aim-row">
-            <h3 className="aim-title">The aim is simple.</h3>
-            <p className="aim-desc">
-              To understand how the space is working before deciding what needs to change.
             </p>
           </div>
         </div>
@@ -416,64 +354,234 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Section 4: Old wisdom. Today's spaces. */}
-      <section className="section" id="methodology" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Vague poetic elements: Gentle distant birds in flight */}
+      {/* 8. Section 7: About Shrijal Talkar */}
+      <section className="section" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Poetic atmosphere: Gentle sunbeam glow & birds */}
+        <SunbeamGlow />
         <FlyingBirds />
 
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="about-grid">
+            <div className="about-photo-wrap">
+              <OrbitGraphic
+                size={660}
+                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                opacity={0.25}
+                rotation={-45}
+                variant="concentric"
+              />
+              <div className="about-photo-frame">
+                <Image
+                  src="/images/shrijal-real-opt.png"
+                  alt="Shrijal Talkar portrait"
+                  width={500}
+                  height={580}
+                  style={{ display: 'block', width: '100%', height: 'auto', position: 'relative', zIndex: 2 }}
+                />
+              </div>
+            </div>
+
+            <div className="about-content">
+              <div className="section-label">WHY SHRIJAL</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
+                You bring the problem.<br />
+                <em>Shrijal studies the space.</em>
+              </h2>
+
+              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '8px' }}>
+                Shrijal Talkar is a Modern Vastu Expert and Author.
+              </div>
+              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+                She studied Vastu under leading Vastu-Astro expert Aashish Patidar and became a Gold Medalist in Vastu.
+              </p>
+
+              <div className="about-divider"></div>
+
+              <div className="about-belief-intro" style={{ fontWeight: '500', color: 'var(--text-primary)' }}>
+                Her approach is simple:
+              </div>
+
+              <ul style={{ listStyle: 'none', margin: '16px 0 24px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Understand the person.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Study the space.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Find what matters.
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Suggest what is practical.
+                </li>
+              </ul>
+
+              <div style={{ background: '#F4F2EC', padding: '20px 24px', borderLeft: '3px solid #1C1C1A', marginTop: '20px' }}>
+                <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '6px' }}>
+                  No fear. No unnecessary demolition. No complicated Vastu talk.
+                </p>
+                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)' }}>
+                  Just clear guidance you can understand and use.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Section 9: 2-Minute Space Check */}
+      <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={680}
+          size={740}
           style={{
-            top: '-80px',
-            right: '-180px',
+            bottom: '-120px',
+            left: '-200px',
             pointerEvents: 'none'
           }}
-          opacity={0.14}
-          rotation={-35}
-          variant="minimal"
+          opacity={0.18}
+          rotation={-60}
+          variant="concentric"
         />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="spacecheck-grid">
+            <div className="spacecheck-left">
+              <h2 className="large-section-title">
+                Is your space<br />
+                <em>on your side?</em>
+              </h2>
+
+              <h3 className="spacecheck-callout" style={{ fontSize: '30px', marginTop: '16px', marginBottom: '12px' }}>
+                Take the 2-Minute Space Check.
+              </h3>
+
+              <p className="spacecheck-p" style={{ marginBottom: '28px', fontSize: '17px' }}>
+                A simple first step for business owners.
+              </p>
+
+              <button
+                onClick={() => openSpaceCheckWith(spaceCheckType)}
+                className="btn-primary"
+                id="start-space-check-btn"
+              >
+                START MY FREE SPACE CHECK <span>&rarr;</span>
+              </button>
+            </div>
+
+            <div className="spacecheck-right">
+              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
+                Choose: Business &bull; Home &bull; Both.
+              </div>
+
+              <div className="selector-options-row">
+                <button
+                  type="button"
+                  onClick={() => setSpaceCheckType('Business')}
+                  className={`selector-option-btn ${spaceCheckType === 'Business' ? 'active' : ''}`}
+                >
+                  Business
+                </button>
+                <span className="selector-divider-dot">&middot;</span>
+                <button
+                  type="button"
+                  onClick={() => setSpaceCheckType('Home')}
+                  className={`selector-option-btn ${spaceCheckType === 'Home' ? 'active' : ''}`}
+                >
+                  Home
+                </button>
+                <span className="selector-divider-dot">&middot;</span>
+                <button
+                  type="button"
+                  onClick={() => setSpaceCheckType('Both')}
+                  className={`selector-option-btn ${spaceCheckType === 'Both' ? 'active' : ''}`}
+                >
+                  Both
+                </button>
+              </div>
+
+              <div className="spacecheck-bullets">
+                <p>Answer a few simple questions.</p>
+                <p>No Vastu knowledge needed. No technical terms. No fear-based predictions.</p>
+                <p className="conclusion" style={{ fontSize: '18px', fontWeight: '500', color: 'var(--text-primary)', marginTop: '8px' }}>
+                  2 minutes. One clearer view of your space.
+                </p>
+                <p style={{ marginTop: '8px' }}>At the end, see which areas may deserve a closer look.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Section 8: The Space on Your Side (Book) */}
+      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
+        <WindLeavesStream />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <h2 className="large-section-title">
-            Old wisdom.<br />
-            <em>Today&apos;s spaces.</em>
-          </h2>
+          <div className="book-grid">
+            <div className="book-content">
+              <div className="section-label">THE BOOK</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
+                One idea<br />
+                <em>became a book.</em>
+              </h2>
 
-          <div className="wisdom-split-text">
-            <p className="wisdom-big-p">
-              Vastu has been studied for centuries. The way we live and work has changed.
-            </p>
-            <p className="wisdom-aside-p">
-              Modern Vastu brings the two together. It keeps the principles of Vastu, while applying them to the way homes and businesses work today.
-            </p>
-          </div>
+              <h3 className="book-title-tag">The Space on Your Side</h3>
+              <div className="book-subtitle-tag">
+                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
+              </div>
 
-          <div className="three-col-bordered">
-            <div className="method-col">
-              <h3 className="method-step-title">
-                First, understand what is happening.
-              </h3>
-              <p className="method-step-desc">
-                Shrijal starts with the reason you came. What are you noticing? What has changed? What keeps coming up?
-              </p>
+              <div className="book-desc-content">
+                <p>
+                  Your space is not just where life happens.<br />
+                  It is part of how life happens.
+                </p>
+                <div className="book-keywords-serif">
+                  Light. Movement. Flow. Energy.
+                </div>
+                <p>
+                  And the way people feel and function inside a space.
+                </p>
+                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                    Shrijal’s modern Vastu approach is built around one belief:
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
+                    &ldquo;Don’t fear your space. Understand it.&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsBookModalOpen(true)}
+                className="btn-outline"
+                id="see-the-book-btn"
+              >
+                See The Book <span>&rarr;</span>
+              </button>
             </div>
 
-            <div className="method-col">
-              <h3 className="method-step-title">
-                Then, study the whole space.
-              </h3>
-              <p className="method-step-desc">
-                Direction. Layout. Light. Energy. Flow. And the way people actually use the space.
-              </p>
-            </div>
-
-            <div className="method-col">
-              <h3 className="method-step-title">
-                Then decide what really needs attention.
-              </h3>
-              <p className="method-step-desc">
-                Some spaces need change. Some need very little. The purpose is not to find more problems. It is to find what matters. Practical corrections come first. Unnecessary demolition does not.
-              </p>
+            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <OrbitGraphic
+                size={820}
+                style={{
+                  top: '50%',
+                  right: '-180px',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  maxWidth: 'none',
+                  maxHeight: 'none'
+                }}
+                opacity={0.35}
+                rotation={80}
+                variant="minimal"
+              />
+              <Image
+                src="/images/book-mockup.png"
+                alt="The Space on Your Side by Shrijal Talkar"
+                width={558}
+                height={666}
+                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
+              />
             </div>
           </div>
         </div>
@@ -602,235 +710,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. Section 7: About Shrijal Talkar */}
-      <section className="section" id="about">
-        <div className="container">
-          <div className="about-grid">
-            <div className="about-photo-wrap">
-              <OrbitGraphic
-                size={660}
-                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.25}
-                rotation={-45}
-                variant="concentric"
-              />
-              <div className="about-photo-frame">
-                <Image
-                  src="/images/shrijal-real-opt.png"
-                  alt="Shrijal Talkar portrait"
-                  width={500}
-                  height={580}
-                  style={{ display: 'block', width: '100%', height: 'auto', position: 'relative', zIndex: 2 }}
-                />
-              </div>
-            </div>
-
-            <div className="about-content">
-              <div className="section-label">WHY SHRIJAL</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
-                You bring the problem.<br />
-                <em>Shrijal studies the space.</em>
-              </h2>
-
-              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '8px' }}>
-                Shrijal Talkar is a Modern Vastu Expert and Author.
-              </div>
-              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
-                She studied Vastu under leading Vastu-Astro expert Aashish Patidar and became a Gold Medalist in Vastu.
-              </p>
-
-              <div className="about-divider"></div>
-
-              <div className="about-belief-intro" style={{ fontWeight: '500', color: 'var(--text-primary)' }}>
-                Her approach is simple:
-              </div>
-
-              <ul style={{ listStyle: 'none', margin: '16px 0 24px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Understand the person.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Study the space.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Find what matters.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Suggest what is practical.
-                </li>
-              </ul>
-
-              <div style={{ background: '#F4F2EC', padding: '20px 24px', borderLeft: '3px solid #1C1C1A', marginTop: '20px' }}>
-                <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '6px' }}>
-                  No fear. No unnecessary demolition. No complicated Vastu talk.
-                </p>
-                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)' }}>
-                  Just clear guidance you can understand and use.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
-        <WindLeavesStream />
-
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="book-grid">
-            <div className="book-content">
-              <div className="section-label">THE BOOK</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
-                One idea<br />
-                <em>became a book.</em>
-              </h2>
-
-              <h3 className="book-title-tag">The Space on Your Side</h3>
-              <div className="book-subtitle-tag">
-                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
-              </div>
-
-              <div className="book-desc-content">
-                <p>
-                  Your space is not just where life happens.<br />
-                  It is part of how life happens.
-                </p>
-                <div className="book-keywords-serif">
-                  Light. Movement. Flow. Energy.
-                </div>
-                <p>
-                  And the way people feel and function inside a space.
-                </p>
-                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    Shrijal’s modern Vastu approach is built around one belief:
-                  </p>
-                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
-                    &ldquo;Don’t fear your space. Understand it.&rdquo;
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsBookModalOpen(true)}
-                className="btn-outline"
-                id="see-the-book-btn"
-              >
-                See The Book <span>&rarr;</span>
-              </button>
-            </div>
-
-            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <OrbitGraphic
-                size={820}
-                style={{
-                  top: '50%',
-                  right: '-180px',
-                  transform: 'translateY(-50%)',
-                  pointerEvents: 'none',
-                  maxWidth: 'none',
-                  maxHeight: 'none'
-                }}
-                opacity={0.35}
-                rotation={80}
-                variant="minimal"
-              />
-              <Image
-                src="/images/book-mockup.png"
-                alt="The Space on Your Side by Shrijal Talkar"
-                width={558}
-                height={666}
-                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Section 9: 2-Minute Space Check */}
-      <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={740}
-          style={{
-            bottom: '-120px',
-            left: '-200px',
-            pointerEvents: 'none'
-          }}
-          opacity={0.18}
-          rotation={-60}
-          variant="concentric"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="spacecheck-grid">
-            <div className="spacecheck-left">
-              <h2 className="large-section-title">
-                Is your space<br />
-                <em>on your side?</em>
-              </h2>
-
-              <h3 className="spacecheck-callout" style={{ fontSize: '30px', marginTop: '16px', marginBottom: '12px' }}>
-                Take the 2-Minute Space Check.
-              </h3>
-
-              <p className="spacecheck-p" style={{ marginBottom: '28px', fontSize: '17px' }}>
-                A simple first step for business owners.
-              </p>
-
-              <button
-                onClick={() => openSpaceCheckWith(spaceCheckType)}
-                className="btn-primary"
-                id="start-space-check-btn"
-              >
-                START MY FREE SPACE CHECK <span>&rarr;</span>
-              </button>
-            </div>
-
-            <div className="spacecheck-right">
-              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
-                Choose: Business &bull; Home &bull; Both.
-              </div>
-
-              <div className="selector-options-row">
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Business')}
-                  className={`selector-option-btn ${spaceCheckType === 'Business' ? 'active' : ''}`}
-                >
-                  Business
-                </button>
-                <span className="selector-divider-dot">&middot;</span>
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Home')}
-                  className={`selector-option-btn ${spaceCheckType === 'Home' ? 'active' : ''}`}
-                >
-                  Home
-                </button>
-                <span className="selector-divider-dot">&middot;</span>
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Both')}
-                  className={`selector-option-btn ${spaceCheckType === 'Both' ? 'active' : ''}`}
-                >
-                  Both
-                </button>
-              </div>
-
-              <div className="spacecheck-bullets">
-                <p>Answer a few simple questions.</p>
-                <p>No Vastu knowledge needed. No technical terms. No fear-based predictions.</p>
-                <p className="conclusion" style={{ fontSize: '18px', fontWeight: '500', color: 'var(--text-primary)', marginTop: '8px' }}>
-                  2 minutes. One clearer view of your space.
-                </p>
-                <p style={{ marginTop: '8px' }}>At the end, see which areas may deserve a closer look.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 11. Section 10: Before you change your space... understand it. */}
       <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Vague poetic elements: Subtle breathing energy clarity circle */}
@@ -928,9 +807,9 @@ export default function Home() {
               <a href="#insight" className="nav-link">Insight</a>
               <a href="#spaces" className="nav-link">Spaces</a>
               <a href="#about" className="nav-link">About</a>
-              <a href="#book" className="nav-link">Book</a>
-              <a href="#case-studies" className="nav-link">Stories</a>
               <a href="#space-check" className="nav-link">Space Check</a>
+              <a href="#book" className="nav-link">Book</a>
+              <a href="#case-studies" className="nav-link">Proof</a>
             </div>
           </div>
         </div>

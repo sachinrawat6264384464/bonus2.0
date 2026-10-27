@@ -1,23 +1,26 @@
 'use client';
 
-import Image from 'next/image';
+import React from 'react';
 
 /**
  * OrbitGraphic:
+ * Renders pristine, concentric geometric circles that cleanly close with perfect 360-degree continuity.
+ * Eliminates jagged/broken gap artifacts while maintaining an architectural, modern Vastu aesthetic.
+ *
  * @param {object} style - Custom inline positioning & transforms
  * @param {string} className - Optional classes
  * @param {number} size - Base bounding size (px)
- * @param {number} opacity - Controlled subtle opacity (default around 0.15 - 0.28)
- * @param {number} rotation - Custom rotation in degrees
+ * @param {number} opacity - Subtle opacity (default 0.25 - 0.4)
+ * @param {number} rotation - Optional rotation in degrees
  * @param {number} scale - Custom scale factor
- * @param {string} variant - 'default' | 'concentric' | 'arcs' | 'minimal' (adds unique procedural accents)
+ * @param {string} variant - 'default' | 'concentric' | 'arcs' | 'minimal'
  * @param {boolean} flip - Flip horizontally
  */
 export default function OrbitGraphic({
   style = {},
   className = '',
   size = 700,
-  opacity = 0.2,
+  opacity = 0.35,
   rotation = 0,
   scale = 1,
   variant = 'default',
@@ -30,6 +33,20 @@ export default function OrbitGraphic({
   if (flip) transformParts.push(`scaleX(-1)`);
 
   const mergedTransform = transformParts.length > 0 ? transformParts.join(' ') : undefined;
+
+  // Curated concentric rings with balanced line weights and subtle tone variations
+  // All rings are complete 360° closed circles so their endpoints meet perfectly.
+  const concentricRings = [
+    { r: 140, stroke: '#8E8A80', strokeWidth: 1.2, opacity: 0.8 },
+    { r: 185, stroke: '#9D998F', strokeWidth: 1.0, opacity: 0.65 },
+    { r: 230, stroke: '#A9A499', strokeWidth: 1.2, opacity: 0.75 },
+    { r: 275, stroke: '#B6B2A7', strokeWidth: 0.9, opacity: 0.55 },
+    { r: 320, stroke: '#A39E93', strokeWidth: 1.4, opacity: 0.7 },
+    { r: 365, stroke: '#BDB9AE', strokeWidth: 0.85, opacity: 0.5 },
+    { r: 410, stroke: '#999489', strokeWidth: 1.2, opacity: 0.65 },
+    { r: 455, stroke: '#C4BFB5', strokeWidth: 0.8, opacity: 0.45 },
+    { r: 488, stroke: '#AAA59B', strokeWidth: 1.0, opacity: 0.55 }
+  ];
 
   return (
     <div
@@ -48,72 +65,52 @@ export default function OrbitGraphic({
       }}
       aria-hidden="true"
     >
-      {/* Base PNG with organic rotation & subtle presence */}
-      <Image
-        src="/images/background-orbits.png"
-        alt=""
-        width={1000}
-        height={1000}
+      <svg
+        viewBox="0 0 1000 1000"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
         style={{
           width: '100%',
           height: '100%',
-          objectFit: 'contain',
-          display: 'block',
-          filter: variant === 'minimal' ? 'contrast(0.85) brightness(1.05)' : undefined
+          display: 'block'
         }}
-        loading="lazy"
-      />
+      >
+        {/* Subtle center coordinate axes ticks */}
+        <line x1="500" y1="480" x2="500" y2="520" stroke="#8E8A80" strokeWidth="0.8" opacity="0.4" />
+        <line x1="480" y1="500" x2="520" y2="500" stroke="#8E8A80" strokeWidth="0.8" opacity="0.4" />
 
-      {/* SVG Accent Overlays to make each appearance visually unique */}
-      {variant === 'concentric' && (
-        <svg
-          viewBox="0 0 1000 1000"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            pointerEvents: 'none'
-          }}
-        >
-          <circle cx="500" cy="500" r="320" fill="none" stroke="#D6D2C7" strokeWidth="1" strokeDasharray="3 7" opacity="0.6" />
-          <circle cx="500" cy="500" r="410" fill="none" stroke="#D6D2C7" strokeWidth="0.8" opacity="0.45" />
-          <circle cx="500" cy="90" r="4" fill="#AEA99C" opacity="0.75" />
-          <circle cx="180" cy="500" r="3" fill="#AEA99C" opacity="0.6" />
-        </svg>
-      )}
+        {/* Complete concentric circles - 100% closed, flawless loops */}
+        {concentricRings.map((ring, idx) => (
+          <circle
+            key={idx}
+            cx="500"
+            cy="500"
+            r={ring.r}
+            stroke={ring.stroke}
+            strokeWidth={ring.strokeWidth}
+            opacity={ring.opacity}
+          />
+        ))}
 
-      {variant === 'arcs' && (
-        <svg
-          viewBox="0 0 1000 1000"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            pointerEvents: 'none'
-          }}
-        >
-          <path d="M 150 500 A 350 350 0 0 1 850 500" fill="none" stroke="#C9C4B8" strokeWidth="1" strokeDasharray="8 12" opacity="0.7" />
-          <path d="M 500 150 A 350 350 0 0 1 500 850" fill="none" stroke="#D6D2C7" strokeWidth="0.75" opacity="0.4" />
-          <circle cx="850" cy="500" r="3.5" fill="#AEA99C" opacity="0.8" />
-        </svg>
-      )}
+        {/* Fine orbital node markers positioned precisely along closed orbits */}
+        <circle cx="500" cy={500 - 320} r="3" fill="#8E8A80" opacity="0.6" />
+        <circle cx={500 + 410} cy="500" r="2.5" fill="#8E8A80" opacity="0.5" />
+        <circle cx={500 - 230} cy="500" r="2.5" fill="#8E8A80" opacity="0.5" />
+        <circle cx="500" cy={500 + 455} r="2.5" fill="#8E8A80" opacity="0.45" />
 
-      {variant === 'minimal' && (
-        <svg
-          viewBox="0 0 1000 1000"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            pointerEvents: 'none'
-          }}
-        >
-          <circle cx="500" cy="500" r="260" fill="none" stroke="#D6D2C7" strokeWidth="0.75" strokeDasharray="2 6" opacity="0.5" />
-        </svg>
-      )}
+        {/* Optional decorative dashed outer compass ring for rich architectural feel */}
+        {(variant === 'concentric' || variant === 'default') && (
+          <circle
+            cx="500"
+            cy="500"
+            r="470"
+            stroke="#9D998F"
+            strokeWidth="0.75"
+            strokeDasharray="4 8"
+            opacity="0.4"
+          />
+        )}
+      </svg>
     </div>
   );
 }

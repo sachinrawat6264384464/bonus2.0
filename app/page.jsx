@@ -929,10 +929,13 @@ export default function Home() {
         id="sticky-check-space-btn"
         aria-label="Not sure where to begin? Check your space"
       >
-        <span className="sticky-pill-label">Not sure where to begin?</span>
-        <span className="sticky-pill-divider" aria-hidden="true"></span>
-        <span className="sticky-pill-cta">
-          CHECK YOUR SPACE <span className="sticky-pill-arrow">&rarr;</span>
+        <span className="sticky-pill-prompt">
+          <span className="sticky-pill-dot" aria-hidden="true"></span>
+          <span className="sticky-pill-label">Not sure where to begin?</span>
+        </span>
+        <span className="sticky-pill-cta-btn">
+          <span>CHECK YOUR SPACE</span>
+          <span className="sticky-pill-arrow" aria-hidden="true">&rarr;</span>
         </span>
       </button>
 

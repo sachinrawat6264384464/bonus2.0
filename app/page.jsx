@@ -364,14 +364,14 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={720}
+                size={510}
                 style={{
-                  top: '50%',
+                  top: '47%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  filter: 'drop-shadow(0 0 12px rgba(158, 228, 201, 0.45))'
+                  filter: 'drop-shadow(0 0 10px rgba(158, 228, 201, 0.4))'
                 }}
-                opacity={0.88}
+                opacity={0.85}
                 rotation={-45}
                 variant="concentric"
                 color="#A3E7D0"
@@ -387,7 +387,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="about-content">
+            <div className="about-content" style={{ position: 'relative', zIndex: 4 }}>
               <div className="section-label">WHY SHRIJAL</div>
               <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
                 You bring the problem.<br />

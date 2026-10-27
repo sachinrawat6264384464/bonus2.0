@@ -355,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* 8. Section 7: About Shrijal Talkar */}
-      <section className="section section-theme-flower-color" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="section" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Poetic atmosphere: Gentle sunbeam glow & birds */}
         <SunbeamGlow />
         <FlyingBirds />
@@ -518,7 +518,7 @@ export default function Home() {
       </section>
 
       {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section section-theme-pink" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
         <WindLeavesStream />
 

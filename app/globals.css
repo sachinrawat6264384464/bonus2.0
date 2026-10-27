@@ -165,10 +165,10 @@ button {
 }
 
 .btn-outline-nav:hover {
-  background: #C33F4B;
-  border-color: #C33F4B;
+  background: #103F35;
+  border-color: #103F35;
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(195, 63, 75, 0.28);
+  box-shadow: 0 4px 14px rgba(16, 63, 53, 0.28);
 }
 
 .btn-outline-nav svg {
@@ -195,11 +195,11 @@ button {
 }
 
 .btn-primary:hover {
-  background-color: #C33F4B;
-  border-color: #C33F4B;
+  background-color: #103F35;
+  border-color: #103F35;
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(195, 63, 75, 0.32);
+  box-shadow: 0 8px 22px rgba(16, 63, 53, 0.32);
 }
 
 .btn-primary svg {
@@ -225,11 +225,11 @@ button {
 }
 
 .btn-outline:hover {
-  background-color: #C33F4B;
-  border-color: #C33F4B;
+  background-color: #103F35;
+  border-color: #103F35;
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(195, 63, 75, 0.32);
+  box-shadow: 0 8px 22px rgba(16, 63, 53, 0.32);
 }
 
 .btn-outline svg {
@@ -317,12 +317,29 @@ button {
   letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: 36px;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.35s ease;
 }
 
 .hero-title em {
   font-style: italic;
   font-weight: 400;
   display: block;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-title:hover em {
+  color: #103F35;
+}
+
+#hero-check-space-btn span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+#hero-check-space-btn:hover span {
+  transform: translateX(4px);
 }
 
 .hero-lead-title {

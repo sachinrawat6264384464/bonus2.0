@@ -156,7 +156,9 @@ export default function Home() {
               <OrbitGraphic
                 size={700}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.55}
+                opacity={0.28}
+                rotation={18}
+                variant="arcs"
               />
               <div className="hero-image-frame">
                 <Image
@@ -179,16 +181,6 @@ export default function Home() {
 
       {/* Human Insight: Work-to-Home Tension */}
       <section className="section" id="insight" style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--border-subtle)' }}>
-        <OrbitGraphic
-          size={850}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.32}
-        />
         <div className="container" style={{ position: 'relative', zIndex: 2 }} ref={insightContainerRef}>
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
@@ -234,14 +226,16 @@ export default function Home() {
       {/* 3. Section 2: What you see is only part of the space */}
       <section className="section" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={780}
+          size={720}
           style={{
             top: '50%',
-            right: '-240px',
+            right: '-200px',
             transform: 'translateY(-50%)',
             pointerEvents: 'none'
           }}
-          opacity={0.35}
+          opacity={0.16}
+          rotation={55}
+          variant="concentric"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">
@@ -290,17 +284,6 @@ export default function Home() {
 
       {/* 4. Section 3: Which space would you like to look at? */}
       <section className="section" id="spaces" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={780}
-          style={{
-            top: '50%',
-            left: '-260px',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.35}
-        />
-
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header" style={{ marginBottom: '50px' }}>
             <h2 className="large-section-title">
@@ -431,13 +414,15 @@ export default function Home() {
       {/* 5. Section 4: Old wisdom. Today's spaces. */}
       <section className="section" id="methodology" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={780}
+          size={680}
           style={{
-            top: '-60px',
-            right: '-240px',
+            top: '-80px',
+            right: '-180px',
             pointerEvents: 'none'
           }}
-          opacity={0.35}
+          opacity={0.14}
+          rotation={-35}
+          variant="minimal"
         />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -488,16 +473,6 @@ export default function Home() {
 
       {/* 6. Section 5: Real spaces tell you more than big promises. */}
       <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={820}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.3}
-        />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header">
             <div>
@@ -625,9 +600,11 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={680}
+                size={660}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.55}
+                opacity={0.25}
+                rotation={-45}
+                variant="concentric"
               />
               <div className="about-photo-frame">
                 <Image
@@ -736,16 +713,18 @@ export default function Home() {
 
             <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <OrbitGraphic
-                size={880}
+                size={820}
                 style={{
                   top: '50%',
-                  right: '-200px',
+                  right: '-180px',
                   transform: 'translateY(-50%)',
                   pointerEvents: 'none',
                   maxWidth: 'none',
                   maxHeight: 'none'
                 }}
-                opacity={0.85}
+                opacity={0.35}
+                rotation={80}
+                variant="minimal"
               />
               <Image
                 src="/images/book-mockup.png"
@@ -762,13 +741,15 @@ export default function Home() {
       {/* 10. Section 9: 2-Minute Space Check */}
       <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={780}
+          size={740}
           style={{
-            bottom: '-100px',
-            left: '-240px',
+            bottom: '-120px',
+            left: '-200px',
             pointerEvents: 'none'
           }}
-          opacity={0.35}
+          opacity={0.18}
+          rotation={-60}
+          variant="concentric"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="spacecheck-grid">
@@ -842,14 +823,16 @@ export default function Home() {
       {/* 11. Section 10: Before you change your space... understand it. */}
       <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={680}
+          size={640}
           style={{
             top: '50%',
-            right: '-160px',
+            right: '-140px',
             transform: 'translateY(-50%)',
             pointerEvents: 'none'
           }}
-          opacity={0.4}
+          opacity={0.18}
+          rotation={45}
+          variant="arcs"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="banner-flex flex-col md:flex-row items-start md:items-center justify-between gap-8">

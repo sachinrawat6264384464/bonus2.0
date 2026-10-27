@@ -608,7 +608,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="stories-three-col">
+          <div className="stories-three-col" style={{ marginBottom: '64px', borderBottom: 'none' }}>
             {/* Business Story */}
             <div className="story-card-col">
               <div>
@@ -648,20 +648,16 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 7. Section 6: Some real stories. */}
-      <section className="section" id="stories">
-        <div className="container">
-          <div className="split-headline-header" style={{ marginBottom: '40px' }}>
+          {/* Testimonials Sub-Header: One clean dividing line */}
+          <div className="split-headline-header" id="stories" style={{ paddingTop: '40px', borderTop: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
             <h2 className="large-section-title">Some real stories.</h2>
             <p className="header-aside-text">
               Shared in the words of the people who live and work in them.
             </p>
           </div>
 
-          <div className="testimonial-grid">
+          <div className="testimonial-grid" style={{ marginTop: '0', borderTop: 'none' }}>
             <div className="testimonial-col">
               <p className="testimonial-quote">
                 &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;

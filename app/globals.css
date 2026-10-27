@@ -574,6 +574,164 @@ button {
   color: var(--text-secondary);
 }
 
+/* Subtle Flying Birds Animation */
+.flying-birds-canvas {
+  contain: layout paint;
+}
+
+.bird-track {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Flight Track 1 */
+.track-1 {
+  top: 14%;
+  right: -50px;
+  animation: birdFlight1 32s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Flight Track 2 - slightly delayed companion */
+.track-2 {
+  top: 9%;
+  right: -80px;
+  animation: birdFlight2 34s cubic-bezier(0.25, 1, 0.5, 1) 2.4s infinite;
+}
+
+/* Flight Track 3 - higher distant bird */
+.track-3 {
+  top: 22%;
+  right: -60px;
+  animation: birdFlight3 38s cubic-bezier(0.22, 1, 0.36, 1) 6s infinite;
+}
+
+/* Flight Track 4 - tiny trailer */
+.track-4 {
+  top: 17%;
+  right: -100px;
+  animation: birdFlight4 35s cubic-bezier(0.25, 1, 0.5, 1) 4.2s infinite;
+}
+
+.bird-size-lg {
+  width: 26px;
+  height: 13px;
+}
+
+.bird-size-md {
+  width: 20px;
+  height: 10px;
+}
+
+.bird-size-sm {
+  width: 15px;
+  height: 8px;
+}
+
+.bird-size-xs {
+  width: 12px;
+  height: 6px;
+}
+
+.bird-wings {
+  transform-origin: center;
+  animation: wingFlap 1.8s ease-in-out infinite alternate;
+}
+
+.track-2 .bird-wings {
+  animation-duration: 1.6s;
+  animation-delay: 0.3s;
+}
+
+.track-3 .bird-wings {
+  animation-duration: 2.1s;
+  animation-delay: 0.7s;
+}
+
+.track-4 .bird-wings {
+  animation-duration: 1.5s;
+  animation-delay: 0.2s;
+}
+
+@keyframes wingFlap {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.72) translateY(1px);
+  }
+  100% {
+    transform: scaleY(1.08) translateY(-0.5px);
+  }
+}
+
+@keyframes birdFlight1 {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-105vw, -30px) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight2 {
+  0% {
+    transform: translate(0, 0) scale(0.85);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-108vw, -18px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight3 {
+  0% {
+    transform: translate(0, 0) scale(0.75);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.65;
+  }
+  88% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-106vw, -45px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight4 {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  85% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-107vw, -24px) scale(0.85);
+    opacity: 0;
+  }
+}
+
 /* Section 5: Case Studies */
 .case-studies-grid {
   display: grid;

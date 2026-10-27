@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
+import FlyingBirds from './components/FlyingBirds';
 
 export default function Home() {
   // Modal states
@@ -413,6 +414,9 @@ export default function Home() {
 
       {/* 5. Section 4: Old wisdom. Today's spaces. */}
       <section className="section" id="methodology" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Gentle distant birds in flight */}
+        <FlyingBirds />
+
         <OrbitGraphic
           size={680}
           style={{

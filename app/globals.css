@@ -1986,6 +1986,39 @@ button {
   }
 }
 
+/* Spaces section card buttons: hover fill with logo green (#103F35) */
+#spaces .btn-outline,
+.spaces-card .btn-outline {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#spaces .btn-outline span,
+.spaces-card .btn-outline span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+#spaces .btn-outline:hover,
+.spaces-card .btn-outline:hover,
+#check-business-btn:hover,
+#check-home-btn:hover,
+#check-both-btn:hover {
+  background-color: #103F35 !important;
+  border-color: #103F35 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(16, 63, 53, 0.35) !important;
+}
+
+#spaces .btn-outline:hover span,
+.spaces-card .btn-outline:hover span,
+#check-business-btn:hover span,
+#check-home-btn:hover span,
+#check-both-btn:hover span {
+  color: #FFFFFF !important;
+  transform: translateX(4px);
+}
+
 /* Bullet list without double bullets */
 .clean-bullet-list {
   list-style: none !important;

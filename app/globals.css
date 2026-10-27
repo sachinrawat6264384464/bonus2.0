@@ -317,12 +317,31 @@ button {
   letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: 36px;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.35s ease;
 }
 
 .hero-title em {
   font-style: italic;
   font-weight: 400;
   display: block;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-title:hover,
+.hero-title:hover em {
+  color: #C33F4B !important;
+  text-shadow: 0 4px 24px rgba(195, 63, 75, 0.16);
+}
+
+#hero-check-space-btn span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+#hero-check-space-btn:hover span {
+  transform: translateX(4px);
 }
 
 .hero-lead-title {

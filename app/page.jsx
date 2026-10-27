@@ -364,11 +364,17 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={660}
-                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.35}
+                size={720}
+                style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  filter: 'drop-shadow(0 0 12px rgba(158, 228, 201, 0.45))'
+                }}
+                opacity={0.88}
                 rotation={-45}
                 variant="concentric"
+                color="#A3E7D0"
               />
               <div className="about-photo-frame">
                 <Image

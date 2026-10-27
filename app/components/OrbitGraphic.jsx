@@ -15,6 +15,7 @@ import React from 'react';
  * @param {number} scale - Custom scale factor
  * @param {string} variant - 'default' | 'concentric' | 'arcs' | 'minimal'
  * @param {boolean} flip - Flip horizontally
+ * @param {string} color - Optional custom stroke color for rings & accents
  */
 export default function OrbitGraphic({
   style = {},
@@ -24,7 +25,8 @@ export default function OrbitGraphic({
   rotation = 0,
   scale = 1,
   variant = 'default',
-  flip = false
+  flip = false,
+  color = null
 }) {
   const transformParts = [];
   if (style.transform) transformParts.push(style.transform);
@@ -34,18 +36,21 @@ export default function OrbitGraphic({
 
   const mergedTransform = transformParts.length > 0 ? transformParts.join(' ') : undefined;
 
+  const ringColor = color || null;
+  const dotColor = ringColor || '#8E8A80';
+
   // Curated concentric rings with balanced line weights and subtle tone variations
   // All rings are complete 360° closed circles so their endpoints meet perfectly.
   const concentricRings = [
-    { r: 140, stroke: '#8E8A80', strokeWidth: 1.2, opacity: 0.8 },
-    { r: 185, stroke: '#9D998F', strokeWidth: 1.0, opacity: 0.65 },
-    { r: 230, stroke: '#A9A499', strokeWidth: 1.2, opacity: 0.75 },
-    { r: 275, stroke: '#B6B2A7', strokeWidth: 0.9, opacity: 0.55 },
-    { r: 320, stroke: '#A39E93', strokeWidth: 1.4, opacity: 0.7 },
-    { r: 365, stroke: '#BDB9AE', strokeWidth: 0.85, opacity: 0.5 },
-    { r: 410, stroke: '#999489', strokeWidth: 1.2, opacity: 0.65 },
-    { r: 455, stroke: '#C4BFB5', strokeWidth: 0.8, opacity: 0.45 },
-    { r: 488, stroke: '#AAA59B', strokeWidth: 1.0, opacity: 0.55 }
+    { r: 140, stroke: ringColor || '#8E8A80', strokeWidth: ringColor ? 1.6 : 1.2, opacity: ringColor ? 0.95 : 0.8 },
+    { r: 185, stroke: ringColor || '#9D998F', strokeWidth: ringColor ? 1.4 : 1.0, opacity: ringColor ? 0.85 : 0.65 },
+    { r: 230, stroke: ringColor || '#A9A499', strokeWidth: ringColor ? 1.6 : 1.2, opacity: ringColor ? 0.9 : 0.75 },
+    { r: 275, stroke: ringColor || '#B6B2A7', strokeWidth: ringColor ? 1.3 : 0.9, opacity: ringColor ? 0.8 : 0.55 },
+    { r: 320, stroke: ringColor || '#A39E93', strokeWidth: ringColor ? 1.8 : 1.4, opacity: ringColor ? 0.95 : 0.7 },
+    { r: 365, stroke: ringColor || '#BDB9AE', strokeWidth: ringColor ? 1.3 : 0.85, opacity: ringColor ? 0.75 : 0.5 },
+    { r: 410, stroke: ringColor || '#999489', strokeWidth: ringColor ? 1.6 : 1.2, opacity: ringColor ? 0.85 : 0.65 },
+    { r: 455, stroke: ringColor || '#C4BFB5', strokeWidth: ringColor ? 1.2 : 0.8, opacity: ringColor ? 0.7 : 0.45 },
+    { r: 488, stroke: ringColor || '#AAA59B', strokeWidth: ringColor ? 1.4 : 1.0, opacity: ringColor ? 0.8 : 0.55 }
   ];
 
   return (
@@ -76,8 +81,8 @@ export default function OrbitGraphic({
         }}
       >
         {/* Subtle center coordinate axes ticks */}
-        <line x1="500" y1="480" x2="500" y2="520" stroke="#8E8A80" strokeWidth="0.8" opacity="0.4" />
-        <line x1="480" y1="500" x2="520" y2="500" stroke="#8E8A80" strokeWidth="0.8" opacity="0.4" />
+        <line x1="500" y1="480" x2="500" y2="520" stroke={dotColor} strokeWidth="0.8" opacity="0.5" />
+        <line x1="480" y1="500" x2="520" y2="500" stroke={dotColor} strokeWidth="0.8" opacity="0.5" />
 
         {/* Complete concentric circles - 100% closed, flawless loops */}
         {concentricRings.map((ring, idx) => (
@@ -93,10 +98,10 @@ export default function OrbitGraphic({
         ))}
 
         {/* Fine orbital node markers positioned precisely along closed orbits */}
-        <circle cx="500" cy={500 - 320} r="3" fill="#8E8A80" opacity="0.6" />
-        <circle cx={500 + 410} cy="500" r="2.5" fill="#8E8A80" opacity="0.5" />
-        <circle cx={500 - 230} cy="500" r="2.5" fill="#8E8A80" opacity="0.5" />
-        <circle cx="500" cy={500 + 455} r="2.5" fill="#8E8A80" opacity="0.45" />
+        <circle cx="500" cy={500 - 320} r="3" fill={dotColor} opacity="0.75" />
+        <circle cx={500 + 410} cy="500" r="2.5" fill={dotColor} opacity="0.65" />
+        <circle cx={500 - 230} cy="500" r="2.5" fill={dotColor} opacity="0.65" />
+        <circle cx="500" cy={500 + 455} r="2.5" fill={dotColor} opacity="0.6" />
 
         {/* Optional decorative dashed outer compass ring for rich architectural feel */}
         {(variant === 'concentric' || variant === 'default') && (
@@ -104,10 +109,10 @@ export default function OrbitGraphic({
             cx="500"
             cy="500"
             r="470"
-            stroke="#9D998F"
-            strokeWidth="0.75"
+            stroke={ringColor || '#9D998F'}
+            strokeWidth="0.85"
             strokeDasharray="4 8"
-            opacity="0.4"
+            opacity={ringColor ? 0.6 : 0.4}
           />
         )}
       </svg>

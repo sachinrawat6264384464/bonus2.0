@@ -742,15 +742,17 @@ export default function Home() {
         <div className="container">
           <div className="footer-top-grid">
             <div className="footer-left-content">
-              <Image
-                src="/images/shrijal-logo.png"
-                alt="Shrijal Modern Vastu Expert"
-                width={220}
-                height={64}
-                style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block', marginBottom: '18px' }}
-              />
-              <div className="footer-brand-meta" style={{ fontSize: '14.5px', lineHeight: '1.65', color: 'var(--text-secondary)' }}>
-                <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '16px' }}>Shrijal Talkar</div>
+              <div className="footer-logo-badge">
+                <Image
+                  src="/images/shrijal-logo.png"
+                  alt="Shrijal Modern Vastu Expert"
+                  width={220}
+                  height={64}
+                  style={{ height: '44px', width: 'auto', objectFit: 'contain', display: 'block' }}
+                />
+              </div>
+              <div className="footer-brand-meta">
+                <div style={{ fontWeight: '600', fontSize: '16px' }}>Shrijal Talkar</div>
                 <div>Modern Vastu Expert | Author</div>
                 <div>Gold Medalist in Vastu</div>
                 <div>Trained under Aashish Patidar</div>
@@ -775,13 +777,13 @@ export default function Home() {
 
           <div className="footer-bottom-bar">
             <div>&copy; {new Date().getFullYear()} Shrijal Talkar. All rights reserved.</div>
-            <div style={{ display: 'flex', gap: '24px' }}>
-              <a href="#insight" className="nav-link">Insight</a>
-              <a href="#spaces" className="nav-link">Spaces</a>
-              <a href="#about" className="nav-link">About</a>
-              <a href="#space-check" className="nav-link">Space Check</a>
-              <a href="#book" className="nav-link">Book</a>
-              <a href="#case-studies" className="nav-link">Proof</a>
+            <div className="footer-links-wrap">
+              <a href="#insight" className="footer-nav-link">Insight</a>
+              <a href="#spaces" className="footer-nav-link">Spaces</a>
+              <a href="#about" className="footer-nav-link">About</a>
+              <a href="#space-check" className="footer-nav-link">Space Check</a>
+              <a href="#book" className="footer-nav-link">Book</a>
+              <a href="#case-studies" className="footer-nav-link">Proof</a>
             </div>
           </div>
         </div>

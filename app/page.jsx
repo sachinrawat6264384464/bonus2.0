@@ -588,95 +588,103 @@ export default function Home() {
       </section>
 
       {/* 6. Section 5: Real spaces tell you more than big promises. */}
-      <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="split-headline-header">
-            <div>
-              <div className="section-label">07 &bull; PROOF</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px' }}>
-                Real spaces.<br />
-                <em>Real stories.</em>
-              </h2>
+      <section id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Upper portion: Pure white header */}
+        <div className="case-studies-header-band">
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="split-headline-header" style={{ marginBottom: 0 }}>
+              <div>
+                <div className="section-label">07 &bull; PROOF</div>
+                <h2 className="large-section-title" style={{ marginTop: '8px' }}>
+                  Real spaces.<br />
+                  <em>Real stories.</em>
+                </h2>
+              </div>
+              <div>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
+                  No big promises. No dramatic claims.
+                </p>
+                <p className="header-aside-text">
+                  See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
+                </p>
+              </div>
             </div>
-            <div>
-              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
-                No big promises. No dramatic claims.
-              </p>
+          </div>
+        </div>
+
+        {/* Lower portion: Warm parchment stories & testimonials */}
+        <div className="case-studies-body-band">
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <div className="stories-three-col" style={{ marginBottom: '64px', borderBottom: 'none' }}>
+              {/* Business Story */}
+              <div className="story-card-col">
+                <div>
+                  <div className="section-label">BUSINESS STORY</div>
+                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                    Business Story
+                  </h3>
+                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                    A business owner who felt something was not moving the way it should.
+                  </p>
+                </div>
+              </div>
+
+              {/* Home Story */}
+              <div className="story-card-col">
+                <div>
+                  <div className="section-label">HOME STORY</div>
+                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                    Home Story
+                  </h3>
+                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                    A family that wanted to understand why their home no longer felt the same.
+                  </p>
+                </div>
+              </div>
+
+              {/* Business + Home Story */}
+              <div className="story-card-col">
+                <div>
+                  <div className="section-label">BUSINESS + HOME</div>
+                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                    Business + Home
+                  </h3>
+                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                    One business owner. Two spaces. One complete view.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonials Sub-Header: One clean dividing line */}
+            <div className="split-headline-header" id="stories" style={{ paddingTop: '40px', borderTop: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
+              <h2 className="large-section-title">Some real stories.</h2>
               <p className="header-aside-text">
-                See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
+                Shared in the words of the people who live and work in them.
               </p>
             </div>
-          </div>
 
-          <div className="stories-three-col" style={{ marginBottom: '64px', borderBottom: 'none' }}>
-            {/* Business Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">BUSINESS STORY</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Business Story
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                  A business owner who felt something was not moving the way it should.
+            <div className="testimonial-grid" style={{ marginTop: '0', borderTop: 'none' }}>
+              <div className="testimonial-col">
+                <p className="testimonial-quote">
+                  &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
                 </p>
+                <div className="testimonial-author">Neeta &mdash; Business story</div>
               </div>
-            </div>
 
-            {/* Home Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">HOME STORY</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Home Story
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                  A family that wanted to understand why their home no longer felt the same.
+              <div className="testimonial-col">
+                <p className="testimonial-quote">
+                  &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
                 </p>
+                <div className="testimonial-author">Shivam &mdash; Home story</div>
               </div>
-            </div>
 
-            {/* Business + Home Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">BUSINESS + HOME</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Business + Home
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                  One business owner. Two spaces. One complete view.
+              <div className="testimonial-col">
+                <p className="testimonial-quote">
+                  &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
                 </p>
+                <div className="testimonial-author">Ravi &mdash; Business + Home story</div>
               </div>
-            </div>
-          </div>
-
-          {/* Testimonials Sub-Header: One clean dividing line */}
-          <div className="split-headline-header" id="stories" style={{ paddingTop: '40px', borderTop: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
-            <h2 className="large-section-title">Some real stories.</h2>
-            <p className="header-aside-text">
-              Shared in the words of the people who live and work in them.
-            </p>
-          </div>
-
-          <div className="testimonial-grid" style={{ marginTop: '0', borderTop: 'none' }}>
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
-              </p>
-              <div className="testimonial-author">Neeta &mdash; Business story</div>
-            </div>
-
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
-              </p>
-              <div className="testimonial-author">Shivam &mdash; Home story</div>
-            </div>
-
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
-              </p>
-              <div className="testimonial-author">Ravi &mdash; Business + Home story</div>
             </div>
           </div>
         </div>

@@ -1363,6 +1363,27 @@ button {
   background-color: var(--bg-banner);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
+  padding: 0 !important;
+}
+
+.case-studies-header-band {
+  background-color: #FFFFFF;
+  padding: 90px 0 50px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.case-studies-body-band {
+  background-color: var(--bg-banner);
+  padding: 60px 0 90px;
+}
+
+@media (max-width: 768px) {
+  .case-studies-header-band {
+    padding: 60px 0 40px;
+  }
+  .case-studies-body-band {
+    padding: 40px 0 60px;
+  }
 }
 
 /* Section 10: Prefer to speak directly */

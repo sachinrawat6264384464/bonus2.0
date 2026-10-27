@@ -616,18 +616,10 @@ export default function Home() {
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
                   Business Story
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   A business owner who felt something was not moving the way it should.
                 </p>
               </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('business')}
-                className="btn-outline w-full justify-between"
-                id="see-business-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
             </div>
 
             {/* Home Story */}
@@ -637,18 +629,10 @@ export default function Home() {
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
                   Home Story
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   A family that wanted to understand why their home no longer felt the same.
                 </p>
               </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('home')}
-                className="btn-outline w-full justify-between"
-                id="see-home-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
             </div>
 
             {/* Business + Home Story */}
@@ -658,18 +642,10 @@ export default function Home() {
                 <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
                   Business + Home
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   One business owner. Two spaces. One complete view.
                 </p>
               </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('both')}
-                className="btn-outline w-full justify-between"
-                id="see-both-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
             </div>
           </div>
         </div>

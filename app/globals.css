@@ -1358,9 +1358,16 @@ button {
   font-weight: 500;
 }
 
+/* Section 5 / Proof: Case studies & stories */
+#case-studies {
+  background-color: var(--bg-banner);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
 /* Section 10: Prefer to speak directly */
 .direct-speak-banner {
-  background-color: var(--bg-banner);
+  background-color: var(--bg-primary);
   padding: 80px 0;
   border-bottom: 1px solid var(--border-subtle);
   position: relative;

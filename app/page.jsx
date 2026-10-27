@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
@@ -52,6 +52,28 @@ export default function Home() {
     setQuizFinished(false);
     setIsSpaceCheckOpen(true);
   };
+
+  const insightContainerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    if (insightContainerRef.current) {
+      const items = insightContainerRef.current.querySelectorAll('.insight-reveal-item');
+      items.forEach((item) => observer.observe(item));
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="site-wrapper">
@@ -125,15 +147,7 @@ export default function Home() {
                   className="btn-primary"
                   id="hero-check-space-btn"
                 >
-                  Check My Space <span>&rarr;</span>
-                </button>
-
-                <button
-                  onClick={() => setIsConsultOpen(true)}
-                  className="btn-outline"
-                  id="hero-consult-btn"
-                >
-                  Book a Consultation <span>&rarr;</span>
+                  CHECK MY SPACE <span>&rarr;</span>
                 </button>
               </div>
             </div>
@@ -175,10 +189,10 @@ export default function Home() {
           }}
           opacity={0.32}
         />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }} ref={insightContainerRef}>
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
-            <h2 className="large-section-title" style={{ marginBottom: '24px' }}>
+            <h2 className="large-section-title insight-reveal-item" style={{ marginBottom: '24px' }}>
               You may leave the office.<br />
               <em>But the office doesn’t always leave you.</em>
             </h2>
@@ -190,23 +204,27 @@ export default function Home() {
                 'The team issue.',
                 'The number you missed.'
               ].map((item, idx) => (
-                <div key={idx} className="insight-item-box">
+                <div
+                  key={idx}
+                  className="insight-item-box insight-reveal-item"
+                  style={{ transitionDelay: `${idx * 130}ms` }}
+                >
                   {item}
                 </div>
               ))}
             </div>
 
-            <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
               You carry some of it home.<br />
               And the next morning, poor sleep, stress, or tension at home comes back with you.
             </p>
 
-            <div style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
+            <div className="insight-reveal-item" style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
 
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
+            <h3 className="insight-reveal-item" style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
               Two spaces. One life.
             </h3>
-            <p style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
               Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
             </p>
           </div>

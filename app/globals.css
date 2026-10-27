@@ -1331,6 +1331,18 @@ button {
   width: 100%;
 }
 
+.insight-reveal-item {
+  opacity: 0.15;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.insight-reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .insight-item-box {
   padding: 24px 20px;
   border: 1px solid var(--border-subtle);
@@ -1341,6 +1353,13 @@ button {
   line-height: 1.35;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.insight-item-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  border-color: var(--border-strong);
 }
 
 @media (max-width: 860px) {

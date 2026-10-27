@@ -5,6 +5,7 @@ import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
 import FlyingBirds from './components/FlyingBirds';
+import { SunbeamGlow, WindLeavesStream, EnergyPulseRing } from './components/PoeticAtmosphere';
 
 export default function Home() {
   // Modal states
@@ -226,6 +227,9 @@ export default function Home() {
 
       {/* 3. Section 2: What you see is only part of the space */}
       <section className="section" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Gentle morning sunbeam & floating light motes */}
+        <SunbeamGlow />
+
         <OrbitGraphic
           size={720}
           style={{
@@ -671,6 +675,9 @@ export default function Home() {
 
       {/* 9. Section 8: The Space on Your Side (Book) */}
       <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
+        <WindLeavesStream />
+
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid">
             <div className="book-content">
@@ -826,6 +833,9 @@ export default function Home() {
 
       {/* 11. Section 10: Before you change your space... understand it. */}
       <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Subtle breathing energy clarity circle */}
+        <EnergyPulseRing />
+
         <OrbitGraphic
           size={640}
           style={{

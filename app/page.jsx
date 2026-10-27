@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
+import FlyingBirds from './components/FlyingBirds';
+import { SunbeamGlow, WindLeavesStream, EnergyPulseRing } from './components/PoeticAtmosphere';
 
 export default function Home() {
   // Modal states
@@ -53,6 +55,28 @@ export default function Home() {
     setIsSpaceCheckOpen(true);
   };
 
+  const insightContainerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    if (insightContainerRef.current) {
+      const items = insightContainerRef.current.querySelectorAll('.insight-reveal-item');
+      items.forEach((item) => observer.observe(item));
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="site-wrapper">
       {/* Intro Animation Preloader */}
@@ -75,12 +99,12 @@ export default function Home() {
 
             <nav>
               <ul className="nav-links">
-                <li><a href="#approach" className="nav-link">Approach</a></li>
-                <li><a href="#spaces" className="nav-link">Business & Home</a></li>
-                <li><a href="#case-studies" className="nav-link">Case Studies</a></li>
+                <li><a href="#insight" className="nav-link">Insight</a></li>
+                <li><a href="#spaces" className="nav-link">Spaces</a></li>
                 <li><a href="#about" className="nav-link">About</a></li>
-                <li><a href="#book" className="nav-link">Book</a></li>
                 <li><a href="#space-check" className="nav-link">Space Check</a></li>
+                <li><a href="#book" className="nav-link">Book</a></li>
+                <li><a href="#case-studies" className="nav-link">Proof</a></li>
               </ul>
             </nav>
 
@@ -125,15 +149,7 @@ export default function Home() {
                   className="btn-primary"
                   id="hero-check-space-btn"
                 >
-                  Check My Space <span>&rarr;</span>
-                </button>
-
-                <button
-                  onClick={() => setIsConsultOpen(true)}
-                  className="btn-outline"
-                  id="hero-consult-btn"
-                >
-                  Book a Consultation <span>&rarr;</span>
+                  CHECK MY SPACE <span>&rarr;</span>
                 </button>
               </div>
             </div>
@@ -142,7 +158,9 @@ export default function Home() {
               <OrbitGraphic
                 size={700}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.55}
+                opacity={0.28}
+                rotation={18}
+                variant="arcs"
               />
               <div className="hero-image-frame">
                 <Image
@@ -165,20 +183,10 @@ export default function Home() {
 
       {/* Human Insight: Work-to-Home Tension */}
       <section className="section" id="insight" style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--border-subtle)' }}>
-        <OrbitGraphic
-          size={850}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.32}
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }} ref={insightContainerRef}>
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
-            <h2 className="large-section-title" style={{ marginBottom: '24px' }}>
+            <h2 className="large-section-title insight-reveal-item" style={{ marginBottom: '24px' }}>
               You may leave the office.<br />
               <em>But the office doesn’t always leave you.</em>
             </h2>
@@ -190,81 +198,28 @@ export default function Home() {
                 'The team issue.',
                 'The number you missed.'
               ].map((item, idx) => (
-                <div key={idx} className="insight-item-box">
+                <div
+                  key={idx}
+                  className="insight-item-box insight-reveal-item"
+                  style={{ transitionDelay: `${idx * 130}ms` }}
+                >
                   {item}
                 </div>
               ))}
             </div>
 
-            <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
               You carry some of it home.<br />
               And the next morning, poor sleep, stress, or tension at home comes back with you.
             </p>
 
-            <div style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
+            <div className="insight-reveal-item" style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
 
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
+            <h3 className="insight-reveal-item" style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
               Two spaces. One life.
             </h3>
-            <p style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
               Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Section 2: What you see is only part of the space */}
-      <section className="section" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={780}
-          style={{
-            top: '50%',
-            right: '-240px',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.35}
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="split-headline-header">
-            <h2 className="large-section-title">
-              What you see is only<br />
-              <em>part of the space.</em>
-            </h2>
-            <p className="header-aside-text">
-              A space can look perfectly fine and still deserve a closer look.
-            </p>
-          </div>
-
-          <div className="two-col-bordered">
-            {/* Left Col */}
-            <div className="bordered-col">
-              <div className="section-label">WHAT YOU SEE</div>
-              <div className="grid-2x2-serif">
-                <div className="large-serif-item">Rooms</div>
-                <div className="large-serif-item">Furniture</div>
-                <div className="large-serif-item">Colours</div>
-                <div className="large-serif-item">Layout</div>
-              </div>
-            </div>
-
-            {/* Right Col */}
-            <div className="bordered-col">
-              <div className="section-label">WHAT SHRIJAL STUDIES</div>
-              <div className="vertical-serif-list">
-                <div className="large-serif-item">Direction</div>
-                <div className="large-serif-item">Light</div>
-                <div className="large-serif-item">Energy</div>
-                <div className="large-serif-item">Flow</div>
-                <div className="large-serif-item">How the space is used</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bottom-aim-row">
-            <h3 className="aim-title">The aim is simple.</h3>
-            <p className="aim-desc">
-              To understand how the space is working before deciding what needs to change.
             </p>
           </div>
         </div>
@@ -272,17 +227,6 @@ export default function Home() {
 
       {/* 4. Section 3: Which space would you like to look at? */}
       <section className="section" id="spaces" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={780}
-          style={{
-            top: '50%',
-            left: '-260px',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.35}
-        />
-
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header" style={{ marginBottom: '50px' }}>
             <h2 className="large-section-title">
@@ -410,206 +354,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Section 4: Old wisdom. Today's spaces. */}
-      <section className="section" id="methodology" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={780}
-          style={{
-            top: '-60px',
-            right: '-240px',
-            pointerEvents: 'none'
-          }}
-          opacity={0.35}
-        />
-
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <h2 className="large-section-title">
-            Old wisdom.<br />
-            <em>Today&apos;s spaces.</em>
-          </h2>
-
-          <div className="wisdom-split-text">
-            <p className="wisdom-big-p">
-              Vastu has been studied for centuries. The way we live and work has changed.
-            </p>
-            <p className="wisdom-aside-p">
-              Modern Vastu brings the two together. It keeps the principles of Vastu, while applying them to the way homes and businesses work today.
-            </p>
-          </div>
-
-          <div className="three-col-bordered">
-            <div className="method-col">
-              <h3 className="method-step-title">
-                First, understand what is happening.
-              </h3>
-              <p className="method-step-desc">
-                Shrijal starts with the reason you came. What are you noticing? What has changed? What keeps coming up?
-              </p>
-            </div>
-
-            <div className="method-col">
-              <h3 className="method-step-title">
-                Then, study the whole space.
-              </h3>
-              <p className="method-step-desc">
-                Direction. Layout. Light. Energy. Flow. And the way people actually use the space.
-              </p>
-            </div>
-
-            <div className="method-col">
-              <h3 className="method-step-title">
-                Then decide what really needs attention.
-              </h3>
-              <p className="method-step-desc">
-                Some spaces need change. Some need very little. The purpose is not to find more problems. It is to find what matters. Practical corrections come first. Unnecessary demolition does not.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Section 5: Real spaces tell you more than big promises. */}
-      <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
-        <OrbitGraphic
-          size={820}
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.3}
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="split-headline-header">
-            <div>
-              <div className="section-label">07 &bull; PROOF</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px' }}>
-                Real spaces.<br />
-                <em>Real stories.</em>
-              </h2>
-            </div>
-            <div>
-              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
-                No big promises. No dramatic claims.
-              </p>
-              <p className="header-aside-text">
-                See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
-              </p>
-            </div>
-          </div>
-
-          <div className="stories-three-col">
-            {/* Business Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">BUSINESS STORY</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Business Story
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
-                  A business owner who felt something was not moving the way it should.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('business')}
-                className="btn-outline w-full justify-between"
-                id="see-business-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
-            </div>
-
-            {/* Home Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">HOME STORY</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Home Story
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
-                  A family that wanted to understand why their home no longer felt the same.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('home')}
-                className="btn-outline w-full justify-between"
-                id="see-home-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
-            </div>
-
-            {/* Business + Home Story */}
-            <div className="story-card-col">
-              <div>
-                <div className="section-label">BUSINESS + HOME</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                  Business + Home
-                </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
-                  One business owner. Two spaces. One complete view.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedCaseModal('both')}
-                className="btn-outline w-full justify-between"
-                id="see-both-case-btn"
-              >
-                VIEW STORY <span>&rarr;</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Section 6: Some real stories. */}
-      <section className="section" id="stories">
-        <div className="container">
-          <div className="split-headline-header" style={{ marginBottom: '40px' }}>
-            <h2 className="large-section-title">Some real stories.</h2>
-            <p className="header-aside-text">
-              Shared in the words of the people who live and work in them.
-            </p>
-          </div>
-
-          <div className="testimonial-grid">
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
-              </p>
-              <div className="testimonial-author">Neeta &mdash; Business story</div>
-            </div>
-
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
-              </p>
-              <div className="testimonial-author">Shivam &mdash; Home story</div>
-            </div>
-
-            <div className="testimonial-col">
-              <p className="testimonial-quote">
-                &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
-              </p>
-              <div className="testimonial-author">Ravi &mdash; Business + Home story</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 8. Section 7: About Shrijal Talkar */}
-      <section className="section" id="about">
-        <div className="container">
+      <section className="section" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Poetic atmosphere: Gentle sunbeam glow & birds */}
+        <SunbeamGlow />
+        <FlyingBirds />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="about-grid">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={680}
+                size={660}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.55}
+                opacity={0.25}
+                rotation={-45}
+                variant="concentric"
               />
               <div className="about-photo-frame">
                 <Image
@@ -670,87 +429,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="book-grid">
-            <div className="book-content">
-              <div className="section-label">THE BOOK</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
-                One idea<br />
-                <em>became a book.</em>
-              </h2>
-
-              <h3 className="book-title-tag">The Space on Your Side</h3>
-              <div className="book-subtitle-tag">
-                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
-              </div>
-
-              <div className="book-desc-content">
-                <p>
-                  Your space is not just where life happens.<br />
-                  It is part of how life happens.
-                </p>
-                <div className="book-keywords-serif">
-                  Light. Movement. Flow. Energy.
-                </div>
-                <p>
-                  And the way people feel and function inside a space.
-                </p>
-                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    Shrijal’s modern Vastu approach is built around one belief:
-                  </p>
-                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
-                    &ldquo;Don’t fear your space. Understand it.&rdquo;
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsBookModalOpen(true)}
-                className="btn-outline"
-                id="see-the-book-btn"
-              >
-                See The Book <span>&rarr;</span>
-              </button>
-            </div>
-
-            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <OrbitGraphic
-                size={880}
-                style={{
-                  top: '50%',
-                  right: '-200px',
-                  transform: 'translateY(-50%)',
-                  pointerEvents: 'none',
-                  maxWidth: 'none',
-                  maxHeight: 'none'
-                }}
-                opacity={0.85}
-              />
-              <Image
-                src="/images/book-mockup.png"
-                alt="The Space on Your Side by Shrijal Talkar"
-                width={558}
-                height={666}
-                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 10. Section 9: 2-Minute Space Check */}
       <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
-          size={780}
+          size={740}
           style={{
-            bottom: '-100px',
-            left: '-240px',
+            bottom: '-120px',
+            left: '-200px',
             pointerEvents: 'none'
           }}
-          opacity={0.35}
+          opacity={0.18}
+          rotation={-60}
+          variant="concentric"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="spacecheck-grid">
@@ -821,17 +511,193 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 9. Section 8: The Space on Your Side (Book) */}
+      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
+        <WindLeavesStream />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="book-grid">
+            <div className="book-content">
+              <div className="section-label">THE BOOK</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
+                One idea<br />
+                <em>became a book.</em>
+              </h2>
+
+              <h3 className="book-title-tag">The Space on Your Side</h3>
+              <div className="book-subtitle-tag">
+                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
+              </div>
+
+              <div className="book-desc-content">
+                <p>
+                  Your space is not just where life happens.<br />
+                  It is part of how life happens.
+                </p>
+                <div className="book-keywords-serif">
+                  Light. Movement. Flow. Energy.
+                </div>
+                <p>
+                  And the way people feel and function inside a space.
+                </p>
+                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                    Shrijal’s modern Vastu approach is built around one belief:
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
+                    &ldquo;Don’t fear your space. Understand it.&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsBookModalOpen(true)}
+                className="btn-outline"
+                id="see-the-book-btn"
+              >
+                See The Book <span>&rarr;</span>
+              </button>
+            </div>
+
+            <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <OrbitGraphic
+                size={820}
+                style={{
+                  top: '50%',
+                  right: '-180px',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  maxWidth: 'none',
+                  maxHeight: 'none'
+                }}
+                opacity={0.35}
+                rotation={80}
+                variant="minimal"
+              />
+              <Image
+                src="/images/book-mockup.png"
+                alt="The Space on Your Side by Shrijal Talkar"
+                width={558}
+                height={666}
+                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Section 5: Real spaces tell you more than big promises. */}
+      <section className="section" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="split-headline-header">
+            <div>
+              <div className="section-label">07 &bull; PROOF</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px' }}>
+                Real spaces.<br />
+                <em>Real stories.</em>
+              </h2>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
+                No big promises. No dramatic claims.
+              </p>
+              <p className="header-aside-text">
+                See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
+              </p>
+            </div>
+          </div>
+
+          <div className="stories-three-col" style={{ marginBottom: '64px', borderBottom: 'none' }}>
+            {/* Business Story */}
+            <div className="story-card-col">
+              <div>
+                <div className="section-label">BUSINESS STORY</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Business Story
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                  A business owner who felt something was not moving the way it should.
+                </p>
+              </div>
+            </div>
+
+            {/* Home Story */}
+            <div className="story-card-col">
+              <div>
+                <div className="section-label">HOME STORY</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Home Story
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                  A family that wanted to understand why their home no longer felt the same.
+                </p>
+              </div>
+            </div>
+
+            {/* Business + Home Story */}
+            <div className="story-card-col">
+              <div>
+                <div className="section-label">BUSINESS + HOME</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
+                  Business + Home
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
+                  One business owner. Two spaces. One complete view.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonials Sub-Header: One clean dividing line */}
+          <div className="split-headline-header" id="stories" style={{ paddingTop: '40px', borderTop: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
+            <h2 className="large-section-title">Some real stories.</h2>
+            <p className="header-aside-text">
+              Shared in the words of the people who live and work in them.
+            </p>
+          </div>
+
+          <div className="testimonial-grid" style={{ marginTop: '0', borderTop: 'none' }}>
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
+              </p>
+              <div className="testimonial-author">Neeta &mdash; Business story</div>
+            </div>
+
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
+              </p>
+              <div className="testimonial-author">Shivam &mdash; Home story</div>
+            </div>
+
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
+              </p>
+              <div className="testimonial-author">Ravi &mdash; Business + Home story</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 11. Section 10: Before you change your space... understand it. */}
       <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Vague poetic elements: Subtle breathing energy clarity circle */}
+        <EnergyPulseRing />
+
         <OrbitGraphic
-          size={680}
+          size={640}
           style={{
             top: '50%',
-            right: '-160px',
+            right: '-140px',
             transform: 'translateY(-50%)',
             pointerEvents: 'none'
           }}
-          opacity={0.4}
+          opacity={0.18}
+          rotation={45}
+          variant="arcs"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="banner-flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
@@ -913,9 +779,9 @@ export default function Home() {
               <a href="#insight" className="nav-link">Insight</a>
               <a href="#spaces" className="nav-link">Spaces</a>
               <a href="#about" className="nav-link">About</a>
-              <a href="#book" className="nav-link">Book</a>
-              <a href="#case-studies" className="nav-link">Stories</a>
               <a href="#space-check" className="nav-link">Space Check</a>
+              <a href="#book" className="nav-link">Book</a>
+              <a href="#case-studies" className="nav-link">Proof</a>
             </div>
           </div>
         </div>

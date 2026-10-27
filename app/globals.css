@@ -574,6 +574,441 @@ button {
   color: var(--text-secondary);
 }
 
+/* Subtle Flying Birds Animation */
+.flying-birds-canvas {
+  contain: layout paint;
+}
+
+.bird-track {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Flight Track 1 */
+.track-1 {
+  top: 14%;
+  right: -50px;
+  animation: birdFlight1 32s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Flight Track 2 - slightly delayed companion */
+.track-2 {
+  top: 9%;
+  right: -80px;
+  animation: birdFlight2 34s cubic-bezier(0.25, 1, 0.5, 1) 2.4s infinite;
+}
+
+/* Flight Track 3 - higher distant bird */
+.track-3 {
+  top: 22%;
+  right: -60px;
+  animation: birdFlight3 38s cubic-bezier(0.22, 1, 0.36, 1) 6s infinite;
+}
+
+/* Flight Track 4 - tiny trailer */
+.track-4 {
+  top: 17%;
+  right: -100px;
+  animation: birdFlight4 35s cubic-bezier(0.25, 1, 0.5, 1) 4.2s infinite;
+}
+
+.bird-size-lg {
+  width: 26px;
+  height: 13px;
+}
+
+.bird-size-md {
+  width: 20px;
+  height: 10px;
+}
+
+.bird-size-sm {
+  width: 15px;
+  height: 8px;
+}
+
+.bird-size-xs {
+  width: 12px;
+  height: 6px;
+}
+
+.bird-wings {
+  transform-origin: center;
+  animation: wingFlap 1.8s ease-in-out infinite alternate;
+}
+
+.track-2 .bird-wings {
+  animation-duration: 1.6s;
+  animation-delay: 0.3s;
+}
+
+.track-3 .bird-wings {
+  animation-duration: 2.1s;
+  animation-delay: 0.7s;
+}
+
+.track-4 .bird-wings {
+  animation-duration: 1.5s;
+  animation-delay: 0.2s;
+}
+
+@keyframes wingFlap {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.72) translateY(1px);
+  }
+  100% {
+    transform: scaleY(1.08) translateY(-0.5px);
+  }
+}
+
+@keyframes birdFlight1 {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-105vw, -30px) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight2 {
+  0% {
+    transform: translate(0, 0) scale(0.85);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-108vw, -18px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight3 {
+  0% {
+    transform: translate(0, 0) scale(0.75);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.65;
+  }
+  88% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-106vw, -45px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes birdFlight4 {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  85% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-107vw, -24px) scale(0.85);
+    opacity: 0;
+  }
+}
+
+/* 1. Sunbeam Glow & Floating Light Motes */
+.sunbeam-canvas {
+  contain: layout paint;
+}
+
+.sunbeam-ray {
+  position: absolute;
+  top: -10%;
+  right: 15%;
+  width: 140px;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(235, 230, 215, 0.45) 0%, rgba(250, 249, 245, 0) 75%);
+  transform: rotate(-25deg);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: rayBreathe 12s ease-in-out infinite alternate;
+}
+
+.ray-2 {
+  right: 32%;
+  width: 90px;
+  animation-duration: 15s;
+  animation-delay: 2s;
+  opacity: 0.7;
+}
+
+.ray-3 {
+  right: 2%;
+  width: 70px;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  opacity: 0.5;
+}
+
+@keyframes rayBreathe {
+  0% {
+    opacity: 0.35;
+    transform: rotate(-25deg) translateY(0);
+  }
+  100% {
+    opacity: 0.75;
+    transform: rotate(-23deg) translateY(8px);
+  }
+}
+
+.dust-mote {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(180, 175, 160, 0.45);
+  box-shadow: 0 0 6px rgba(210, 205, 190, 0.6);
+  pointer-events: none;
+  animation: moteFloat 16s ease-in-out infinite alternate;
+}
+
+.mote-1 {
+  top: 30%;
+  right: 25%;
+  animation-duration: 14s;
+}
+
+.mote-2 {
+  top: 55%;
+  right: 35%;
+  width: 2.5px;
+  height: 2.5px;
+  animation-duration: 19s;
+  animation-delay: 3s;
+}
+
+.mote-3 {
+  top: 70%;
+  right: 18%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 12s;
+  animation-delay: 5s;
+}
+
+@keyframes moteFloat {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-30px, -45px);
+    opacity: 0.15;
+  }
+}
+
+/* 2. Wind Leaves Stream */
+.wind-leaves-canvas {
+  contain: layout paint;
+}
+
+.leaf-track {
+  position: absolute;
+  will-change: transform;
+}
+
+.leaf-1 {
+  top: 15%;
+  left: -40px;
+  animation: leafDrift1 26s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.leaf-2 {
+  top: 35%;
+  left: -50px;
+  animation: leafDrift2 29s cubic-bezier(0.25, 1, 0.5, 1) 4s infinite;
+}
+
+.leaf-3 {
+  top: 60%;
+  left: -40px;
+  animation: leafDrift3 24s cubic-bezier(0.25, 1, 0.5, 1) 8s infinite;
+}
+
+.leaf-4 {
+  top: 25%;
+  left: -60px;
+  animation: leafDrift1 31s cubic-bezier(0.25, 1, 0.5, 1) 12s infinite;
+}
+
+.leaf-svg {
+  width: 14px;
+  height: 9px;
+  animation: leafTumble 4s ease-in-out infinite alternate;
+}
+
+.leaf-2 .leaf-svg {
+  animation-duration: 3.5s;
+  animation-delay: 0.8s;
+}
+
+.leaf-3 .leaf-svg {
+  animation-duration: 4.5s;
+  animation-delay: 1.2s;
+}
+
+@keyframes leafTumble {
+  0% {
+    transform: rotate(0deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(24deg) scaleY(0.75);
+  }
+  100% {
+    transform: rotate(-16deg) scaleY(1.05);
+  }
+}
+
+@keyframes leafDrift1 {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(105vw, 65px);
+    opacity: 0;
+  }
+}
+
+@keyframes leafDrift2 {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(105vw, 40px);
+    opacity: 0;
+  }
+}
+
+@keyframes leafDrift3 {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  88% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(105vw, 80px);
+    opacity: 0;
+  }
+}
+
+/* 3. Energy Pulse Ring & Compass Coordinates */
+.pulse-ring-canvas {
+  contain: layout paint;
+}
+
+.pulse-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid #D6D2C7;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.circle-1 {
+  width: 180px;
+  height: 180px;
+  opacity: 0.45;
+  animation: pulseBreathe 8s ease-in-out infinite alternate;
+}
+
+.circle-2 {
+  width: 260px;
+  height: 260px;
+  border-style: dashed;
+  opacity: 0.35;
+  animation: pulseBreathe 11s ease-in-out infinite alternate-reverse;
+}
+
+.circle-3 {
+  width: 320px;
+  height: 320px;
+  opacity: 0.2;
+  animation: pulseBreathe 14s ease-in-out infinite alternate;
+}
+
+.compass-tick {
+  position: absolute;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #AEA99C;
+  opacity: 0.65;
+}
+
+.tick-n {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tick-e {
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+
+@keyframes pulseBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.04);
+    opacity: 0.55;
+  }
+}
+
 /* Section 5: Case Studies */
 .case-studies-grid {
   display: grid;
@@ -1331,6 +1766,18 @@ button {
   width: 100%;
 }
 
+.insight-reveal-item {
+  opacity: 0.15;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.insight-reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .insight-item-box {
   padding: 24px 20px;
   border: 1px solid var(--border-subtle);
@@ -1341,6 +1788,13 @@ button {
   line-height: 1.35;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.insight-item-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  border-color: var(--border-strong);
 }
 
 @media (max-width: 860px) {

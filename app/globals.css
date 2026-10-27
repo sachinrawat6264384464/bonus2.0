@@ -122,14 +122,32 @@ button {
 
 .nav-link {
   font-size: 14.5px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--text-secondary);
-  transition: var(--transition-smooth);
+  transition: color 0.25s ease;
   position: relative;
+  display: inline-block;
+  padding: 6px 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #103F35;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: #103F35;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .btn-outline-nav {
@@ -147,8 +165,10 @@ button {
 }
 
 .btn-outline-nav:hover {
-  background: var(--text-primary);
+  background: #C33F4B;
+  border-color: #C33F4B;
   color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(195, 63, 75, 0.28);
 }
 
 .btn-outline-nav svg {
@@ -171,13 +191,15 @@ button {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: var(--transition-smooth);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary:hover {
-  background-color: #2F2F2D;
-  border-color: #2F2F2D;
-  transform: translateY(-1px);
+  background-color: #C33F4B;
+  border-color: #C33F4B;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(195, 63, 75, 0.32);
 }
 
 .btn-primary svg {
@@ -199,13 +221,15 @@ button {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: var(--transition-smooth);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-outline:hover {
-  background-color: var(--text-primary);
+  background-color: #C33F4B;
+  border-color: #C33F4B;
   color: #FFFFFF;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(195, 63, 75, 0.32);
 }
 
 .btn-outline svg {
@@ -2008,10 +2032,11 @@ button {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
-.sticky-action-pill:hover .sticky-pill-cta-btn {
-  background-color: #FFFFFF;
-  color: #000000;
-  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.3);
+.sticky-action-pill:hover .sticky-pill-cta-btn,
+.sticky-pill-cta-btn:hover {
+  background-color: #C33F4B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(195, 63, 75, 0.45) !important;
 }
 
 .sticky-pill-arrow {
@@ -2044,5 +2069,200 @@ button {
     font-size: 11px;
     gap: 6px;
   }
+}
+
+/* ==========================================================================
+   Section Background Color Themes (Logo Palette Alternation)
+   ========================================================================== */
+
+/* 1. Section 2: Logo Green (#103F35) - "Hero section ke baad wala section" */
+.section-theme-logo-green {
+  background-color: #103F35 !important;
+  color: #FAF9F5 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.section-theme-logo-green .section-label {
+  color: #A3D4C4 !important;
+  background: rgba(163, 212, 196, 0.14) !important;
+  border: 1px solid rgba(163, 212, 196, 0.28) !important;
+  padding: 5px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  letter-spacing: 0.14em;
+}
+
+.section-theme-logo-green .large-section-title {
+  color: #FFFFFF !important;
+}
+
+.section-theme-logo-green .large-section-title em {
+  color: #D6E6DF !important;
+}
+
+.section-theme-logo-green .insight-item-box {
+  background: #FFFFFF !important;
+  color: #103F35 !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25) !important;
+  font-weight: 500;
+}
+
+.section-theme-logo-green .insight-item-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35) !important;
+  border-color: #A3D4C4 !important;
+}
+
+.section-theme-logo-green p {
+  color: #D3E0DA !important;
+}
+
+.section-theme-logo-green .insight-divider {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+.section-theme-logo-green h3 {
+  color: #FFFFFF !important;
+}
+
+
+/* 2. Section 4: Logo Flower Color (#C33F4B) - "Ek section chhod ke another color jo logo me flower me hai" */
+.section-theme-flower-color {
+  background-color: #C33F4B !important;
+  color: #FAF9F5 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.section-theme-flower-color .section-label {
+  color: #FFE6E9 !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  padding: 5px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  letter-spacing: 0.14em;
+}
+
+.section-theme-flower-color .large-section-title {
+  color: #FFFFFF !important;
+}
+
+.section-theme-flower-color .large-section-title em {
+  color: #FFE6E9 !important;
+}
+
+.section-theme-flower-color .about-role {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+.section-theme-flower-color p {
+  color: #FDE8EC !important;
+}
+
+.section-theme-flower-color .about-divider {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.section-theme-flower-color .about-belief-intro {
+  color: #FFFFFF !important;
+}
+
+.section-theme-flower-color ul li {
+  color: #FFFFFF !important;
+}
+
+.section-theme-flower-color ul li span {
+  color: #FFE4E8 !important;
+}
+
+.section-theme-flower-color .about-quote-box {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-left: 4px solid #103F35 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 8px 8px 0;
+}
+
+.section-theme-flower-color .about-quote-box p:first-child {
+  color: #103F35 !important;
+}
+
+.section-theme-flower-color .about-quote-box p:last-child {
+  color: #4A4844 !important;
+}
+
+
+/* 3. Section 6: Soft Luxury Pink (#F7D8E0) - "Uske baad ke section chhod ke pink color ka use" */
+.section-theme-pink {
+  background-color: #F7D8E0 !important;
+  color: #1C1C1A !important;
+  border-bottom: 1px solid rgba(195, 63, 75, 0.12) !important;
+}
+
+.section-theme-pink .section-label {
+  color: #8C2234 !important;
+  background: rgba(195, 63, 75, 0.1) !important;
+  border: 1px solid rgba(195, 63, 75, 0.22) !important;
+  padding: 5px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  letter-spacing: 0.14em;
+}
+
+.section-theme-pink .large-section-title {
+  color: #103F35 !important;
+}
+
+.section-theme-pink .large-section-title em {
+  color: #8C2234 !important;
+}
+
+.section-theme-pink .book-title-tag {
+  color: #103F35 !important;
+}
+
+.section-theme-pink .book-subtitle-tag {
+  color: #55504A !important;
+}
+
+.section-theme-pink .book-desc-content p {
+  color: #383531 !important;
+}
+
+.section-theme-pink .book-keywords-serif {
+  color: #8C2234 !important;
+}
+
+.section-theme-pink .book-quote-box {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-left: 3px solid #103F35 !important;
+  box-shadow: 0 8px 24px rgba(140, 34, 52, 0.08) !important;
+  border-radius: 0 6px 6px 0;
+}
+
+.section-theme-pink .book-quote-box p:first-child {
+  color: #55504A !important;
+}
+
+.section-theme-pink .book-quote-box p:last-child {
+  color: #103F35 !important;
+}
+
+.section-theme-pink .btn-outline {
+  border-color: #103F35 !important;
+  color: #103F35 !important;
+  background: transparent;
+}
+
+.section-theme-pink .btn-outline:hover {
+  background: #C33F4B !important;
+  border-color: #C33F4B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 22px rgba(195, 63, 75, 0.32) !important;
+}
+
+.section-theme-pink .book-mockup-frame img {
+  mix-blend-mode: multiply;
 }
 

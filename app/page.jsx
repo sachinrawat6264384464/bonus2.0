@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Human Insight: Work-to-Home Tension */}
-      <section className="section" id="insight" style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section className="section section-theme-logo-green" id="insight" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }} ref={insightContainerRef}>
           <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
             <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
@@ -208,17 +208,17 @@ export default function Home() {
               ))}
             </div>
 
-            <p className="insight-reveal-item" style={{ fontSize: '18px', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '18px', lineHeight: '1.7', marginBottom: '24px' }}>
               You carry some of it home.<br />
               And the next morning, poor sleep, stress, or tension at home comes back with you.
             </p>
 
-            <div className="insight-reveal-item" style={{ width: '48px', height: '1px', background: 'var(--border-strong)', margin: '24px auto' }} />
+            <div className="insight-reveal-item insight-divider" style={{ width: '48px', height: '1px', margin: '24px auto' }} />
 
-            <h3 className="insight-reveal-item" style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', color: 'var(--text-primary)', marginBottom: '12px' }}>
+            <h3 className="insight-reveal-item" style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', marginBottom: '12px' }}>
               Two spaces. One life.
             </h3>
-            <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto' }}>
+            <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', maxWidth: '640px', margin: '0 auto' }}>
               Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
             </p>
           </div>
@@ -355,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* 8. Section 7: About Shrijal Talkar */}
-      <section className="section" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="section section-theme-flower-color" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Poetic atmosphere: Gentle sunbeam glow & birds */}
         <SunbeamGlow />
         <FlyingBirds />
@@ -366,7 +366,7 @@ export default function Home() {
               <OrbitGraphic
                 size={660}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                opacity={0.25}
+                opacity={0.35}
                 rotation={-45}
                 variant="concentric"
               />
@@ -388,39 +388,39 @@ export default function Home() {
                 <em>Shrijal studies the space.</em>
               </h2>
 
-              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '8px' }}>
+              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', marginBottom: '8px' }}>
                 Shrijal Talkar is a Modern Vastu Expert and Author.
               </div>
-              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
+              <p style={{ fontSize: '15px', marginBottom: '24px' }}>
                 She studied Vastu under leading Vastu-Astro expert Aashish Patidar and became a Gold Medalist in Vastu.
               </p>
 
               <div className="about-divider"></div>
 
-              <div className="about-belief-intro" style={{ fontWeight: '500', color: 'var(--text-primary)' }}>
+              <div className="about-belief-intro" style={{ fontWeight: '500' }}>
                 Her approach is simple:
               </div>
 
               <ul style={{ listStyle: 'none', margin: '16px 0 24px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Understand the person.
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
+                  <span>&bull;</span> Understand the person.
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Study the space.
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
+                  <span>&bull;</span> Study the space.
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Find what matters.
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
+                  <span>&bull;</span> Find what matters.
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>&bull;</span> Suggest what is practical.
+                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
+                  <span>&bull;</span> Suggest what is practical.
                 </li>
               </ul>
 
-              <div style={{ background: '#F4F2EC', padding: '20px 24px', borderLeft: '3px solid #1C1C1A', marginTop: '20px' }}>
-                <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '6px' }}>
+              <div className="about-quote-box" style={{ padding: '20px 24px', marginTop: '20px' }}>
+                <p style={{ fontSize: '15px', fontWeight: '500', marginBottom: '6px' }}>
                   No fear. No unnecessary demolition. No complicated Vastu talk.
                 </p>
-                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)' }}>
+                <p style={{ fontSize: '14.5px' }}>
                   Just clear guidance you can understand and use.
                 </p>
               </div>
@@ -512,7 +512,7 @@ export default function Home() {
       </section>
 
       {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="section section-theme-pink" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
         <WindLeavesStream />
 
@@ -541,11 +541,11 @@ export default function Home() {
                 <p>
                   And the way people feel and function inside a space.
                 </p>
-                <div style={{ marginTop: '24px', padding: '16px 20px', borderLeft: '2px solid var(--border-dark)', background: '#F5F3ED' }}>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                <div className="book-quote-box" style={{ marginTop: '24px', padding: '16px 20px' }}>
+                  <p style={{ fontSize: '14px', marginBottom: '4px' }}>
                     Shrijal’s modern Vastu approach is built around one belief:
                   </p>
-                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', color: 'var(--text-primary)', fontStyle: 'italic' }}>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontStyle: 'italic' }}>
                     &ldquo;Don’t fear your space. Understand it.&rdquo;
                   </p>
                 </div>

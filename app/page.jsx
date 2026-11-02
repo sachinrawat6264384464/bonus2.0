@@ -782,15 +782,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal-on-scroll" style={{
-            maxWidth: '840px',
-            margin: '0 auto',
-            background: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '40px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
-          }}>
+          <div className="consult-form-wrapper reveal-on-scroll">
             {consultSubmitted ? (
               <div style={{ textAlign: 'center', padding: '36px 16px' }}>
                 <div
@@ -880,7 +872,7 @@ export default function Home() {
               </div>
             ) : (
               <form onSubmit={handleConsultSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                <div className="form-row-grid">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Full Name</label>
                     <input
@@ -906,7 +898,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                <div className="form-row-grid">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Email Address</label>
                     <input

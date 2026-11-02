@@ -1922,7 +1922,8 @@ button {
   will-change: opacity, transform;
 }
 
-.insight-reveal-item.revealed {
+.insight-reveal-item.revealed,
+.insight-reveal-item.is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
@@ -2423,4 +2424,93 @@ button {
 .section-theme-pink .book-mockup-frame img {
   mix-blend-mode: multiply;
 }
+
+/* ==========================================================================
+   PREMIUM SCROLL ANIMATION & REVEAL SYSTEM
+   ========================================================================== */
+
+/* Base state for scroll-reveal elements (only hidden once animations are ready) */
+html.animations-ready .scroll-reveal {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition-property: opacity, transform, filter;
+  transition-duration: var(--anim-duration, 850ms);
+  transition-timing-function: var(--anim-ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition-delay: var(--anim-delay, 0ms);
+  backface-visibility: hidden;
+}
+
+/* 1. Slide Up (Default reveal) */
+html.animations-ready .scroll-reveal[data-anim="slide-up"],
+html.animations-ready .scroll-reveal:not([data-anim]) {
+  transform: translate3d(0, 36px, 0);
+}
+
+/* 2. Slide Left (Inward from right) */
+html.animations-ready .scroll-reveal[data-anim="slide-left"] {
+  transform: translate3d(44px, 0, 0);
+}
+
+/* 3. Slide Right (Inward from left) */
+html.animations-ready .scroll-reveal[data-anim="slide-right"] {
+  transform: translate3d(-44px, 0, 0);
+}
+
+/* 4. Fade In (Smooth opacity transition) */
+html.animations-ready .scroll-reveal[data-anim="fade-in"] {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 5. Zoom In (Subtle scale up into focus) */
+html.animations-ready .scroll-reveal[data-anim="zoom-in"] {
+  transform: scale(0.92) translate3d(0, 16px, 0);
+}
+
+/* 6. Scale Up (Expands outward from center) */
+html.animations-ready .scroll-reveal[data-anim="scale-up"] {
+  transform: scale(0.86);
+}
+
+/* 7. Blur to Clear (Editorial cinematic focus reveal) */
+html.animations-ready .scroll-reveal[data-anim="blur-to-clear"] {
+  transform: translate3d(0, 20px, 0);
+  filter: blur(12px);
+}
+
+/* Image reveal (Gentle scale settling + blur clearance) */
+html.animations-ready .scroll-reveal[data-anim="image-reveal"] {
+  transform: scale(1.05) translate3d(0, 14px, 0);
+  filter: blur(8px);
+  transition-duration: var(--anim-duration, 1050ms);
+}
+
+/* --- REVEALED STATE (Active when in viewport) --- */
+html.animations-ready .scroll-reveal.is-revealed {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0px) !important;
+}
+
+/* Parallax elements smoothing */
+[data-parallax] {
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- ACCESSIBILITY: prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html.animations-ready .scroll-reveal,
+  html.animations-ready .scroll-reveal[data-anim],
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  [data-parallax] {
+    transform: none !important;
+  }
+}
+
 

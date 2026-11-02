@@ -5,6 +5,7 @@ import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
 import FlyingBirds from './components/FlyingBirds';
+import ScrollAnimator from './components/ScrollAnimator';
 import { SunbeamGlow, WindLeavesStream, EnergyPulseRing } from './components/PoeticAtmosphere';
 
 export default function Home() {
@@ -81,6 +82,9 @@ export default function Home() {
     <div className="site-wrapper">
       {/* Intro Animation Preloader */}
       <IntroSplash />
+
+      {/* Premium Scroll Animation & Parallax Engine */}
+      <ScrollAnimator />
 
       {/* 1. Navigation Header */}
       <header className="header-wrapper">

@@ -12,7 +12,7 @@ A modern, high-fashion editorial web experience built with **Next.js (App Router
 - **Direct Consultation Booking Modal:** Clean, accessible scheduling modal with direct client inquiry capture.
 - **Interactive Case Studies:** Deep-dive modal displays for Business and Residential Vastu case studies (The Concern, The Observation, The Change, Client's Experience).
 - **Published Book Showcase:** 3D book mockup presentation of *"The Space on Your Side: The Modern Vastu of Energy, Light and Flow"*.
-- **Responsive Layout:** Pixel-perfect rendering across desktop, tablet, and mobile viewports.
+- **Responsive Layout:** Pixel-perfect rendering across desktop, tablet, and mobicccccle viewports.
 
 ---
 

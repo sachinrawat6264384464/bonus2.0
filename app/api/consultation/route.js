@@ -15,13 +15,14 @@ export async function POST(request) {
       );
     }
 
-    const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
-    const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
-    const smtpSecure = process.env.SMTP_SECURE !== 'false';
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const adminEmail = process.env.ADMIN_EMAIL || smtpUser;
-    const fromName = process.env.EMAIL_FROM_NAME || 'Shrijal Talkar — Modern Vastu';
+    const smtpHost = process.env.EMAIL_HOST || process.env.SMTP_HOST || 'smtp.gmail.com';
+    const smtpPort = parseInt(process.env.EMAIL_PORT || process.env.SMTP_PORT || '465', 10);
+    const smtpUser = process.env.EMAIL_HOST_USER || process.env.DEFAULT_FROM_EMAIL || process.env.SMTP_USER;
+    const rawPass = process.env.EMAIL_HOST_PASSWORD || process.env.SMTP_PASS || '';
+    const smtpPass = rawPass.replace(/["']/g, '').replace(/\s+/g, '');
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.DEFAULT_FROM_EMAIL || smtpUser;
+    const fromName = process.env.DEFAULT_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Shrijal Talkar — Modern Vastu';
+    const smtpSecure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE !== 'false' : smtpPort === 465;
 
     const isPlaceholder =
       !smtpUser ||
@@ -336,3 +337,4 @@ export async function POST(request) {
     );
   }
 }
+

@@ -6,7 +6,7 @@
   --bg-card: #FFFFFF;
   --bg-subtle: #F3F1EB;
   --bg-banner: #F1EFE9;
-  
+
   --text-primary: #1C1C1A;
   --text-secondary: #5A5954;
   --text-muted: #82807A;
@@ -699,9 +699,11 @@ button {
   0% {
     transform: scaleY(1);
   }
+
   50% {
     transform: scaleY(0.72) translateY(1px);
   }
+
   100% {
     transform: scaleY(1.08) translateY(-0.5px);
   }
@@ -712,12 +714,15 @@ button {
     transform: translate(0, 0) scale(0.9);
     opacity: 0;
   }
+
   8% {
     opacity: 0.85;
   }
+
   85% {
     opacity: 0.85;
   }
+
   100% {
     transform: translate(-105vw, -30px) scale(1.05);
     opacity: 0;
@@ -729,12 +734,15 @@ button {
     transform: translate(0, 0) scale(0.85);
     opacity: 0;
   }
+
   10% {
     opacity: 0.75;
   }
+
   85% {
     opacity: 0.75;
   }
+
   100% {
     transform: translate(-108vw, -18px) scale(1);
     opacity: 0;
@@ -746,12 +754,15 @@ button {
     transform: translate(0, 0) scale(0.75);
     opacity: 0;
   }
+
   12% {
     opacity: 0.65;
   }
+
   88% {
     opacity: 0.65;
   }
+
   100% {
     transform: translate(-106vw, -45px) scale(0.9);
     opacity: 0;
@@ -763,12 +774,15 @@ button {
     transform: translate(0, 0) scale(0.7);
     opacity: 0;
   }
+
   10% {
     opacity: 0.55;
   }
+
   85% {
     opacity: 0.55;
   }
+
   100% {
     transform: translate(-107vw, -24px) scale(0.85);
     opacity: 0;
@@ -814,6 +828,7 @@ button {
     opacity: 0.35;
     transform: rotate(-25deg) translateY(0);
   }
+
   100% {
     opacity: 0.75;
     transform: rotate(-23deg) translateY(8px);
@@ -860,9 +875,11 @@ button {
     transform: translate(0, 0);
     opacity: 0.2;
   }
+
   50% {
     opacity: 0.7;
   }
+
   100% {
     transform: translate(-30px, -45px);
     opacity: 0.15;
@@ -923,9 +940,11 @@ button {
   0% {
     transform: rotate(0deg) scaleY(1);
   }
+
   50% {
     transform: rotate(24deg) scaleY(0.75);
   }
+
   100% {
     transform: rotate(-16deg) scaleY(1.05);
   }
@@ -936,12 +955,15 @@ button {
     transform: translate(0, 0);
     opacity: 0;
   }
+
   10% {
     opacity: 0.7;
   }
+
   90% {
     opacity: 0.7;
   }
+
   100% {
     transform: translate(105vw, 65px);
     opacity: 0;
@@ -953,12 +975,15 @@ button {
     transform: translate(0, 0);
     opacity: 0;
   }
+
   10% {
     opacity: 0.6;
   }
+
   90% {
     opacity: 0.6;
   }
+
   100% {
     transform: translate(105vw, 40px);
     opacity: 0;
@@ -970,12 +995,15 @@ button {
     transform: translate(0, 0);
     opacity: 0;
   }
+
   12% {
     opacity: 0.5;
   }
+
   88% {
     opacity: 0.5;
   }
+
   100% {
     transform: translate(105vw, 80px);
     opacity: 0;
@@ -1046,6 +1074,7 @@ button {
     transform: translate(-50%, -50%) scale(0.96);
     opacity: 0.25;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.04);
     opacity: 0.55;
@@ -1400,6 +1429,7 @@ button {
   .case-studies-header-band {
     padding: 60px 0 40px;
   }
+
   .case-studies-body-band {
     padding: 40px 0 60px;
   }
@@ -1665,8 +1695,13 @@ button {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
@@ -1674,6 +1709,7 @@ button {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1682,6 +1718,7 @@ button {
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
+
   .hero-grid,
   .about-grid,
   .book-grid,
@@ -1689,7 +1726,7 @@ button {
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  
+
   .hero-image-wrap {
     justify-content: flex-start;
   }
@@ -1717,7 +1754,7 @@ button {
   .nav-links {
     display: none;
   }
-  
+
   .two-col-bordered,
   .case-studies-grid,
   .footer-top-grid,
@@ -1959,6 +1996,7 @@ button {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
   .insight-item-box {
     font-size: 19px;
     padding: 18px 16px;
@@ -1999,6 +2037,7 @@ button {
     grid-template-columns: 1fr;
     border-bottom: none;
   }
+
   .spaces-card {
     padding: 36px 0 !important;
     border-right: none !important;
@@ -2101,6 +2140,7 @@ button {
     grid-template-columns: 1fr;
     border-bottom: none;
   }
+
   .story-card-col {
     padding: 36px 0 !important;
     border-right: none !important;
@@ -2156,10 +2196,13 @@ button {
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.45;
     transform: scale(0.8);
@@ -2218,11 +2261,11 @@ button {
     gap: 10px;
     border-radius: 9999px;
   }
-  
+
   .sticky-pill-label {
     font-size: 12px;
   }
-  
+
   .sticky-pill-cta-btn {
     padding: 9px 14px;
     font-size: 11px;
@@ -2434,7 +2477,7 @@ html.animations-ready .scroll-reveal {
   opacity: 0;
   will-change: transform, opacity, filter;
   transition-property: opacity, transform, filter;
-  transition-duration: var(--anim-duration, 850ms);
+  transition-duration: var(--anim-duration, 1350ms);
   transition-timing-function: var(--anim-ease, cubic-bezier(0.16, 1, 0.3, 1));
   transition-delay: var(--anim-delay, 0ms);
   backface-visibility: hidden;
@@ -2475,13 +2518,14 @@ html.animations-ready .scroll-reveal[data-anim="scale-up"] {
 html.animations-ready .scroll-reveal[data-anim="blur-to-clear"] {
   transform: translate3d(0, 20px, 0);
   filter: blur(12px);
+  transition-duration: var(--anim-duration, 1450ms);
 }
 
 /* Image reveal (Gentle scale settling + blur clearance) */
 html.animations-ready .scroll-reveal[data-anim="image-reveal"] {
   transform: scale(1.05) translate3d(0, 14px, 0);
   filter: blur(8px);
-  transition-duration: var(--anim-duration, 1050ms);
+  transition-duration: var(--anim-duration, 1550ms);
 }
 
 /* --- REVEALED STATE (Active when in viewport) --- */
@@ -2494,11 +2538,12 @@ html.animations-ready .scroll-reveal.is-revealed {
 /* Parallax elements smoothing */
 [data-parallax] {
   will-change: transform;
-  transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* --- ACCESSIBILITY: prefers-reduced-motion --- */
 @media (prefers-reduced-motion: reduce) {
+
   html.animations-ready .scroll-reveal,
   html.animations-ready .scroll-reveal[data-anim],
   .scroll-reveal {
@@ -2512,5 +2557,3 @@ html.animations-ready .scroll-reveal.is-revealed {
     transform: none !important;
   }
 }
-
-

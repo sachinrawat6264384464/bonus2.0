@@ -52,135 +52,135 @@ export default function ScrollAnimator() {
       };
 
       // Helper for staggered groups
-      const applyStaggered = (elements, animSequence, baseDelay = 0, stepDelay = 130) => {
+      const applyStaggered = (elements, animSequence, baseDelay = 0, stepDelay = 170) => {
         elements.forEach((el, index) => {
           const anim = animSequence[index % animSequence.length];
           const delay = baseDelay + index * stepDelay;
-          applyAnim(el, anim, delay);
+          applyAnim(el, anim, delay, 1400);
         });
       };
 
       // --- SECTION 1: HERO (#hero) ---
       const hero = document.getElementById('hero');
       if (hero) {
-        applyAnim(hero.querySelector('.hero-subhead-tag'), 'fade-in', 100);
-        applyAnim(hero.querySelector('.hero-title'), 'blur-to-clear', 220, 950);
-        applyAnim(hero.querySelector('.hero-lead-title'), 'slide-up', 360);
-        applyAnim(hero.querySelector('.hero-description'), 'slide-up', 460);
-        applyAnim(hero.querySelector('.hero-cta-group'), 'zoom-in', 560);
-        applyAnim(hero.querySelector('.hero-image-wrap'), 'scale-up', 300, 1050, { parallax: '0.05' });
+        applyAnim(hero.querySelector('.hero-subhead-tag'), 'fade-in', 120, 1300);
+        applyAnim(hero.querySelector('.hero-title'), 'blur-to-clear', 240, 1500);
+        applyAnim(hero.querySelector('.hero-lead-title'), 'slide-up', 420, 1350);
+        applyAnim(hero.querySelector('.hero-description'), 'slide-up', 560, 1350);
+        applyAnim(hero.querySelector('.hero-cta-group'), 'zoom-in', 700, 1300);
+        applyAnim(hero.querySelector('.hero-image-wrap'), 'scale-up', 350, 1550, { parallax: '0.05' });
       }
 
       // --- SECTION 2: INSIGHT (#insight) ---
       const insight = document.getElementById('insight');
       if (insight) {
-        applyAnim(insight.querySelector('.section-label'), 'slide-right', 50);
-        applyAnim(insight.querySelector('h2'), 'slide-up', 120);
-        applyAnim(insight.querySelector('.header-aside-text'), 'fade-in', 220);
+        applyAnim(insight.querySelector('.section-label'), 'slide-right', 50, 1300);
+        applyAnim(insight.querySelector('h2'), 'slide-up', 140, 1400);
+        applyAnim(insight.querySelector('.header-aside-text'), 'fade-in', 260, 1350);
 
         // 4 Grid boxes: alternating slide-up & zoom-in for dynamic flow
         const insightBoxes = insight.querySelectorAll('.insight-item-box');
         if (insightBoxes.length > 0) {
-          applyStaggered(insightBoxes, ['slide-up', 'zoom-in', 'slide-up', 'scale-up'], 0, 130);
+          applyStaggered(insightBoxes, ['slide-up', 'zoom-in', 'slide-up', 'scale-up'], 0, 170);
         }
 
-        applyAnim(insight.querySelector('.insight-divider'), 'fade-in', 100);
-        applyAnim(insight.querySelector('h3'), 'slide-up', 180);
-        applyAnim(insight.querySelector('p:last-of-type'), 'fade-in', 260);
+        applyAnim(insight.querySelector('.insight-divider'), 'fade-in', 120, 1300);
+        applyAnim(insight.querySelector('h3'), 'slide-up', 220, 1350);
+        applyAnim(insight.querySelector('p:last-of-type'), 'fade-in', 320, 1350);
       }
 
       // --- SECTION 3: SPACES (#spaces) ---
       const spaces = document.getElementById('spaces');
       if (spaces) {
-        applyAnim(spaces.querySelector('.split-headline-header h2'), 'slide-up', 0);
-        applyAnim(spaces.querySelector('.split-headline-header p'), 'fade-in', 150);
+        applyAnim(spaces.querySelector('.split-headline-header h2'), 'slide-up', 0, 1400);
+        applyAnim(spaces.querySelector('.split-headline-header p'), 'fade-in', 180, 1350);
 
         // 3 Cards: Left glides in from left, Center zooms up, Right glides in from right
         const spaceCards = spaces.querySelectorAll('.spaces-card');
         if (spaceCards.length >= 3) {
-          applyAnim(spaceCards[0], 'slide-right', 0); // moves rightward into place
-          applyAnim(spaceCards[1], 'zoom-in', 140);   // center card pops in
-          applyAnim(spaceCards[2], 'slide-left', 280);  // moves leftward into place
+          applyAnim(spaceCards[0], 'slide-right', 0, 1450); // moves rightward into place
+          applyAnim(spaceCards[1], 'zoom-in', 180, 1450);   // center card pops in
+          applyAnim(spaceCards[2], 'slide-left', 360, 1450);  // moves leftward into place
         } else if (spaceCards.length > 0) {
-          applyStaggered(spaceCards, ['slide-up', 'zoom-in', 'slide-up'], 0, 150);
+          applyStaggered(spaceCards, ['slide-up', 'zoom-in', 'slide-up'], 0, 180);
         }
       }
 
       // --- SECTION 4: ABOUT (#about) ---
       const about = document.getElementById('about');
       if (about) {
-        applyAnim(about.querySelector('.about-photo-wrap'), 'scale-up', 100, 1000, { parallax: '0.07' });
-        applyAnim(about.querySelector('.section-label'), 'fade-in', 100);
-        applyAnim(about.querySelector('.large-section-title'), 'blur-to-clear', 180, 950);
-        applyAnim(about.querySelector('.about-role'), 'slide-up', 280);
-        applyAnim(about.querySelector('.about-content > p'), 'slide-up', 340);
-        applyAnim(about.querySelector('.about-belief-intro'), 'slide-up', 390);
-        applyAnim(about.querySelector('.about-content ul'), 'slide-up', 440);
-        applyAnim(about.querySelector('.about-quote-box'), 'slide-left', 500);
+        applyAnim(about.querySelector('.about-photo-wrap'), 'scale-up', 100, 1550, { parallax: '0.07' });
+        applyAnim(about.querySelector('.section-label'), 'fade-in', 120, 1300);
+        applyAnim(about.querySelector('.large-section-title'), 'blur-to-clear', 220, 1500);
+        applyAnim(about.querySelector('.about-role'), 'slide-up', 320, 1350);
+        applyAnim(about.querySelector('.about-content > p'), 'slide-up', 400, 1350);
+        applyAnim(about.querySelector('.about-belief-intro'), 'slide-up', 460, 1350);
+        applyAnim(about.querySelector('.about-content ul'), 'slide-up', 520, 1350);
+        applyAnim(about.querySelector('.about-quote-box'), 'slide-left', 600, 1400);
       }
 
       // --- SECTION 5: SPACE CHECK (#space-check) ---
       const spaceCheck = document.getElementById('space-check');
       if (spaceCheck) {
-        applyAnim(spaceCheck.querySelector('.spacecheck-left'), 'slide-right', 0);
-        applyAnim(spaceCheck.querySelector('.spacecheck-right'), 'slide-left', 160);
+        applyAnim(spaceCheck.querySelector('.spacecheck-left'), 'slide-right', 0, 1400);
+        applyAnim(spaceCheck.querySelector('.spacecheck-right'), 'slide-left', 200, 1400);
       }
 
       // --- SECTION 6: THE BOOK (#book) ---
       const book = document.getElementById('book');
       if (book) {
-        applyAnim(book.querySelector('.section-label'), 'slide-right', 0);
-        applyAnim(book.querySelector('.large-section-title'), 'blur-to-clear', 120);
-        applyAnim(book.querySelector('.book-title-tag'), 'slide-up', 200);
-        applyAnim(book.querySelector('.book-subtitle-tag'), 'fade-in', 260);
-        applyAnim(book.querySelector('.book-desc-content'), 'slide-up', 320);
-        applyAnim(book.querySelector('.book-quote-box'), 'slide-right', 400);
-        applyAnim(book.querySelector('#see-the-book-btn'), 'zoom-in', 480);
-        applyAnim(book.querySelector('.book-mockup-frame'), 'image-reveal', 150, 1100, { parallax: '-0.06' });
+        applyAnim(book.querySelector('.section-label'), 'slide-right', 0, 1300);
+        applyAnim(book.querySelector('.large-section-title'), 'blur-to-clear', 140, 1500);
+        applyAnim(book.querySelector('.book-title-tag'), 'slide-up', 240, 1350);
+        applyAnim(book.querySelector('.book-subtitle-tag'), 'fade-in', 320, 1350);
+        applyAnim(book.querySelector('.book-desc-content'), 'slide-up', 400, 1350);
+        applyAnim(book.querySelector('.book-quote-box'), 'slide-right', 480, 1400);
+        applyAnim(book.querySelector('#see-the-book-btn'), 'zoom-in', 560, 1350);
+        applyAnim(book.querySelector('.book-mockup-frame'), 'image-reveal', 180, 1650, { parallax: '-0.06' });
       }
 
       // --- SECTION 7: CASE STUDIES / PROOF (#case-studies) ---
       const caseStudies = document.getElementById('case-studies');
       if (caseStudies) {
-        applyAnim(caseStudies.querySelector('.case-studies-header-band h2'), 'blur-to-clear', 0);
-        applyAnim(caseStudies.querySelector('.case-studies-header-band p'), 'fade-in', 150);
+        applyAnim(caseStudies.querySelector('.case-studies-header-band h2'), 'blur-to-clear', 0, 1500);
+        applyAnim(caseStudies.querySelector('.case-studies-header-band p'), 'fade-in', 180, 1350);
 
         // 3 Story Cards
         const storyCards = caseStudies.querySelectorAll('.story-card-col');
         if (storyCards.length >= 3) {
-          applyAnim(storyCards[0], 'slide-right', 0);
-          applyAnim(storyCards[1], 'zoom-in', 130);
-          applyAnim(storyCards[2], 'slide-left', 260);
+          applyAnim(storyCards[0], 'slide-right', 0, 1450);
+          applyAnim(storyCards[1], 'zoom-in', 160, 1450);
+          applyAnim(storyCards[2], 'slide-left', 320, 1450);
         } else if (storyCards.length > 0) {
-          applyStaggered(storyCards, ['slide-up', 'zoom-in', 'slide-up'], 0, 140);
+          applyStaggered(storyCards, ['slide-up', 'zoom-in', 'slide-up'], 0, 170);
         }
 
         // Testimonials sub-header & 3 columns
         const storiesSubHeader = caseStudies.querySelector('#stories');
         if (storiesSubHeader) {
-          applyAnim(storiesSubHeader.querySelector('h2'), 'slide-up', 0);
-          applyAnim(storiesSubHeader.querySelector('p'), 'fade-in', 140);
+          applyAnim(storiesSubHeader.querySelector('h2'), 'slide-up', 0, 1400);
+          applyAnim(storiesSubHeader.querySelector('p'), 'fade-in', 180, 1350);
         }
         const testimonials = caseStudies.querySelectorAll('.testimonial-col');
         if (testimonials.length > 0) {
-          applyStaggered(testimonials, ['slide-up', 'scale-up', 'slide-up'], 0, 140);
+          applyStaggered(testimonials, ['slide-up', 'scale-up', 'slide-up'], 0, 170);
         }
       }
 
       // --- SECTION 8: CONSULTATION BANNER (#consultation) ---
       const consultation = document.getElementById('consultation');
       if (consultation) {
-        applyAnim(consultation.querySelector('.banner-title'), 'blur-to-clear', 0);
-        applyAnim(consultation.querySelector('.banner-flex > div:first-child > div'), 'slide-up', 160);
-        applyAnim(consultation.querySelector('.banner-flex > div:last-child'), 'zoom-in', 280);
+        applyAnim(consultation.querySelector('.banner-title'), 'blur-to-clear', 0, 1500);
+        applyAnim(consultation.querySelector('.banner-flex > div:first-child > div'), 'slide-up', 200, 1350);
+        applyAnim(consultation.querySelector('.banner-flex > div:last-child'), 'zoom-in', 340, 1350);
       }
 
       // --- SECTION 9: FOOTER (.footer-section) ---
       const footer = document.querySelector('.footer-section');
       if (footer) {
-        applyAnim(footer.querySelector('.footer-top-grid > div:first-child'), 'slide-right', 0);
-        applyAnim(footer.querySelector('.footer-top-grid > div:last-child'), 'slide-left', 140);
-        applyAnim(footer.querySelector('.footer-bottom-bar'), 'fade-in', 250);
+        applyAnim(footer.querySelector('.footer-top-grid > div:first-child'), 'slide-right', 0, 1400);
+        applyAnim(footer.querySelector('.footer-top-grid > div:last-child'), 'slide-left', 180, 1400);
+        applyAnim(footer.querySelector('.footer-bottom-bar'), 'fade-in', 300, 1350);
       }
 
       // --- GENERIC CATCH-ALL FOR ANY REMAINING UNANIMATED SECTIONS OR CARDS ---
@@ -321,3 +321,4 @@ export function useScrollAnimation(ref, options = {}) {
     return () => observer.disconnect();
   }, [ref, options]);
 }
+

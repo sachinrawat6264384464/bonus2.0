@@ -33,8 +33,9 @@ export default function Home() {
     name: '',
     phone: '',
     email: '',
-    spaceType: 'Business Space (Office, Factory, Commercial)',
-    notes: ''
+    spaceType: 'Residential Vastu (Apartment, Villa, Living Space)',
+    city: '',
+    enquiry: ''
   });
   const [consultSubmitted, setConsultSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,34 +82,57 @@ export default function Home() {
     setIsSpaceCheckOpen(true);
   };
 
-  const insightContainerRef = useRef(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
+            entry.target.classList.add('is-revealed');
           }
         });
       },
-      { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
 
-    if (insightContainerRef.current) {
-      const items = insightContainerRef.current.querySelectorAll('.insight-reveal-item');
-      items.forEach((item) => observer.observe(item));
-    }
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
+
+  const storiesData = [
+    {
+      id: 'story-1',
+      title: 'A Home That Had Everything Except Stability',
+      image: '/images/story-1.jpg',
+      pdfUrl: '/docs/vastu-case-study-1.pdf',
+      buttonTheme: 'theme-white-pill',
+      buttonText: 'Know More'
+    },
+    {
+      id: 'story-2',
+      title: 'A Home That Felt Heavy. A Search For Relief',
+      image: '/images/story-2.jpg',
+      pdfUrl: '/docs/vastu-case-study-2.pdf',
+      buttonTheme: 'theme-green-pill',
+      buttonText: 'Know More'
+    },
+    {
+      id: 'story-3',
+      title: 'A Beautiful Home. But Constant Obstacles',
+      image: '/images/story-3.jpg',
+      pdfUrl: '/docs/vastu-case-study-3.pdf',
+      buttonTheme: 'theme-white-pill-alt',
+      buttonText: 'Know More'
+    }
+  ];
 
   return (
     <div className="site-wrapper">
       {/* Intro Animation Preloader */}
       <IntroSplash />
 
-      {/* Premium Scroll Animation & Parallax Engine */}
+      {/* Global Scroll Animation System */}
       <ScrollAnimator />
 
       {/* 1. Navigation Header */}
@@ -128,12 +152,14 @@ export default function Home() {
 
             <nav>
               <ul className="nav-links">
-                <li><a href="#insight" className="nav-link">Insight</a></li>
-                <li><a href="#spaces" className="nav-link">Spaces</a></li>
+                <li><a href="#philosophy" className="nav-link">Philosophy</a></li>
                 <li><a href="#about" className="nav-link">About</a></li>
+                <li><a href="#services" className="nav-link">Services</a></li>
+                <li><a href="#approach" className="nav-link">Approach</a></li>
                 <li><a href="#space-check" className="nav-link">Space Check</a></li>
                 <li><a href="#book" className="nav-link">Book</a></li>
-                <li><a href="#case-studies" className="nav-link">Proof</a></li>
+                <li><a href="#case-studies" className="nav-link">Case Studies</a></li>
+                <li><a href="#client-experiences" className="nav-link">Experiences</a></li>
               </ul>
             </nav>
 
@@ -148,14 +174,14 @@ export default function Home() {
         </div>
       </header>
 
-      {/* 2. Hero Section */}
-      <section className="hero-section" id="hero">
+      {/* 01 — HERO (Theme 1: Ivory) */}
+      <section className="hero-section theme-ivory" id="hero">
         <div className="container" style={{ width: '100%' }}>
           <div className="hero-grid">
-            <div className="hero-content">
+            <div className="hero-content reveal-on-scroll">
               <div className="hero-subhead-tag">
-                <span className="name">Shrijal Talkar</span>
-                <span className="title">Modern Vastu Expert & Author</span>
+                <span className="name" style={{ color: '#103F35' }}>Shrijal Talkar</span>
+                <span className="title">Modern Vastu Consultant &amp; Author</span>
               </div>
 
               <h1 className="hero-title">
@@ -164,28 +190,35 @@ export default function Home() {
               </h1>
 
               <h2 className="hero-lead-title">
-                Modern Vastu for business and home.
+                A contemporary perspective on the traditional principles of Vastu.
               </h2>
 
               <p className="hero-description" style={{ fontSize: '17px', lineHeight: '1.65' }}>
-                Because what happens at work follows you home.<br />
-                And what happens at home follows you back to work.
+                Thoughtful guidance for homes, workplaces and the spaces that shape everyday life.
               </p>
 
-              <div className="hero-cta-group">
+              <div className="hero-cta-group" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => openSpaceCheckWith('Business')}
+                  onClick={() => setIsConsultOpen(true)}
                   className="btn-primary"
-                  id="hero-check-space-btn"
+                  id="hero-consult-btn"
                 >
-                  CHECK MY SPACE <span>&rarr;</span>
+                  BOOK A CONSULTATION <span>&rarr;</span>
                 </button>
+                <a
+                  href="#approach"
+                  className="btn-outline"
+                  id="hero-explore-approach-btn"
+                  style={{ textDecoration: 'none' }}
+                >
+                  EXPLORE THE APPROACH <span>&darr;</span>
+                </a>
               </div>
             </div>
 
-            <div className="hero-image-wrap">
+            <div className="hero-image-wrap reveal-on-scroll">
               <OrbitGraphic
-                size={700}
+                size={780}
                 style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
                 opacity={0.28}
                 rotation={18}
@@ -194,9 +227,9 @@ export default function Home() {
               <div className="hero-image-frame">
                 <Image
                   src="/images/shrijal-real-opt.png"
-                  alt="Shrijal Talkar — Modern Vastu Expert & Author"
-                  width={500}
-                  height={580}
+                  alt="Shrijal Talkar — Modern Vastu Consultant & Author"
+                  width={540}
+                  height={630}
                   priority
                   style={{ display: 'block', width: '100%', height: 'auto', position: 'relative', zIndex: 2 }}
                 />
@@ -204,268 +237,258 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-footer-bar">
-            Gold Medalist in Vastu &nbsp;&bull;&nbsp; Trained under Aashish Patidar &nbsp;&bull;&nbsp; Author of <em>The Space on Your Side</em>
+          <div className="hero-footer-bar reveal-on-scroll">
+            Rooted in tradition. Considered for modern living. &nbsp;&bull;&nbsp; Gold Medalist in Vastu &nbsp;&bull;&nbsp; Author of <em>The Space on Your Side</em>
           </div>
         </div>
       </section>
 
-      {/* Human Insight: Work-to-Home Tension */}
-      <section className="section section-theme-logo-green" id="insight" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }} ref={insightContainerRef}>
-          <div style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '16px' }}>HUMAN INSIGHT</div>
-            <h2 className="large-section-title insight-reveal-item" style={{ marginBottom: '24px' }}>
-              You may leave the office.<br />
-              <em>But the office doesn’t always leave you.</em>
-            </h2>
-
-            <div className="insight-grid">
-              {[
-                'The pending payment.',
-                'The difficult decision.',
-                'The team issue.',
-                'The number you missed.'
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="insight-item-box insight-reveal-item"
-                  style={{ transitionDelay: `${idx * 130}ms` }}
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-
-            <p className="insight-reveal-item" style={{ fontSize: '18px', lineHeight: '1.7', marginBottom: '24px' }}>
-              You carry some of it home.<br />
-              And the next morning, poor sleep, stress, or tension at home comes back with you.
-            </p>
-
-            <div className="insight-reveal-item insight-divider" style={{ width: '48px', height: '1px', margin: '24px auto' }} />
-
-            <h3 className="insight-reveal-item" style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', marginBottom: '12px' }}>
-              Two spaces. One life.
-            </h3>
-            <p className="insight-reveal-item" style={{ fontSize: '16px', lineHeight: '1.7', maxWidth: '640px', margin: '0 auto' }}>
-              Shrijal looks at both &mdash; your business, your home, and how these spaces support the life you are building.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Section 3: Which space would you like to look at? */}
-      <section className="section" id="spaces" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* 02 — PHILOSOPHY (Theme 2: Logo Green) */}
+      <section className="section theme-green" id="philosophy" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="split-headline-header" style={{ marginBottom: '50px' }}>
-            <h2 className="large-section-title">
-              You don’t need to know Vastu.<br />
-              <em>Start with what you are noticing.</em>
+          <div className="reveal-on-scroll" style={{ maxWidth: '920px', margin: '0 auto', textAlign: 'center' }}>
+            <div className="section-label" style={{ marginBottom: '16px' }}>02 &bull; PHILOSOPHY</div>
+            <h2 className="large-section-title" style={{ marginBottom: '28px', color: '#FFFFFF' }}>
+              Not every space needs changing.<br />
+              <em style={{ color: '#FFFFFF' }}>Every space deserves to be understood.</em>
             </h2>
-            <p className="header-aside-text">
-              Notice what is happening in the space day to day. Select your space below to understand the deeper flow.
+
+            <p style={{ fontSize: '18px', lineHeight: '1.75', color: '#E8E5DF', marginBottom: '20px' }}>
+              A home or workplace is more than a floor plan. It is shaped by how people move, gather, focus and spend their time.
             </p>
-          </div>
 
-          <div className="spaces-three-col">
-            {/* Business Card */}
-            <div className="spaces-card">
-              <div>
-                <div className="section-label">BUSINESS</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
-                  Business
-                </h3>
-                <ul className="clean-bullet-list">
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Growth feels slow.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Money feels tight.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>The team feels unsettled.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Decisions feel harder.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Something just feels stuck.</span>
-                  </li>
-                </ul>
-              </div>
+            <p style={{ fontSize: '16.5px', lineHeight: '1.75', color: '#D6E6DF', maxWidth: '800px', margin: '0 auto 36px auto' }}>
+              My work begins with understanding those everyday realities. I bring traditional Vastu principles into the context of contemporary spaces, with recommendations that are considered, clear and practical.
+            </p>
 
-              <button
-                onClick={() => openSpaceCheckWith('Business')}
-                className="btn-outline w-full justify-between"
-                id="check-business-btn"
-              >
-                CHECK MY BUSINESS <span>&rarr;</span>
-              </button>
-            </div>
-
-            {/* Home Card */}
-            <div className="spaces-card">
-              <div>
-                <div className="section-label">HOME</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
-                  Home
-                </h3>
-                <ul className="clean-bullet-list">
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Peace feels less.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Sleep feels disturbed.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Stress stays longer.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Relationships feel harder.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>The home simply doesn’t feel the same.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <button
-                onClick={() => openSpaceCheckWith('Home')}
-                className="btn-outline w-full justify-between"
-                id="check-home-btn"
-              >
-                CHECK MY HOME <span>&rarr;</span>
-              </button>
-            </div>
-
-            {/* Both Card */}
-            <div className="spaces-card">
-              <div>
-                <div className="section-label">BOTH</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-6">
-                  Both
-                </h3>
-                <ul className="clean-bullet-list">
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Work affects home.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>Home affects work.</span>
-                  </li>
-                  <li className="clean-bullet-item">
-                    <span className="clean-bullet-dot">&bull;</span>
-                    <span>And you want to understand the bigger picture.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <button
-                onClick={() => openSpaceCheckWith('Both')}
-                className="btn-outline w-full justify-between"
-                id="check-both-btn"
-              >
-                CHECK BOTH SPACES <span>&rarr;</span>
-              </button>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              borderLeft: '4px solid #A3D4C4',
+              padding: '24px 32px',
+              borderRadius: '0 8px 8px 0',
+              display: 'inline-block',
+              maxWidth: '680px',
+              textAlign: 'left'
+            }}>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', fontStyle: 'italic', color: '#FFFFFF', lineHeight: '1.4' }}>
+                &ldquo;Good guidance should create clarity, not fear.&rdquo;
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. Section 7: About Shrijal Talkar */}
-      <section className="section section-theme-flower-color" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Poetic atmosphere: Gentle sunbeam glow & birds */}
+      {/* 03 — ABOUT SHRIJAL (Theme 3: Warm Beige) */}
+      <section className="section theme-beige" id="about" style={{ position: 'relative', overflow: 'hidden' }}>
         <SunbeamGlow />
         <FlyingBirds />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="about-grid">
+          <div className="about-grid reveal-on-scroll">
             <div className="about-photo-wrap">
               <OrbitGraphic
-                size={510}
+                size={580}
                 style={{
                   top: '47%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  filter: 'drop-shadow(0 0 10px rgba(158, 228, 201, 0.4))'
+                  filter: 'drop-shadow(0 0 10px rgba(16, 63, 53, 0.15))'
                 }}
-                opacity={0.85}
+                opacity={0.35}
                 rotation={-45}
                 variant="concentric"
-                color="#A3E7D0"
+                color="#103F35"
               />
               <div className="about-photo-frame">
                 <Image
                   src="/images/shrijal-real-opt.png"
                   alt="Shrijal Talkar portrait"
-                  width={500}
-                  height={580}
+                  width={520}
+                  height={608}
                   style={{ display: 'block', width: '100%', height: 'auto', position: 'relative', zIndex: 2 }}
                 />
               </div>
             </div>
 
             <div className="about-content" style={{ position: 'relative', zIndex: 4 }}>
-              <div className="section-label">WHY SHRIJAL</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
-                You bring the problem.<br />
-                <em>Shrijal studies the space.</em>
+              <div className="section-label">03 &bull; ABOUT SHRIJAL</div>
+              <h2 className="large-section-title about-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>A considered approach to</span><br />
+                <em>Modern Vastu.</em>
               </h2>
 
-              <div className="about-role" style={{ fontSize: '16px', fontWeight: '500', marginBottom: '8px' }}>
-                Shrijal Talkar is a Modern Vastu Expert and Author.
+              <div className="about-role" style={{ fontSize: '16.5px', fontWeight: '500', marginBottom: '14px', color: '#103F35' }}>
+                Shrijal Talkar is a Modern Vastu Consultant and author whose practice brings traditional knowledge into the realities of modern living and working.
               </div>
-              <p style={{ fontSize: '15px', marginBottom: '24px' }}>
-                She studied Vastu under leading Vastu-Astro expert Aashish Patidar and became a Gold Medalist in Vastu.
+              <p style={{ fontSize: '15.5px', lineHeight: '1.75', color: '#383733', marginBottom: '24px' }}>
+                A Gold Medalist in Vastu, trained under Vastu-Astro expert Aashish Patidar, she approaches each consultation with careful observation and an appreciation for the people who inhabit the space.
               </p>
 
-              <div className="about-divider"></div>
+              <div className="about-divider" style={{ borderColor: '#DCD7CA' }}></div>
 
-              <div className="about-belief-intro" style={{ fontWeight: '500' }}>
-                Her approach is simple:
+              <div className="about-quote-box" style={{ background: '#FFFFFF', borderTop: '1.5px solid #D5CFC2', borderRight: '1.5px solid #D5CFC2', borderBottom: '1.5px solid #D5CFC2', borderLeft: '4px solid #103F35', padding: '24px 28px', marginTop: '20px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)' }}>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontStyle: 'italic', color: '#1C1C1A', marginBottom: '8px' }}>
+                  &ldquo;I don&apos;t believe every space needs changing. I believe every space deserves to be understood.&rdquo;
+                </p>
+                <p style={{ fontSize: '14px', color: '#5A5954', fontWeight: '500' }}>
+                  &mdash; Shrijal Talkar
+                </p>
               </div>
 
-              <ul style={{ listStyle: 'none', margin: '16px 0 24px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
-                  <span>&bull;</span> Understand the person.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
-                  <span>&bull;</span> Study the space.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
-                  <span>&bull;</span> Find what matters.
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '16px', fontFamily: 'var(--font-serif)' }}>
-                  <span>&bull;</span> Suggest what is practical.
-                </li>
-              </ul>
-
-              <div className="about-quote-box" style={{ padding: '20px 24px', marginTop: '20px' }}>
-                <p style={{ fontSize: '15px', fontWeight: '500', marginBottom: '6px' }}>
-                  No fear. No unnecessary demolition. No complicated Vastu talk.
-                </p>
-                <p style={{ fontSize: '14.5px' }}>
-                  Just clear guidance you can understand and use.
-                </p>
+              <div style={{ marginTop: '28px' }}>
+                <button
+                  onClick={() => setIsConsultOpen(true)}
+                  className="btn-primary"
+                >
+                  DISCOVER HER STORY <span>&rarr;</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 10. Section 9: 2-Minute Space Check */}
-      <section className="section" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* 04 — SERVICES (Theme 1: Ivory) */}
+      <section className="section theme-ivory" id="services" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="split-headline-header reveal-on-scroll">
+            <div>
+              <div className="section-label" style={{ marginBottom: '12px' }}>04 &bull; SERVICES</div>
+              <h2 className="large-section-title">
+                Different spaces demand<br />
+                <em>different considerations.</em>
+              </h2>
+            </div>
+            <p className="header-aside-text">
+              Thoughtful guidance for homes, workplaces and the spaces that shape everyday life.
+            </p>
+          </div>
+
+          <div className="spaces-three-col reveal-on-scroll reveal-stagger">
+            {/* Residential Vastu Card */}
+            <div className="spaces-card">
+              <div>
+                <div className="section-label">RESIDENTIAL VASTU</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                  Residential Vastu
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  A home should reflect the people who live in it. Explore the layout, orientation and everyday use of your living spaces through a considered Vastu perspective.
+                </p>
+              </div>
+
+              <button
+                onClick={() => openSpaceCheckWith('Home')}
+                className="btn-outline w-full justify-between"
+                id="service-home-btn"
+              >
+                EXPLORE HOME VASTU <span>&rarr;</span>
+              </button>
+            </div>
+
+            {/* Business Vastu Card */}
+            <div className="spaces-card">
+              <div>
+                <div className="section-label">BUSINESS VASTU</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                  Business Vastu
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  From offices to retail environments, examine the relationship between spatial arrangements, circulation and the needs of your business.
+                </p>
+              </div>
+
+              <button
+                onClick={() => openSpaceCheckWith('Business')}
+                className="btn-outline w-full justify-between"
+                id="service-business-btn"
+              >
+                EXPLORE BUSINESS VASTU <span>&rarr;</span>
+              </button>
+            </div>
+
+            {/* New & Existing Properties Card */}
+            <div className="spaces-card">
+              <div>
+                <div className="section-label">NEW &amp; EXISTING PROPERTIES</div>
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                  New &amp; Existing
+                </h3>
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                  Whether planning a new property or reviewing an occupied space, receive guidance that respects your plans, constraints and priorities.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setIsConsultOpen(true)}
+                className="btn-outline w-full justify-between"
+                id="service-properties-btn"
+              >
+                DISCUSS YOUR SPACE <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 05 — THE APPROACH (Theme 2: Logo Green) */}
+      <section className="section theme-green" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="reveal-on-scroll" style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
+            <div className="section-label" style={{ marginBottom: '16px' }}>05 &bull; THE APPROACH</div>
+            <h2 className="large-section-title" style={{ marginBottom: '16px', color: '#FFFFFF' }}>
+              Understanding comes before<br />
+              <em style={{ color: '#FFFFFF' }}>recommendations.</em>
+            </h2>
+            <p className="header-aside-text" style={{ maxWidth: '640px', margin: '0 auto', color: '#D6E6DF' }}>
+              No unnecessary fear. No one-size-fits-all prescriptions. Every consultation follows a thoughtful, transparent 4-step path.
+            </p>
+          </div>
+
+          <div className="approach-grid reveal-on-scroll reveal-stagger" style={{ marginTop: '48px' }}>
+            <div className="approach-step-card">
+              <div className="approach-step-num">01.</div>
+              <h3 className="approach-step-title">A Conversation</h3>
+              <p className="approach-step-desc">
+                We begin with your concerns, priorities and how the space is used day to day.
+              </p>
+            </div>
+
+            <div className="approach-step-card">
+              <div className="approach-step-num">02.</div>
+              <h3 className="approach-step-title">A Closer Assessment</h3>
+              <p className="approach-step-desc">
+                I study the layout, directions and relevant spatial considerations through my Vastu methodology.
+              </p>
+            </div>
+
+            <div className="approach-step-card">
+              <div className="approach-step-num">03.</div>
+              <h3 className="approach-step-title">Thoughtful Recommendations</h3>
+              <p className="approach-step-desc">
+                We discuss potential adjustments, their purpose and what is practical for your space.
+              </p>
+            </div>
+
+            <div className="approach-step-card">
+              <div className="approach-step-num">04.</div>
+              <h3 className="approach-step-title">A Clear Way Forward</h3>
+              <p className="approach-step-desc">
+                You leave with a better understanding of the recommendations and your options.
+              </p>
+            </div>
+          </div>
+
+          <div className="reveal-on-scroll" style={{ textAlign: 'center', marginTop: '40px' }}>
+            <p style={{ fontStyle: 'italic', color: '#D6E6DF', fontSize: '16px', fontWeight: '500' }}>
+              &ldquo;No unnecessary fear. No one-size-fits-all prescriptions.&rdquo;
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 06 — SPACE CHECK (Theme 3: Warm Beige) */}
+      <section className="section theme-beige" id="space-check" style={{ position: 'relative', overflow: 'hidden' }}>
         <OrbitGraphic
           size={740}
           style={{
@@ -478,19 +501,16 @@ export default function Home() {
           variant="concentric"
         />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="spacecheck-grid">
+          <div className="spacecheck-grid reveal-on-scroll">
             <div className="spacecheck-left">
+              <div className="section-label" style={{ marginBottom: '16px' }}>06 &bull; SPACE CHECK</div>
               <h2 className="large-section-title">
-                Is your space<br />
-                <em>on your side?</em>
+                See your space from a<br />
+                <em>different perspective.</em>
               </h2>
 
-              <h3 className="spacecheck-callout" style={{ fontSize: '30px', marginTop: '16px', marginBottom: '12px' }}>
-                Take the 2-Minute Space Check.
-              </h3>
-
-              <p className="spacecheck-p" style={{ marginBottom: '28px', fontSize: '17px' }}>
-                A simple first step for business owners.
+              <p className="spacecheck-p" style={{ marginTop: '20px', marginBottom: '24px', fontSize: '16px', lineHeight: '1.7', color: '#383733' }}>
+                The spaces we know best are often the ones we examine least. Answer a few thoughtful questions about your home or workplace to reflect on its layout and everyday use.
               </p>
 
               <button
@@ -498,13 +518,13 @@ export default function Home() {
                 className="btn-primary"
                 id="start-space-check-btn"
               >
-                START MY FREE SPACE CHECK <span>&rarr;</span>
+                TAKE THE SPACE CHECK <span>&rarr;</span>
               </button>
             </div>
 
             <div className="spacecheck-right">
-              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
-                Choose: Business &bull; Home &bull; Both.
+              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: '#5A5954', marginBottom: '12px' }}>
+                Select Your Space: Business &bull; Home &bull; Both.
               </div>
 
               <div className="selector-options-row">
@@ -515,7 +535,6 @@ export default function Home() {
                 >
                   Business
                 </button>
-                <span className="selector-divider-dot">&middot;</span>
                 <button
                   type="button"
                   onClick={() => setSpaceCheckType('Home')}
@@ -523,7 +542,6 @@ export default function Home() {
                 >
                   Home
                 </button>
-                <span className="selector-divider-dot">&middot;</span>
                 <button
                   type="button"
                   onClick={() => setSpaceCheckType('Both')}
@@ -533,54 +551,62 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="spacecheck-bullets">
-                <p>Answer a few simple questions.</p>
-                <p>No Vastu knowledge needed. No technical terms. No fear-based predictions.</p>
-                <p className="conclusion" style={{ fontSize: '18px', fontWeight: '500', color: 'var(--text-primary)', marginTop: '8px' }}>
-                  2 minutes. One clearer view of your space.
-                </p>
-                <p style={{ marginTop: '8px' }}>At the end, see which areas may deserve a closer look.</p>
+              <div className="spacecheck-bullets" style={{ marginTop: '20px', borderTop: 'none', paddingTop: '0' }}>
+                <div style={{ background: '#FFFFFF', border: '1.5px solid #D5CFC2', padding: '22px 26px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)' }}>
+                  <p style={{ fontStyle: 'italic', fontSize: '16px', color: '#1C1C1A', lineHeight: '1.6', marginBottom: '14px' }}>
+                    &ldquo;An introduction to looking at your surroundings more carefully&mdash;not a substitute for a personalised consultation.&rdquo;
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px', fontSize: '13.5px', color: '#5A5954', fontWeight: 500, letterSpacing: '0.01em' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#103F35', opacity: 0.8, flexShrink: 0 }} aria-hidden="true" />
+                      2 minutes
+                    </span>
+                    <span style={{ color: '#D5CFC2' }} aria-hidden="true">&bull;</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#103F35', opacity: 0.8, flexShrink: 0 }} aria-hidden="true" />
+                      Thoughtful questions
+                    </span>
+                    <span style={{ color: '#D5CFC2' }} aria-hidden="true">&bull;</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#103F35', opacity: 0.8, flexShrink: 0 }} aria-hidden="true" />
+                      Immediate reflective clarity
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. Section 8: The Space on Your Side (Book) */}
-      <section className="section section-theme-pink" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Vague poetic elements: Gentle leaves tumbling on natural airflow */}
+      {/* 07 — THE BOOK (Theme 1: Ivory) */}
+      <section className="section theme-ivory" id="book" style={{ position: 'relative', overflow: 'hidden' }}>
         <WindLeavesStream />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="book-grid">
+          <div className="book-grid reveal-on-scroll">
             <div className="book-content">
-              <div className="section-label">THE BOOK</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '20px' }}>
-                One idea<br />
-                <em>became a book.</em>
+              <div className="section-label">07 &bull; THE BOOK</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '14px' }}>
+                The Space on Your Side
               </h2>
 
-              <h3 className="book-title-tag">The Space on Your Side</h3>
-              <div className="book-subtitle-tag">
+              <div className="book-subtitle-tag" style={{ fontSize: '16.5px', color: '#103F35', fontWeight: 600, marginBottom: '24px' }}>
                 The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
               </div>
 
               <div className="book-desc-content">
-                <p>
-                  Your space is not just where life happens.<br />
-                  It is part of how life happens.
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', fontStyle: 'italic', color: '#103F35', marginBottom: '20px', lineHeight: '1.4' }}>
+                  &ldquo;What if Vastu began with curiosity rather than concern?&rdquo;
                 </p>
-                <div className="book-keywords-serif">
-                  Light. Movement. Flow. Energy.
-                </div>
-                <p>
-                  And the way people feel and function inside a space.
+                <p style={{ fontSize: '16.5px', lineHeight: '1.75', color: '#4A4944', marginBottom: '20px' }}>
+                  In her book, Shrijal introduces a contemporary perspective on traditional Vastu ideas and the spaces we inhabit. An invitation to observe more closely, ask better questions and reconsider the way we relate to our surroundings.
                 </p>
-                <div className="book-quote-box" style={{ marginTop: '24px', padding: '16px 20px' }}>
-                  <p style={{ fontSize: '14px', marginBottom: '4px' }}>
+                <div className="book-quote-box" style={{ background: '#FFFFFF', borderTop: '1px solid #E6E4DD', borderRight: '1px solid #E6E4DD', borderBottom: '1px solid #E6E4DD', borderLeft: '4px solid #103F35', marginTop: '24px', padding: '16px 20px' }}>
+                  <p style={{ fontSize: '14px', marginBottom: '4px', color: '#5A5954' }}>
                     Shrijal’s modern Vastu approach is built around one belief:
                   </p>
-                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontStyle: 'italic' }}>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontStyle: 'italic', color: '#103F35' }}>
                     &ldquo;Don’t fear your space. Understand it.&rdquo;
                   </p>
                 </div>
@@ -588,10 +614,11 @@ export default function Home() {
 
               <button
                 onClick={() => setIsBookModalOpen(true)}
-                className="btn-outline"
+                className="btn-primary"
                 id="see-the-book-btn"
+                style={{ marginTop: '28px' }}
               >
-                See The Book <span>&rarr;</span>
+                DISCOVER THE BOOK <span>&rarr;</span>
               </button>
             </div>
 
@@ -622,166 +649,343 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Section 5: Real spaces tell you more than big promises. */}
-      <section id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Upper portion: Pure white header */}
-        <div className="case-studies-header-band">
-          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-            <div className="split-headline-header" style={{ marginBottom: 0 }}>
-              <div>
-                <div className="section-label">07 &bull; PROOF</div>
-                <h2 className="large-section-title" style={{ marginTop: '8px' }}>
-                  Real spaces.<br />
-                  <em>Real stories.</em>
-                </h2>
-              </div>
-              <div>
-                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', color: 'var(--text-primary)', marginBottom: '8px' }}>
-                  No big promises. No dramatic claims.
-                </p>
-                <p className="header-aside-text">
-                  See what the client was facing, what Shrijal studied, what was changed, and what the client experienced after.
-                </p>
-              </div>
+      {/* 08 — CASE STUDIES (Theme 2: Logo Green) */}
+      <section className="section theme-green" id="case-studies" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="split-headline-header reveal-on-scroll">
+            <div>
+              <div className="section-label" style={{ marginBottom: '12px' }}>08 &bull; CASE STUDIES</div>
+              <h2 className="large-section-title" style={{ marginTop: '8px', color: '#FFFFFF' }}>
+                Every space<br />
+                <em style={{ color: '#FFFFFF' }}>has a story.</em>
+              </h2>
             </div>
-          </div>
-        </div>
-
-        {/* Lower portion: Warm parchment stories & testimonials */}
-        <div className="case-studies-body-band">
-          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-            <div className="stories-three-col" style={{ marginBottom: '64px', borderBottom: 'none' }}>
-              {/* Business Story */}
-              <div className="story-card-col">
-                <div>
-                  <div className="section-label">BUSINESS STORY</div>
-                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                    Business Story
-                  </h3>
-                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                    A business owner who felt something was not moving the way it should.
-                  </p>
-                </div>
-              </div>
-
-              {/* Home Story */}
-              <div className="story-card-col">
-                <div>
-                  <div className="section-label">HOME STORY</div>
-                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                    Home Story
-                  </h3>
-                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                    A family that wanted to understand why their home no longer felt the same.
-                  </p>
-                </div>
-              </div>
-
-              {/* Business + Home Story */}
-              <div className="story-card-col">
-                <div>
-                  <div className="section-label">BUSINESS + HOME</div>
-                  <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-3 mb-4">
-                    Business + Home
-                  </h3>
-                  <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
-                    One business owner. Two spaces. One complete view.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonials Sub-Header: One clean dividing line */}
-            <div className="split-headline-header" id="stories" style={{ paddingTop: '40px', borderTop: '1px solid var(--border-subtle)', marginBottom: '32px' }}>
-              <h2 className="large-section-title">Some real stories.</h2>
-              <p className="header-aside-text">
-                Shared in the words of the people who live and work in them.
+            <div style={{ maxWidth: '620px' }}>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#FFFFFF', marginBottom: '12px', lineHeight: '1.4' }}>
+                A family&apos;s home. A newly planned workplace. An existing property seen in a different light.
+              </p>
+              <p className="header-aside-text" style={{ fontSize: '15.5px', lineHeight: '1.65', color: '#D6E6DF' }}>
+                Explore selected consultations through the client&apos;s starting point, Shrijal&apos;s observations and the recommendations that followed.
               </p>
             </div>
+          </div>
 
-            <div className="testimonial-grid" style={{ marginTop: '0', borderTop: 'none' }}>
-              <div className="testimonial-col">
-                <p className="testimonial-quote">
-                  &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
-                </p>
-                <div className="testimonial-author">Neeta &mdash; Business story</div>
-              </div>
-
-              <div className="testimonial-col">
-                <p className="testimonial-quote">
-                  &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
-                </p>
-                <div className="testimonial-author">Shivam &mdash; Home story</div>
-              </div>
-
-              <div className="testimonial-col">
-                <p className="testimonial-quote">
-                  &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
-                </p>
-                <div className="testimonial-author">Ravi &mdash; Business + Home story</div>
-              </div>
-            </div>
+          <div className="stories-three-col reveal-on-scroll reveal-stagger" style={{ marginBottom: '0', borderBottom: 'none' }}>
+            {storiesData.map((story) => (
+              <a
+                key={story.id}
+                href={story.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="story-card-col"
+                style={{ textDecoration: 'none', display: 'flex', cursor: 'pointer' }}
+                aria-label={`Open ${story.title} PDF in a new tab`}
+              >
+                <div className="story-image-box">
+                  <Image
+                    src={story.image}
+                    alt={story.title}
+                    fill
+                    sizes="(max-width: 992px) 100vw, 435px"
+                    priority
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <div
+                    className={`story-know-more-btn ${story.buttonTheme}`}
+                    aria-hidden="true"
+                  >
+                    <span>{story.buttonText}</span>
+                    <span className="story-btn-arrow">&rarr;</span>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 11. Section 10: Before you change your space... understand it. */}
-      <section className="direct-speak-banner" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Vague poetic elements: Subtle breathing energy clarity circle */}
-        <EnergyPulseRing />
-
-        <OrbitGraphic
-          size={640}
-          style={{
-            top: '50%',
-            right: '-140px',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none'
-          }}
-          opacity={0.18}
-          rotation={45}
-          variant="arcs"
-        />
+      {/* 09 — CLIENT EXPERIENCES (Theme 3: Warm Beige) */}
+      <section className="section theme-beige" id="client-experiences" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="banner-flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div style={{ maxWidth: '640px' }}>
-              <h2 className="banner-title" style={{ marginBottom: '16px' }}>
-                Before you change your space...<br />
-                <em>understand it.</em>
+          <div className="split-headline-header reveal-on-scroll">
+            <div>
+              <div className="section-label" style={{ marginBottom: '12px' }}>09 &bull; CLIENT EXPERIENCES</div>
+              <h2 className="large-section-title">
+                The experience,<br />
+                <em>in their own words.</em>
               </h2>
-              <div style={{ fontSize: '16px', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
-                <p>Maybe your business needs attention.</p>
-                <p>Maybe your home does.</p>
-                <p>Maybe both are already fine.</p>
-                <p style={{ marginTop: '12px', color: 'var(--text-primary)', fontWeight: '600' }}>
-                  The first step is not a remedy. The first step is clarity.
-                </p>
-              </div>
+            </div>
+            <div style={{ maxWidth: '620px' }}>
+              <p style={{ fontSize: '17px', lineHeight: '1.7', color: '#383733', marginBottom: '8px' }}>
+                A consultation is as much about being heard and understanding the recommendations as it is about the space itself.
+              </p>
+              <p className="header-aside-text" style={{ fontSize: '15.5px', color: '#5A5954' }}>
+                Read authentic accounts from people who have worked with Shrijal.
+              </p>
+            </div>
+          </div>
+
+          <div className="testimonial-grid reveal-on-scroll reveal-stagger" style={{ marginTop: '0', borderTop: 'none' }}>
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Since the changes Shrijal suggested, our office simply feels calmer. My team seems happier coming in to work.&rdquo;
+              </p>
+              <div className="testimonial-author">Neeta &mdash; Business Story</div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <button
-                onClick={() => openSpaceCheckWith('Both')}
-                className="btn-primary justify-center text-center"
-                id="cta-space-check-btn"
-              >
-                TAKE THE 2-MINUTE SPACE CHECK <span>&rarr;</span>
-              </button>
-              <span className="text-center text-xs uppercase tracking-widest text-[#82807A] font-medium px-2">or</span>
-              <button
-                onClick={() => setIsConsultOpen(true)}
-                className="btn-outline justify-center text-center"
-                id="banner-consult-btn"
-              >
-                BOOK A CONSULTATION <span>&rarr;</span>
-              </button>
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Our home feels warmer now, more peaceful. It&apos;s a lovely feeling to come back to.&rdquo;
+              </p>
+              <div className="testimonial-author">Shivam &mdash; Home Story</div>
+            </div>
+
+            <div className="testimonial-col">
+              <p className="testimonial-quote">
+                &ldquo;Shrijal helped me see how connected my work and home really are. Both feel more balanced now.&rdquo;
+              </p>
+              <div className="testimonial-author">Ravi &mdash; Business + Home Story</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 12. Section 11: Footer */}
-      <footer className="footer-section">
+      {/* 10 — CONSULTATION (Theme 1: Ivory) */}
+      <section className="section theme-ivory" id="consultation" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="split-headline-header reveal-on-scroll">
+            <div>
+              <div className="section-label" style={{ marginBottom: '12px' }}>10 &bull; CONSULTATION</div>
+              <h2 className="large-section-title">
+                A clearer understanding<br />
+                <em>of your space begins here.</em>
+              </h2>
+            </div>
+            <div style={{ maxWidth: '600px' }}>
+              <p style={{ fontSize: '17.5px', lineHeight: '1.7', color: '#4A4944', marginBottom: '16px' }}>
+                Whether you are planning something new or reconsidering an existing home or workplace, start with a conversation about what matters to you.
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0 0 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px', color: '#103F35', fontWeight: 600, letterSpacing: '0.01em' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#103F35', flexShrink: 0 }} aria-hidden="true" />
+                  <span>Direct consultation with Shrijal Talkar</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px', color: '#103F35', fontWeight: 600, letterSpacing: '0.01em' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#103F35', flexShrink: 0 }} aria-hidden="true" />
+                  <span>Practical, considered guidance</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px', color: '#103F35', fontWeight: 600, letterSpacing: '0.01em' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#103F35', flexShrink: 0 }} aria-hidden="true" />
+                  <span>No fear, no unnecessary demolition</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="reveal-on-scroll" style={{
+            maxWidth: '840px',
+            margin: '0 auto',
+            background: '#FFFFFF',
+            border: '1px solid #E6E4DD',
+            borderRadius: '12px',
+            padding: '40px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
+          }}>
+            {consultSubmitted ? (
+              <div style={{ textAlign: 'center', padding: '36px 16px' }}>
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    backgroundColor: '#103F35',
+                    color: '#FFFFFF',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '18px',
+                    boxShadow: '0 8px 24px rgba(16, 63, 53, 0.25)'
+                  }}
+                >
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '11.5px',
+                    fontWeight: '700',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: '#103F35',
+                    marginBottom: '8px'
+                  }}
+                >
+                  REPORT SUBMITTED SUCCESSFULLY
+                </div>
+
+                <h3 className="modal-headline" style={{ marginBottom: '12px', color: '#103F35' }}>
+                  Your Report Has Been Submitted Successfully!
+                </h3>
+
+                <p className="modal-subtext" style={{ fontSize: '15.5px', maxWidth: '520px', margin: '0 auto 24px auto', color: '#383531' }}>
+                  A confirmation email has been dispatched to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. Our team will review your space details and contact you <strong>as soon as possible</strong>.
+                </p>
+
+                <div
+                  style={{
+                    maxWidth: '460px',
+                    margin: '0 auto 24px auto',
+                    backgroundColor: '#F8F6F1',
+                    border: '1px solid #ECE7DE',
+                    borderRadius: '10px',
+                    padding: '18px 22px',
+                    textAlign: 'left',
+                    fontSize: '14px',
+                    lineHeight: '1.6'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Client Name:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.name}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Space Type:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>{consultForm.spaceType}</span>
+                  </div>
+                  {consultForm.city && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                      <span style={{ color: '#6A655C', fontWeight: '500' }}>City:</span>
+                      <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.city}</span>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Confirmation Status:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>Sent to {consultForm.email}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConsultSubmitted(false);
+                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Residential Vastu (Apartment, Villa, Living Space)', city: '', enquiry: '' });
+                  }}
+                  className="btn-outline"
+                  style={{ padding: '10px 24px' }}
+                >
+                  Submit Another Inquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleConsultSubmit}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label className="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Aditi Sharma"
+                      className="form-input"
+                      value={consultForm.name}
+                      onChange={(e) => setConsultForm({ ...consultForm, name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label className="form-label">Contact Number (Phone)</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="form-input"
+                      value={consultForm.phone}
+                      onChange={(e) => setConsultForm({ ...consultForm, phone: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label className="form-label">Email Address</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="name@example.com"
+                      className="form-input"
+                      value={consultForm.email}
+                      onChange={(e) => setConsultForm({ ...consultForm, email: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: 0 }}>
+                    <label className="form-label">City</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Mumbai, Goa, Bengaluru"
+                      className="form-input"
+                      value={consultForm.city}
+                      onChange={(e) => setConsultForm({ ...consultForm, city: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group" style={{ marginBottom: '20px' }}>
+                  <label className="form-label">Type of Space</label>
+                  <select
+                    className="form-select"
+                    value={consultForm.spaceType}
+                    onChange={(e) => setConsultForm({ ...consultForm, spaceType: e.target.value })}
+                  >
+                    <option value="Residential Vastu (Apartment, Villa, Living Space)">Residential Vastu (Apartment, Villa, Living Space)</option>
+                    <option value="Business Vastu (Office, Retail, Commercial Workspace)">Business Vastu (Office, Retail, Commercial Workspace)</option>
+                    <option value="New & Existing Properties (Planning, Land, Renovations)">New &amp; Existing Properties (Planning, Land, Renovations)</option>
+                    <option value="Both Business & Home Space">Both Business &amp; Home Space</option>
+                  </select>
+                </div>
+
+                <div className="form-group" style={{ marginBottom: '28px' }}>
+                  <label className="form-label">Your Enquiry</label>
+                  <textarea
+                    rows={4}
+                    required
+                    placeholder="Tell us about your space, concerns, or what you would like to explore..."
+                    className="form-textarea"
+                    value={consultForm.enquiry}
+                    onChange={(e) => setConsultForm({ ...consultForm, enquiry: e.target.value })}
+                  ></textarea>
+                </div>
+
+                {submitError && (
+                  <div style={{ color: '#C33F4B', fontSize: '14px', marginBottom: '16px', textAlign: 'center', backgroundColor: '#FDF2F4', padding: '10px 14px', borderRadius: '6px' }}>
+                    {submitError}
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    disabled={isSubmitting}
+                    style={{ minWidth: '260px', justifyContent: 'center', opacity: isSubmitting ? 0.7 : 1 }}
+                  >
+                    {isSubmitting ? 'SUBMITTING...' : (
+                      <>
+                        BOOK A CONSULTATION <span>&rarr;</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 11 — FOOTER (Theme 2: Logo Green) */}
+      <footer className="footer-section theme-green">
         <div className="container">
           <div className="footer-top-grid">
             <div className="footer-left-content">
@@ -795,38 +999,40 @@ export default function Home() {
                 />
               </div>
               <div className="footer-brand-meta">
-                <div style={{ fontWeight: '600', fontSize: '16px' }}>Shrijal Talkar</div>
-                <div>Modern Vastu Expert | Author</div>
-                <div>Gold Medalist in Vastu</div>
-                <div>Trained under Aashish Patidar</div>
-                <div>Author of <em>The Space on Your Side</em></div>
+                <div style={{ fontWeight: '600', fontSize: '17px', color: '#FFFFFF', marginBottom: '4px' }}>Shrijal Talkar</div>
+                <div style={{ color: '#E8E5DF', marginBottom: '2px' }}>Modern Vastu Consultant | Author</div>
+                <div style={{ color: '#D6E6DF', fontSize: '13.5px' }}>Gold Medalist in Vastu &bull; Trained under Aashish Patidar</div>
+                <div style={{ color: '#D6E6DF', fontSize: '13.5px' }}>Author of <em style={{ color: '#FFFFFF', fontStyle: 'italic', fontWeight: '500' }}>The Space on Your Side</em></div>
               </div>
             </div>
 
             <div className="footer-right-content">
-              <h3 className="footer-slogan">Your Space. On Your Side.</h3>
-              <p className="footer-sub" style={{ marginBottom: '24px' }}>
-                Business Vastu &nbsp;&bull;&nbsp; Home Vastu &nbsp;&bull;&nbsp; Business + Home
+              <h3 className="footer-slogan" style={{ fontSize: '28px', color: '#FFFFFF', marginBottom: '8px' }}>
+                Your Space. On Your Side.
+              </h3>
+              <p className="footer-sub" style={{ marginBottom: '24px', color: '#D6E6DF' }}>
+                Residential Vastu &nbsp;&bull;&nbsp; Business Vastu &nbsp;&bull;&nbsp; New &amp; Existing Properties
               </p>
               <button
-                onClick={() => openSpaceCheckWith('Business')}
-                className="btn-outline"
-                id="footer-check-space-btn"
+                onClick={() => setIsConsultOpen(true)}
+                className="btn-primary"
+                id="footer-book-consult-btn"
+                style={{ background: '#FFFFFF', color: '#103F35', border: 'none' }}
               >
-                CHECK MY SPACE <span>&rarr;</span>
+                BOOK A CONSULTATION <span>&rarr;</span>
               </button>
             </div>
           </div>
 
           <div className="footer-bottom-bar">
-            <div>&copy; {new Date().getFullYear()} Shrijal Talkar. All rights reserved.</div>
+            <div style={{ color: '#D6E6DF' }}>&copy; 2026 Shrijal Talkar. All rights reserved.</div>
             <div className="footer-links-wrap">
-              <a href="#insight" className="footer-nav-link">Insight</a>
-              <a href="#spaces" className="footer-nav-link">Spaces</a>
-              <a href="#about" className="footer-nav-link">About</a>
-              <a href="#space-check" className="footer-nav-link">Space Check</a>
-              <a href="#book" className="footer-nav-link">Book</a>
-              <a href="#case-studies" className="footer-nav-link">Proof</a>
+              <a href="#services" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Home Vastu</a>
+              <a href="#services" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Business Vastu</a>
+              <a href="#approach" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Approach</a>
+              <a href="#book" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Book</a>
+              <a href="#case-studies" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Case Studies</a>
+              <a href="#consultation" className="footer-nav-link" style={{ color: '#FFFFFF' }}>Consultation</a>
             </div>
           </div>
         </div>
@@ -937,6 +1143,12 @@ export default function Home() {
                     <span style={{ color: '#6A655C', fontWeight: '500' }}>Space Type:</span>
                     <span style={{ color: '#103F35', fontWeight: '600' }}>{consultForm.spaceType}</span>
                   </div>
+                  {consultForm.city && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                      <span style={{ color: '#6A655C', fontWeight: '500' }}>City:</span>
+                      <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.city}</span>
+                    </div>
+                  )}
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: '#6A655C', fontWeight: '500' }}>Confirmation Status:</span>
                     <span style={{ color: '#103F35', fontWeight: '600' }}>Sent to {consultForm.email}</span>
@@ -948,7 +1160,7 @@ export default function Home() {
                   onClick={() => {
                     setConsultSubmitted(false);
                     setIsConsultOpen(false);
-                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Business Space (Office, Factory, Commercial)', notes: '' });
+                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Residential Vastu (Apartment, Villa, Living Space)', city: '', enquiry: '' });
                   }}
                   className="btn-primary"
                   style={{ width: '100%', justifyContent: 'center' }}
@@ -964,23 +1176,6 @@ export default function Home() {
                 </p>
 
                 <form onSubmit={handleConsultSubmit}>
-                  {submitError && (
-                    <div
-                      style={{
-                        backgroundColor: '#FDF2F4',
-                        border: '1px solid #F5C6CB',
-                        color: '#8C2234',
-                        padding: '12px 16px',
-                        borderRadius: '6px',
-                        fontSize: '14px',
-                        marginBottom: '16px',
-                        lineHeight: '1.5'
-                      }}
-                    >
-                      {submitError}
-                    </div>
-                  )}
-
                   <div className="form-group">
                     <label className="form-label">Full Name</label>
                     <input
@@ -1024,39 +1219,53 @@ export default function Home() {
                       value={consultForm.spaceType}
                       onChange={(e) => setConsultForm({ ...consultForm, spaceType: e.target.value })}
                     >
-                      <option value="Business Space (Office, Factory, Commercial)">Business Space (Office, Factory, Commercial)</option>
-                      <option value="Home Space (Apartment, Villa, Renovation)">Home Space (Apartment, Villa, Renovation)</option>
-                      <option value="Both Business & Home">Both Business &amp; Home</option>
-                      <option value="Pre-Purchase Land / Architecture Layout Plan">Pre-Purchase Land / Architecture Layout Plan</option>
+                      <option value="Residential Vastu (Apartment, Villa, Living Space)">Residential Vastu (Apartment, Villa, Living Space)</option>
+                      <option value="Business Vastu (Office, Retail, Commercial Workspace)">Business Vastu (Office, Retail, Commercial Workspace)</option>
+                      <option value="New & Existing Properties (Planning, Land, Renovations)">New &amp; Existing Properties (Planning, Land, Renovations)</option>
+                      <option value="Both Business & Home Space">Both Business &amp; Home Space</option>
                     </select>
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">What are you noticing in the space? (Optional)</label>
+                    <label className="form-label">City</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Mumbai, Goa, Bengaluru"
+                      className="form-input"
+                      value={consultForm.city}
+                      onChange={(e) => setConsultForm({ ...consultForm, city: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Your Enquiry</label>
                     <textarea
                       rows={3}
-                      placeholder="Share brief context about what prompted you to seek a consultation..."
+                      required
+                      placeholder="Tell us about your space, concerns, or what you would like to explore..."
                       className="form-textarea"
-                      value={consultForm.notes}
-                      onChange={(e) => setConsultForm({ ...consultForm, notes: e.target.value })}
+                      value={consultForm.enquiry}
+                      onChange={(e) => setConsultForm({ ...consultForm, enquiry: e.target.value })}
                     ></textarea>
                   </div>
 
+                  {submitError && (
+                    <div style={{ color: '#C33F4B', fontSize: '13.5px', marginBottom: '14px', textAlign: 'center', backgroundColor: '#FDF2F4', padding: '10px 14px', borderRadius: '6px' }}>
+                      {submitError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    disabled={isSubmitting}
                     className="btn-primary"
-                    style={{
-                      width: '100%',
-                      justifyContent: 'center',
-                      opacity: isSubmitting ? 0.75 : 1,
-                      cursor: isSubmitting ? 'not-allowed' : 'pointer'
-                    }}
+                    disabled={isSubmitting}
+                    style={{ width: '100%', justifyContent: 'center', opacity: isSubmitting ? 0.7 : 1 }}
                   >
-                    {isSubmitting ? (
-                      <>Submitting Report... <span>&bull;&bull;&bull;</span></>
-                    ) : (
-                      <>Confirm Consultation Request <span>&rarr;</span></>
+                    {isSubmitting ? 'Submitting...' : (
+                      <>
+                        Book a Consultation <span>&rarr;</span>
+                      </>
                     )}
                   </button>
                 </form>
@@ -1202,16 +1411,6 @@ export default function Home() {
                 <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                   <button
                     onClick={() => {
-                      let mappedType = 'Business Space (Office, Factory, Commercial)';
-                      if (quizAnswers.spaceType?.toLowerCase().includes('residence') || quizAnswers.spaceType?.toLowerCase().includes('home')) {
-                        mappedType = 'Home Space (Apartment, Villa, Renovation)';
-                      } else if (quizAnswers.spaceType?.toLowerCase().includes('both')) {
-                        mappedType = 'Both Business & Home';
-                      }
-                      setConsultForm((prev) => ({
-                        ...prev,
-                        spaceType: mappedType
-                      }));
                       setIsSpaceCheckOpen(false);
                       setIsConsultOpen(true);
                     }}

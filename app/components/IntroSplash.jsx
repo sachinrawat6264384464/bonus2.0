@@ -12,17 +12,18 @@ export default function IntroSplash() {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // Start video playback
+    // Start video playback at 2x speed to reduce timing from 3s to 1.5s
     if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0;
       videoRef.current.play().catch(() => {
         // Autoplay policy fallback
       });
     }
 
-    // Safety fallback: if video doesn't end, fade out after 3.6s
+    // Fallback: fade out exactly at 1.5s
     const fallbackTimer = setTimeout(() => {
       startFadeOut();
-    }, 3600);
+    }, 1500);
 
     return () => {
       clearTimeout(fallbackTimer);
@@ -37,18 +38,18 @@ export default function IntroSplash() {
       window.dispatchEvent(new CustomEvent('intro-splash-complete'));
       document.documentElement.classList.add('splash-complete');
     }
-    // Smooth slow transition: 900ms fade out
+    // Smooth transition: 500ms fade out
     setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = '';
-    }, 900);
+    }, 500);
   };
 
   const handleVideoEnded = () => {
-    // Hold frame for a brief moment (200ms) before slow-fading
+    // Hold frame for a brief moment (100ms) before fading
     setTimeout(() => {
       startFadeOut();
-    }, 200);
+    }, 100);
   };
 
   if (!visible) return null;
@@ -67,7 +68,7 @@ export default function IntroSplash() {
         justifyContent: 'center',
         opacity: fading ? 0 : 1,
         transform: fading ? 'scale(1.03)' : 'scale(1)',
-        transition: 'opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
         pointerEvents: fading ? 'none' : 'auto',
         cursor: 'pointer'
       }}

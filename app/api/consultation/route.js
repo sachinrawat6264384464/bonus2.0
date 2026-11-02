@@ -5,7 +5,8 @@ export const runtime = 'nodejs';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, email, spaceType, notes, quizAnswers } = body;
+    const { name, phone, email, spaceType, notes, city, enquiry, quizAnswers } = body;
+    const clientEnquiry = enquiry || notes || '';
 
     // Validate required fields
     if (!name || !phone || !email) {
@@ -86,6 +87,11 @@ export async function POST(request) {
                   <td style="padding:14px 18px;border-bottom:1px solid #ECE8DF;font-weight:600;color:#55504A;font-size:14px;">Space Type</td>
                   <td style="padding:14px 18px;border-bottom:1px solid #ECE8DF;color:#1C1C1A;font-size:14.5px;">${spaceType || 'Not specified'}</td>
                 </tr>
+                ${city ? `
+                <tr>
+                  <td style="padding:14px 18px;border-bottom:1px solid #ECE8DF;font-weight:600;color:#55504A;font-size:14px;">City / Location</td>
+                  <td style="padding:14px 18px;border-bottom:1px solid #ECE8DF;color:#1C1C1A;font-size:14.5px;">${city}</td>
+                </tr>` : ''}
                 <tr>
                   <td style="padding:14px 18px;font-weight:600;color:#55504A;font-size:14px;">Received At</td>
                   <td style="padding:14px 18px;color:#7A766F;font-size:13.5px;">${submissionTime}</td>
@@ -94,10 +100,10 @@ export async function POST(request) {
 
               <!-- Notes / What they are noticing -->
               <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C33F4B;margin-bottom:12px;">
-                WHAT CLIENT NOTICED IN THE SPACE
+                CLIENT ENQUIRY &amp; SPACE CONTEXT
               </div>
               <div style="background-color:#F5F3EE;padding:18px 22px;border-radius:8px;border-left:4px solid #103F35;font-size:14.5px;line-height:1.6;color:#33312E;margin-bottom:28px;">
-                ${notes ? notes.replace(/\n/g, '<br>') : '<em>No additional notes provided by client.</em>'}
+                ${clientEnquiry ? clientEnquiry.replace(/\n/g, '<br>') : '<em>No additional notes or enquiry provided by client.</em>'}
               </div>
 
               <!-- Space Check 3-Step Quiz Details (if available) -->
@@ -212,6 +218,11 @@ export async function POST(request) {
                   <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;font-weight:600;color:#615C54;font-size:14px;width:38%;">Space Category</td>
                   <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;color:#1C1C1A;font-size:14px;font-weight:500;">${spaceType || 'General Consultation'}</td>
                 </tr>
+                ${city ? `
+                <tr>
+                  <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;font-weight:600;color:#615C54;font-size:14px;">City / Location</td>
+                  <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;color:#1C1C1A;font-size:14px;">${city}</td>
+                </tr>` : ''}
                 <tr>
                   <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;font-weight:600;color:#615C54;font-size:14px;">Contact Phone</td>
                   <td style="padding:12px 18px;border-bottom:1px solid #ECE7DE;color:#1C1C1A;font-size:14px;">${phone}</td>

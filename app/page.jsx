@@ -897,7 +897,7 @@ export default function Home() {
                 </div>
 
                 <h3 className="modal-headline" style={{ marginBottom: '12px' }}>
-                  Aapki Report Successfully Submit Ho Gayi Hai!
+                  Your Report Has Been Submitted Successfully!
                 </h3>
 
                 <p
@@ -910,7 +910,7 @@ export default function Home() {
                     margin: '0 auto 24px auto'
                   }}
                 >
-                  Kuch hi samay ke andar aapke diye hue email (<strong style={{ color: '#103F35' }}>{consultForm.email}</strong>) par update mil jayega aur hamari team aapse <strong>as soon as possible contact karegi</strong>.
+                  A confirmation email has been sent to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. Our team will review your space details and contact you <strong>as soon as possible</strong>.
                 </p>
 
                 <div

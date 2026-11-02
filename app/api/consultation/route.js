@@ -203,7 +203,7 @@ export async function POST(request) {
 
               <div style="background-color:#F5F9F7;border-left:4px solid #103F35;padding:18px 22px;border-radius:0 8px 8px 0;margin:24px 0;">
                 <p style="margin:0;font-size:15px;line-height:1.65;color:#103F35;font-weight:500;">
-                  &ldquo;Aapki report successfully submit ho gayi hai. Hamari team aapke space details ko review kar rahi hai aur bahut jald aapko update email milega tatha team aapse as soon as possible contact karegi.&rdquo;
+                  &ldquo;Your space report has been received and prioritized. Our team is reviewing the findings and will reach out shortly to discuss practical recommendations for your space.&rdquo;
                 </p>
               </div>
 

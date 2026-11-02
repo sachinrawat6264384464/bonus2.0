@@ -45,6 +45,8 @@ export default function Home() {
     setIsSubmitting(true);
     setSubmitError(null);
 
+    console.log('[Consultation Form] Submitting lead data to /api/consultation...', consultForm);
+
     try {
       const res = await fetch('/api/consultation', {
         method: 'POST',
@@ -56,13 +58,15 @@ export default function Home() {
       });
 
       const data = await res.json();
+      console.log('[Consultation Form] Server response:', data);
+
       if (!res.ok) {
         throw new Error(data.error || 'Failed to submit consultation report.');
       }
 
       setConsultSubmitted(true);
     } catch (err) {
-      console.error(err);
+      console.error('[Consultation Form Error]:', err);
       setSubmitError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);

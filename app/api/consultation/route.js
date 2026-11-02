@@ -319,7 +319,21 @@ export async function POST(request) {
       html: userHtml,
     });
 
-    await Promise.all([adminMailPromise, userMailPromise]);
+    console.log(`[Consultation API] Dispatching consultation report for: ${name} (${email}) to admin: ${adminEmail}`);
+
+    const [adminResult, userResult] = await Promise.allSettled([adminMailPromise, userMailPromise]);
+
+    if (adminResult.status === 'rejected') {
+      console.error('[Consultation API] Failed to send admin email:', adminResult.reason);
+    } else {
+      console.log('[Consultation API] Admin email delivered successfully! MessageId:', adminResult.value?.messageId);
+    }
+
+    if (userResult.status === 'rejected') {
+      console.error('[Consultation API] Failed to send user acknowledgment:', userResult.reason);
+    } else {
+      console.log('[Consultation API] User acknowledgment delivered successfully! MessageId:', userResult.value?.messageId);
+    }
 
     return Response.json({
       success: true,

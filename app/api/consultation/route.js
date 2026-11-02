@@ -21,7 +21,8 @@ export async function POST(request) {
     const rawPass = process.env.EMAIL_HOST_PASSWORD || process.env.SMTP_PASS || 'lxdt nons zthe gkgp';
     const smtpPass = rawPass.replace(/["']/g, '').replace(/\s+/g, '');
     const adminEmail = process.env.ADMIN_EMAIL || process.env.DEFAULT_FROM_EMAIL || 'sachinrawat6264384464@gmail.com';
-    const fromName = process.env.DEFAULT_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Shrijal Talkar — Modern Vastu';
+    const customName = process.env.EMAIL_FROM_NAME || process.env.DEFAULT_FROM_NAME;
+    const fromName = (customName && !customName.includes('SKIPD')) ? customName.replace(/["']/g, '') : 'Shrijal Talkar — Modern Vastu';
     const smtpSecure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE !== 'false' : smtpPort === 465;
 
     const submissionTime = new Date().toLocaleString('en-IN', {

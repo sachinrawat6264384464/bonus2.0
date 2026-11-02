@@ -17,18 +17,12 @@ export async function POST(request) {
 
     const smtpHost = process.env.EMAIL_HOST || process.env.SMTP_HOST || 'smtp.gmail.com';
     const smtpPort = parseInt(process.env.EMAIL_PORT || process.env.SMTP_PORT || '465', 10);
-    const smtpUser = process.env.EMAIL_HOST_USER || process.env.DEFAULT_FROM_EMAIL || process.env.SMTP_USER;
-    const rawPass = process.env.EMAIL_HOST_PASSWORD || process.env.SMTP_PASS || '';
+    const smtpUser = process.env.EMAIL_HOST_USER || process.env.DEFAULT_FROM_EMAIL || process.env.SMTP_USER || 'sachinrawat6264384464@gmail.com';
+    const rawPass = process.env.EMAIL_HOST_PASSWORD || process.env.SMTP_PASS || 'lxdt nons zthe gkgp';
     const smtpPass = rawPass.replace(/["']/g, '').replace(/\s+/g, '');
-    const adminEmail = process.env.ADMIN_EMAIL || process.env.DEFAULT_FROM_EMAIL || smtpUser;
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.DEFAULT_FROM_EMAIL || 'sachinrawat6264384464@gmail.com';
     const fromName = process.env.DEFAULT_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Shrijal Talkar — Modern Vastu';
     const smtpSecure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE !== 'false' : smtpPort === 465;
-
-    const isPlaceholder =
-      !smtpUser ||
-      !smtpPass ||
-      smtpUser === 'your-email@gmail.com' ||
-      smtpPass === 'your-16-digit-app-password';
 
     const submissionTime = new Date().toLocaleString('en-IN', {
       timeZone: 'Asia/Kolkata',
@@ -280,18 +274,6 @@ export async function POST(request) {
     `;
 
     // 3. Dispatch Emails via Nodemailer
-    if (isPlaceholder) {
-      console.warn(
-        '[SMTP Notice] SMTP_USER or SMTP_PASS is not configured in .env. Email dispatch simulated in development mode.'
-      );
-      return Response.json({
-        success: true,
-        simulated: true,
-        message:
-          'Consultation report submitted successfully. (SMTP simulated in development until credentials are set in .env)',
-      });
-    }
-
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,

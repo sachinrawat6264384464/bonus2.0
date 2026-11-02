@@ -33,19 +33,40 @@ export default function Home() {
     name: '',
     phone: '',
     email: '',
-    spaceType: 'Business Space',
+    spaceType: 'Business Space (Office, Factory, Commercial)',
     notes: ''
   });
   const [consultSubmitted, setConsultSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
-  const handleConsultSubmit = (e) => {
+  const handleConsultSubmit = async (e) => {
     e.preventDefault();
-    setConsultSubmitted(true);
-    setTimeout(() => {
-      setConsultSubmitted(false);
-      setIsConsultOpen(false);
-      setConsultForm({ name: '', phone: '', email: '', spaceType: 'Business Space', notes: '' });
-    }, 2800);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...consultForm,
+          quizAnswers: quizFinished ? quizAnswers : null,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit consultation report.');
+      }
+
+      setConsultSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setSubmitError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openSpaceCheckWith = (type) => {
@@ -838,13 +859,98 @@ export default function Home() {
             </button>
 
             {consultSubmitted ? (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <h3 className="modal-headline" style={{ marginBottom: '16px' }}>
-                  Thank you for reaching out.
+              <div style={{ textAlign: 'center', padding: '24px 8px 12px' }}>
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    backgroundColor: '#103F35',
+                    color: '#FFFFFF',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '18px',
+                    boxShadow: '0 8px 24px rgba(16, 63, 53, 0.25)'
+                  }}
+                >
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '11.5px',
+                    fontWeight: '700',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: '#103F35',
+                    marginBottom: '8px'
+                  }}
+                >
+                  REPORT SUBMITTED SUCCESSFULLY
+                </div>
+
+                <h3 className="modal-headline" style={{ marginBottom: '12px' }}>
+                  Aapki Report Successfully Submit Ho Gayi Hai!
                 </h3>
-                <p className="modal-subtext">
-                  Your consultation request has been received. Shrijal&apos;s desk will contact you shortly to schedule your discussion.
+
+                <p
+                  className="modal-subtext"
+                  style={{
+                    fontSize: '15px',
+                    lineHeight: '1.65',
+                    color: '#383531',
+                    maxWidth: '480px',
+                    margin: '0 auto 24px auto'
+                  }}
+                >
+                  Kuch hi samay ke andar aapke diye hue email (<strong style={{ color: '#103F35' }}>{consultForm.email}</strong>) par update mil jayega aur hamari team aapse <strong>as soon as possible contact karegi</strong>.
                 </p>
+
+                <div
+                  style={{
+                    backgroundColor: '#F8F6F1',
+                    border: '1px solid #ECE7DE',
+                    borderRadius: '10px',
+                    padding: '18px 22px',
+                    textAlign: 'left',
+                    marginBottom: '26px',
+                    fontSize: '14px',
+                    lineHeight: '1.6'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Client Name:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.name}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Contact Phone:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.phone}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Space Type:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>{consultForm.spaceType}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Confirmation Status:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>Sent to {consultForm.email}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConsultSubmitted(false);
+                    setIsConsultOpen(false);
+                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Business Space (Office, Factory, Commercial)', notes: '' });
+                  }}
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Close &amp; Return To Site &rarr;
+                </button>
               </div>
             ) : (
               <>
@@ -854,6 +960,23 @@ export default function Home() {
                 </p>
 
                 <form onSubmit={handleConsultSubmit}>
+                  {submitError && (
+                    <div
+                      style={{
+                        backgroundColor: '#FDF2F4',
+                        border: '1px solid #F5C6CB',
+                        color: '#8C2234',
+                        padding: '12px 16px',
+                        borderRadius: '6px',
+                        fontSize: '14px',
+                        marginBottom: '16px',
+                        lineHeight: '1.5'
+                      }}
+                    >
+                      {submitError}
+                    </div>
+                  )}
+
                   <div className="form-group">
                     <label className="form-label">Full Name</label>
                     <input
@@ -915,8 +1038,22 @@ export default function Home() {
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                    Confirm Consultation Request <span>&rarr;</span>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary"
+                    style={{
+                      width: '100%',
+                      justifyContent: 'center',
+                      opacity: isSubmitting ? 0.75 : 1,
+                      cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                    }}
+                  >
+                    {isSubmitting ? (
+                      <>Submitting Report... <span>&bull;&bull;&bull;</span></>
+                    ) : (
+                      <>Confirm Consultation Request <span>&rarr;</span></>
+                    )}
                   </button>
                 </form>
               </>
@@ -1061,6 +1198,16 @@ export default function Home() {
                 <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                   <button
                     onClick={() => {
+                      let mappedType = 'Business Space (Office, Factory, Commercial)';
+                      if (quizAnswers.spaceType?.toLowerCase().includes('residence') || quizAnswers.spaceType?.toLowerCase().includes('home')) {
+                        mappedType = 'Home Space (Apartment, Villa, Renovation)';
+                      } else if (quizAnswers.spaceType?.toLowerCase().includes('both')) {
+                        mappedType = 'Both Business & Home';
+                      }
+                      setConsultForm((prev) => ({
+                        ...prev,
+                        spaceType: mappedType
+                      }));
                       setIsSpaceCheckOpen(false);
                       setIsConsultOpen(true);
                     }}

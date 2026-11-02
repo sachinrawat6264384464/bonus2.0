@@ -829,8 +829,8 @@ export default function Home() {
                   Your Report Has Been Submitted Successfully!
                 </h3>
 
-                <p className="modal-subtext" style={{ fontSize: '15.5px', maxWidth: '520px', margin: '0 auto 24px auto', color: '#383531' }}>
-                  A confirmation email has been dispatched to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. Our team will review your space details and contact you <strong>as soon as possible</strong>.
+                <p className="modal-subtext" style={{ fontSize: '15.5px', maxWidth: '540px', margin: '0 auto 24px auto', color: '#383531' }}>
+                  A confirmation email has been dispatched to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. You will receive your space review and consultation update within <strong>24 to 48 hours</strong>. Our team will contact you <strong>as soon as possible</strong>.
                 </p>
 
                 <div
@@ -1112,11 +1112,11 @@ export default function Home() {
                     fontSize: '15px',
                     lineHeight: '1.65',
                     color: '#383531',
-                    maxWidth: '480px',
+                    maxWidth: '490px',
                     margin: '0 auto 24px auto'
                   }}
                 >
-                  A confirmation email has been sent to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. Our team will review your space details and contact you <strong>as soon as possible</strong>.
+                  A confirmation email has been sent to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. You will receive your space review and consultation update within <strong>24 to 48 hours</strong>. Our team will contact you <strong>as soon as possible</strong>.
                 </p>
 
                 <div

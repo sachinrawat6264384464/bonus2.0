@@ -6,10 +6,17 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const { name, phone, email, spaceType, notes, city, enquiry, quizAnswers } = body;
-    const clientEnquiry = enquiry || notes || '';
+    
+    // Clean & normalize user inputs
+    const clientName = (name || '').trim();
+    const clientPhone = (phone || '').trim();
+    const clientEmail = (email || '').trim().toLowerCase();
+    const clientCity = (city || '').trim();
+    const clientSpace = (spaceType || 'Residential Vastu (Apartment, Villa, Living Space)').trim();
+    const clientEnquiry = (enquiry || notes || '').trim();
 
     // Validate required fields
-    if (!name || !phone || !email) {
+    if (!clientName || !clientPhone || !clientEmail) {
       return Response.json(
         { error: 'Name, phone, and email are required fields.' },
         { status: 400 }
@@ -202,9 +209,16 @@ export async function POST(request) {
                 Thank you for reaching out and sharing the details of your space. Your consultation request and <strong>2-Minute Space Report</strong> have been successfully registered with Shrijal Talkar&apos;s desk.
               </p>
 
-              <div style="background-color:#F5F9F7;border-left:4px solid #103F35;padding:18px 22px;border-radius:0 8px 8px 0;margin:24px 0;">
-                <p style="margin:0;font-size:15px;line-height:1.65;color:#103F35;font-weight:500;">
-                  &ldquo;Your space report has been received and prioritized. Our team is reviewing the findings and will reach out shortly to discuss practical recommendations for your space.&rdquo;
+              <!-- Expected Update Timeline Banner -->
+              <div style="background-color:#EBF5F1;border:1px solid #C4E5D8;border-radius:10px;padding:22px 24px;margin:22px 0 28px 0;">
+                <div style="font-size:11.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#103F35;margin-bottom:6px;">
+                  EXPECTED UPDATE TIMELINE
+                </div>
+                <div style="font-size:16px;font-weight:600;color:#103F35;margin-bottom:8px;">
+                  You will receive your space review &amp; consultation update within 24–48 hours.
+                </div>
+                <p style="margin:0;font-size:14px;line-height:1.65;color:#2D453E;">
+                  Your space consultation inquiry has been placed into our priority queue. Shrijal Talkar&apos;s team is examining your space specifics and will contact you directly on your phone (<strong>${clientPhone}</strong>) or via this email (<strong>${clientEmail}</strong>) with recommendations as soon as possible.
                 </p>
               </div>
 
@@ -285,7 +299,42 @@ export async function POST(request) {
 </html>
     `;
 
-    // 3. Dispatch Emails via Nodemailer
+    // 3. Plain Text Fallbacks (Crucial for high deliverability & anti-spam compliance)
+    const userPlainText = `
+Dear ${clientName},
+
+Thank you for reaching out and sharing details of your space. Your consultation request has been successfully registered with Shrijal Talkar's advisory desk.
+
+EXPECTED UPDATE TIMELINE:
+You will receive your space review and consultation update within 24–48 hours. Our team is examining your space specifics and will reach out to you directly on your phone (${clientPhone}) or via this email (${clientEmail}) as soon as possible.
+
+SUBMISSION SUMMARY:
+- Client Name: ${clientName}
+- Contact Phone: ${clientPhone}
+- Email Address: ${clientEmail}
+- Space Type: ${clientSpace}
+${clientCity ? `- City / Location: ${clientCity}\n` : ''}${clientEnquiry ? `- Context / Enquiry: ${clientEnquiry}\n` : ''}Status: Under Review • Priority Queue
+
+Warm regards,
+Shrijal Talkar
+Modern Vastu Expert & Author
+`.trim();
+
+    const adminPlainText = `
+NEW CONSULTATION & SPACE REPORT LEAD
+Received: ${submissionTime}
+
+CLIENT CONTACT DETAILS:
+- Full Name: ${clientName}
+- Phone Number: ${clientPhone}
+- Email Address: ${clientEmail}
+- Space Type: ${clientSpace}
+${clientCity ? `- City / Location: ${clientCity}\n` : ''}
+CLIENT CONTEXT / ENQUIRY:
+${clientEnquiry || 'None provided.'}
+`.trim();
+
+    // 4. Dispatch Emails via Nodemailer
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
@@ -296,42 +345,49 @@ export async function POST(request) {
       },
     });
 
-    // Send Admin Notification
-    const adminMailPromise = transporter.sendMail({
-      from: `"${fromName}" <${smtpUser}>`,
-      to: adminEmail,
-      replyTo: email,
-      subject: `🌟 New Consultation & Space Report: ${name} (${spaceType || 'General'})`,
-      html: adminHtml,
-    });
+    console.log(`[Consultation API] Dispatching consultation inquiry for: ${clientName} (${clientEmail})`);
 
-    // Send User Acknowledgment
-    const userMailPromise = transporter.sendMail({
-      from: `"${fromName}" <${smtpUser}>`,
-      to: email,
-      subject: `Your Space Report & Consultation Confirmation — Shrijal Talkar`,
-      html: userHtml,
-    });
-
-    console.log(`[Consultation API] Dispatching consultation report for: ${name} (${email}) to admin: ${adminEmail}`);
-
-    const [adminResult, userResult] = await Promise.allSettled([adminMailPromise, userMailPromise]);
-
-    if (adminResult.status === 'rejected') {
-      console.error('[Consultation API] Failed to send admin email:', adminResult.reason);
-    } else {
-      console.log('[Consultation API] Admin email delivered successfully! MessageId:', adminResult.value?.messageId);
+    // 4.1 Dispatch to Client Email FIRST
+    let userResult = null;
+    let userError = null;
+    try {
+      userResult = await transporter.sendMail({
+        from: `"${fromName}" <${smtpUser}>`,
+        to: clientEmail,
+        replyTo: adminEmail,
+        subject: `Consultation & Space Report Confirmation — Shrijal Talkar`,
+        text: userPlainText,
+        html: userHtml,
+      });
+      console.log(`[Consultation API] Client email successfully SENT to ${clientEmail}! MessageId: ${userResult.messageId}, Response: ${userResult.response}`);
+    } catch (uErr) {
+      console.error(`[Consultation API Error] Failed sending to client ${clientEmail}:`, uErr);
+      userError = uErr.message;
     }
 
-    if (userResult.status === 'rejected') {
-      console.error('[Consultation API] Failed to send user acknowledgment:', userResult.reason);
-    } else {
-      console.log('[Consultation API] User acknowledgment delivered successfully! MessageId:', userResult.value?.messageId);
+    // 4.2 Dispatch to Admin Email
+    let adminResult = null;
+    let adminError = null;
+    try {
+      adminResult = await transporter.sendMail({
+        from: `"${fromName}" <${smtpUser}>`,
+        to: adminEmail,
+        replyTo: clientEmail,
+        subject: `New Lead: ${clientName} (${clientSpace})`,
+        text: adminPlainText,
+        html: adminHtml,
+      });
+      console.log(`[Consultation API] Admin email successfully SENT to ${adminEmail}! MessageId: ${adminResult.messageId}, Response: ${adminResult.response}`);
+    } catch (aErr) {
+      console.error(`[Consultation API Error] Failed sending to admin ${adminEmail}:`, aErr);
+      adminError = aErr.message;
     }
 
     return Response.json({
       success: true,
-      message: 'Consultation report submitted successfully and confirmation emails sent.',
+      clientEmailSent: Boolean(userResult),
+      adminEmailSent: Boolean(adminResult),
+      message: 'Consultation report submitted successfully and confirmation emails dispatched.',
     });
   } catch (err) {
     console.error('[Consultation API Error]:', err);

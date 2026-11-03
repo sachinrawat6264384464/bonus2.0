@@ -141,7 +141,7 @@ export default function Home() {
           <div className="header-container">
             <a href="#" className="logo-brand flex items-center shrink-0">
               <Image
-                src="/images/shrijal-logo-en.svg"
+                src="/images/shrijal-logo.png"
                 alt="Shrijal Modern Vastu Expert"
                 width={220}
                 height={64}
@@ -971,7 +971,7 @@ export default function Home() {
             <div className="footer-left-content">
               <div className="footer-logo-badge">
                 <Image
-                  src="/images/shrijal-logo-white.svg"
+                  src="/images/shrijal-logo.png"
                   alt="Shrijal Modern Vastu Expert"
                   width={220}
                   height={64}

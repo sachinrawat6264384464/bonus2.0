@@ -247,7 +247,6 @@ export default function Home() {
       <section className="section theme-green" id="philosophy" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="reveal-on-scroll" style={{ maxWidth: '920px', margin: '0 auto', textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '16px' }}>02 &bull; PHILOSOPHY</div>
             <h2 className="large-section-title" style={{ marginBottom: '28px', color: '#FFFFFF' }}>
               Not every space needs changing.<br />
               <em style={{ color: '#FFFFFF' }}>Every space deserves to be understood.</em>
@@ -311,8 +310,7 @@ export default function Home() {
             </div>
 
             <div className="about-content" style={{ position: 'relative', zIndex: 4 }}>
-              <div className="section-label">03 &bull; ABOUT SHRIJAL</div>
-              <h2 className="large-section-title about-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
+              <h2 className="large-section-title about-section-title" style={{ marginTop: '0', marginBottom: '16px' }}>
                 <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>A considered approach to</span><br />
                 <em>Modern Vastu.</em>
               </h2>
@@ -353,7 +351,6 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>04 &bull; SERVICES</div>
               <h2 className="large-section-title">
                 Different spaces demand<br />
                 <em>different considerations.</em>
@@ -435,7 +432,6 @@ export default function Home() {
       <section className="section theme-green" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="reveal-on-scroll" style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '16px' }}>05 &bull; THE APPROACH</div>
             <h2 className="large-section-title" style={{ marginBottom: '16px', color: '#FFFFFF' }}>
               Understanding comes before<br />
               <em style={{ color: '#FFFFFF' }}>recommendations.</em>
@@ -503,7 +499,6 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="spacecheck-grid reveal-on-scroll">
             <div className="spacecheck-left">
-              <div className="section-label" style={{ marginBottom: '16px' }}>06 &bull; SPACE CHECK</div>
               <h2 className="large-section-title">
                 See your space from a<br />
                 <em>different perspective.</em>
@@ -586,8 +581,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid reveal-on-scroll">
             <div className="book-content">
-              <div className="section-label">07 &bull; THE BOOK</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '14px' }}>
+              <h2 className="large-section-title" style={{ marginTop: '0', marginBottom: '14px' }}>
                 The Space on Your Side
               </h2>
 
@@ -654,8 +648,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>08 &bull; CASE STUDIES</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', color: '#FFFFFF' }}>
+              <h2 className="large-section-title" style={{ marginTop: '0', color: '#FFFFFF' }}>
                 Every space<br />
                 <em style={{ color: '#FFFFFF' }}>has a story.</em>
               </h2>
@@ -709,7 +702,6 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>09 &bull; CLIENT EXPERIENCES</div>
               <h2 className="large-section-title">
                 The experience,<br />
                 <em>in their own words.</em>
@@ -755,7 +747,6 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>10 &bull; CONSULTATION</div>
               <h2 className="large-section-title">
                 A clearer understanding<br />
                 <em>of your space begins here.</em>

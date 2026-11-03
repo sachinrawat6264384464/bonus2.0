@@ -141,7 +141,7 @@ export default function Home() {
           <div className="header-container">
             <a href="#" className="logo-brand flex items-center shrink-0">
               <Image
-                src="/images/shrijal-logo.png"
+                src="/images/shrijal-logo-en.svg"
                 alt="Shrijal Modern Vastu Expert"
                 width={220}
                 height={64}
@@ -365,8 +365,7 @@ export default function Home() {
             {/* Residential Vastu Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">RESIDENTIAL VASTU</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   Residential Vastu
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -386,8 +385,7 @@ export default function Home() {
             {/* Business Vastu Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">BUSINESS VASTU</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   Business Vastu
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -407,8 +405,7 @@ export default function Home() {
             {/* New & Existing Properties Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">NEW &amp; EXISTING PROPERTIES</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   New &amp; Existing
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -653,8 +650,8 @@ export default function Home() {
                 <em style={{ color: '#FFFFFF' }}>has a story.</em>
               </h2>
             </div>
-            <div style={{ maxWidth: '620px' }}>
-              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#FFFFFF', marginBottom: '12px', lineHeight: '1.4' }}>
+            <div style={{ maxWidth: '620px', paddingTop: '6px' }}>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#FFFFFF', marginBottom: '14px', lineHeight: '1.4' }}>
                 A family&apos;s home. A newly planned workplace. An existing property seen in a different light.
               </p>
               <p className="header-aside-text" style={{ fontSize: '15.5px', lineHeight: '1.65', color: '#D6E6DF' }}>
@@ -707,11 +704,11 @@ export default function Home() {
                 <em>in their own words.</em>
               </h2>
             </div>
-            <div style={{ maxWidth: '620px' }}>
-              <p style={{ fontSize: '17px', lineHeight: '1.7', color: '#383733', marginBottom: '8px' }}>
+            <div style={{ maxWidth: '620px', paddingTop: '8px' }}>
+              <p style={{ fontSize: '17.5px', lineHeight: '1.7', color: '#383733', marginBottom: '10px' }}>
                 A consultation is as much about being heard and understanding the recommendations as it is about the space itself.
               </p>
-              <p className="header-aside-text" style={{ fontSize: '15.5px', color: '#5A5954' }}>
+              <p className="header-aside-text" style={{ fontSize: '15.5px', lineHeight: '1.65', color: '#5A5954' }}>
                 Read authentic accounts from people who have worked with Shrijal.
               </p>
             </div>
@@ -974,7 +971,7 @@ export default function Home() {
             <div className="footer-left-content">
               <div className="footer-logo-badge">
                 <Image
-                  src="/images/shrijal-logo.png"
+                  src="/images/shrijal-logo-white.svg"
                   alt="Shrijal Modern Vastu Expert"
                   width={220}
                   height={64}

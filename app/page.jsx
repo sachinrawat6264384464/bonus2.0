@@ -499,7 +499,6 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="spacecheck-grid reveal-on-scroll">
             <div className="spacecheck-left">
-              <div className="section-label" style={{ marginBottom: '16px' }}>06 &bull; SPACE CHECK</div>
               <h2 className="large-section-title">
                 See your space from a<br />
                 <em>different perspective.</em>

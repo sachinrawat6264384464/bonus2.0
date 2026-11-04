@@ -34,6 +34,10 @@ export default function IntroSplash() {
   const startFadeOut = () => {
     if (fading) return;
     setFading(true);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('intro-splash-complete'));
+      document.documentElement.classList.add('splash-complete');
+    }
     // Smooth transition: 500ms fade out
     setTimeout(() => {
       setVisible(false);

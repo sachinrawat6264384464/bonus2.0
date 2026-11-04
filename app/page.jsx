@@ -5,6 +5,7 @@ import Image from 'next/image';
 import OrbitGraphic from './components/OrbitGraphic';
 import IntroSplash from './components/IntroSplash';
 import FlyingBirds from './components/FlyingBirds';
+import ScrollAnimator from './components/ScrollAnimator';
 import { SunbeamGlow, WindLeavesStream, EnergyPulseRing } from './components/PoeticAtmosphere';
 
 export default function Home() {
@@ -32,20 +33,45 @@ export default function Home() {
     name: '',
     phone: '',
     email: '',
-    spaceType: 'Residential Vastu',
+    spaceType: 'Residential Vastu (Apartment, Villa, Living Space)',
     city: '',
     enquiry: ''
   });
   const [consultSubmitted, setConsultSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
-  const handleConsultSubmit = (e) => {
+  const handleConsultSubmit = async (e) => {
     e.preventDefault();
-    setConsultSubmitted(true);
-    setTimeout(() => {
-      setConsultSubmitted(false);
-      setIsConsultOpen(false);
-      setConsultForm({ name: '', phone: '', email: '', spaceType: 'Residential Vastu', city: '', enquiry: '' });
-    }, 2800);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    console.log('[Consultation Form] Submitting lead data to /api/consultation...', consultForm);
+
+    try {
+      const res = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...consultForm,
+          quizAnswers: quizFinished ? quizAnswers : null,
+        }),
+      });
+
+      const data = await res.json();
+      console.log('[Consultation Form] Server response:', data);
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit consultation report.');
+      }
+
+      setConsultSubmitted(true);
+    } catch (err) {
+      console.error('[Consultation Form Error]:', err);
+      setSubmitError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openSpaceCheckWith = (type) => {
@@ -105,6 +131,9 @@ export default function Home() {
     <div className="site-wrapper">
       {/* Intro Animation Preloader */}
       <IntroSplash />
+
+      {/* Global Scroll Animation System */}
+      <ScrollAnimator />
 
       {/* 1. Navigation Header */}
       <header className="header-wrapper">
@@ -218,7 +247,7 @@ export default function Home() {
       <section className="section theme-green" id="philosophy" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="reveal-on-scroll" style={{ maxWidth: '920px', margin: '0 auto', textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '16px' }}>02 &bull; PHILOSOPHY</div>
+
             <h2 className="large-section-title" style={{ marginBottom: '28px', color: '#FFFFFF' }}>
               Not every space needs changing.<br />
               <em style={{ color: '#FFFFFF' }}>Every space deserves to be understood.</em>
@@ -282,8 +311,7 @@ export default function Home() {
             </div>
 
             <div className="about-content" style={{ position: 'relative', zIndex: 4 }}>
-              <div className="section-label">03 &bull; ABOUT SHRIJAL</div>
-              <h2 className="large-section-title about-section-title" style={{ marginTop: '8px', marginBottom: '16px' }}>
+              <h2 className="large-section-title about-section-title" style={{ marginTop: '0', marginBottom: '16px' }}>
                 <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>A considered approach to</span><br />
                 <em>Modern Vastu.</em>
               </h2>
@@ -324,7 +352,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>04 &bull; SERVICES</div>
+
               <h2 className="large-section-title">
                 Different spaces demand<br />
                 <em>different considerations.</em>
@@ -339,8 +367,7 @@ export default function Home() {
             {/* Residential Vastu Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">RESIDENTIAL VASTU</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   Residential Vastu
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -360,8 +387,7 @@ export default function Home() {
             {/* Business Vastu Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">BUSINESS VASTU</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   Business Vastu
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -381,8 +407,7 @@ export default function Home() {
             {/* New & Existing Properties Card */}
             <div className="spaces-card">
               <div>
-                <div className="section-label">NEW &amp; EXISTING PROPERTIES</div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-4 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
                   New &amp; Existing
                 </h3>
                 <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
@@ -406,7 +431,7 @@ export default function Home() {
       <section className="section theme-green" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="reveal-on-scroll" style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '16px' }}>05 &bull; THE APPROACH</div>
+
             <h2 className="large-section-title" style={{ marginBottom: '16px', color: '#FFFFFF' }}>
               Understanding comes before<br />
               <em style={{ color: '#FFFFFF' }}>recommendations.</em>
@@ -557,8 +582,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid reveal-on-scroll">
             <div className="book-content">
-              <div className="section-label">07 &bull; THE BOOK</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '14px' }}>
+              <h2 className="large-section-title" style={{ marginTop: '0', marginBottom: '14px' }}>
                 When Space Works For You
               </h2>
 
@@ -625,14 +649,13 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>08 &bull; CASE STUDIES</div>
-              <h2 className="large-section-title" style={{ marginTop: '8px', color: '#FFFFFF' }}>
+              <h2 className="large-section-title" style={{ marginTop: '0', color: '#FFFFFF' }}>
                 Every space<br />
                 <em style={{ color: '#FFFFFF' }}>has a story.</em>
               </h2>
             </div>
-            <div style={{ maxWidth: '620px' }}>
-              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#FFFFFF', marginBottom: '12px', lineHeight: '1.4' }}>
+            <div style={{ maxWidth: '620px', paddingTop: '6px' }}>
+              <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', color: '#FFFFFF', marginBottom: '14px', lineHeight: '1.4' }}>
                 A family&apos;s home. A newly planned workplace. An existing property seen in a different light.
               </p>
               <p className="header-aside-text" style={{ fontSize: '15.5px', lineHeight: '1.65', color: '#D6E6DF' }}>
@@ -680,17 +703,17 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>09 &bull; CLIENT EXPERIENCES</div>
+
               <h2 className="large-section-title">
                 The experience,<br />
                 <em>in their own words.</em>
               </h2>
             </div>
-            <div style={{ maxWidth: '620px' }}>
-              <p style={{ fontSize: '17px', lineHeight: '1.7', color: '#383733', marginBottom: '8px' }}>
+            <div style={{ maxWidth: '620px', paddingTop: '8px' }}>
+              <p style={{ fontSize: '17.5px', lineHeight: '1.7', color: '#383733', marginBottom: '10px' }}>
                 A consultation is as much about being heard and understanding the recommendations as it is about the space itself.
               </p>
-              <p className="header-aside-text" style={{ fontSize: '15.5px', color: '#5A5954' }}>
+              <p className="header-aside-text" style={{ fontSize: '15.5px', lineHeight: '1.65', color: '#5A5954' }}>
                 Read authentic accounts from people who have worked with Shrijal.
               </p>
             </div>
@@ -726,7 +749,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="split-headline-header reveal-on-scroll">
             <div>
-              <div className="section-label" style={{ marginBottom: '12px' }}>10 &bull; CONSULTATION</div>
+
               <h2 className="large-section-title">
                 A clearer understanding<br />
                 <em>of your space begins here.</em>
@@ -753,27 +776,97 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal-on-scroll" style={{
-            maxWidth: '840px',
-            margin: '0 auto',
-            background: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '40px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
-          }}>
+          <div className="consult-form-wrapper reveal-on-scroll">
             {consultSubmitted ? (
-              <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                <h3 className="modal-headline" style={{ marginBottom: '14px', color: '#103F35' }}>
-                  Thank you for reaching out.
+              <div style={{ textAlign: 'center', padding: '36px 16px' }}>
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    backgroundColor: '#103F35',
+                    color: '#FFFFFF',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '18px',
+                    boxShadow: '0 8px 24px rgba(16, 63, 53, 0.25)'
+                  }}
+                >
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '11.5px',
+                    fontWeight: '700',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: '#103F35',
+                    marginBottom: '8px'
+                  }}
+                >
+                  REPORT SUBMITTED SUCCESSFULLY
+                </div>
+
+                <h3 className="modal-headline" style={{ marginBottom: '12px', color: '#103F35' }}>
+                  Your Report Has Been Submitted Successfully!
                 </h3>
-                <p className="modal-subtext" style={{ fontSize: '16px', maxWidth: '520px', margin: '0 auto' }}>
-                  Your consultation request has been received. Shrijal&apos;s desk will contact you shortly to schedule your discussion.
+
+                <p className="modal-subtext" style={{ fontSize: '15.5px', maxWidth: '540px', margin: '0 auto 24px auto', color: '#383531' }}>
+                  A confirmation email has been dispatched to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. You will receive your space review and consultation update within <strong>24 to 48 hours</strong>. Our team will contact you <strong>as soon as possible</strong>.
                 </p>
+
+                <div
+                  style={{
+                    maxWidth: '460px',
+                    margin: '0 auto 24px auto',
+                    backgroundColor: '#F8F6F1',
+                    border: '1px solid #ECE7DE',
+                    borderRadius: '10px',
+                    padding: '18px 22px',
+                    textAlign: 'left',
+                    fontSize: '14px',
+                    lineHeight: '1.6'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Client Name:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.name}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Space Type:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>{consultForm.spaceType}</span>
+                  </div>
+                  {consultForm.city && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                      <span style={{ color: '#6A655C', fontWeight: '500' }}>City:</span>
+                      <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.city}</span>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Confirmation Status:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>Sent to {consultForm.email}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConsultSubmitted(false);
+                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Residential Vastu (Apartment, Villa, Living Space)', city: '', enquiry: '' });
+                  }}
+                  className="btn-outline"
+                  style={{ padding: '10px 24px' }}
+                >
+                  Submit Another Inquiry
+                </button>
               </div>
             ) : (
               <form onSubmit={handleConsultSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                <div className="form-row-grid">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Full Name</label>
                     <input
@@ -799,7 +892,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                <div className="form-row-grid">
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label className="form-label">Email Address</label>
                     <input
@@ -851,9 +944,24 @@ export default function Home() {
                   ></textarea>
                 </div>
 
+                {submitError && (
+                  <div style={{ color: '#C33F4B', fontSize: '14px', marginBottom: '16px', textAlign: 'center', backgroundColor: '#FDF2F4', padding: '10px 14px', borderRadius: '6px' }}>
+                    {submitError}
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <button type="submit" className="btn-primary" style={{ minWidth: '260px', justifyContent: 'center' }}>
-                    BOOK A CONSULTATION <span>&rarr;</span>
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    disabled={isSubmitting}
+                    style={{ minWidth: '260px', justifyContent: 'center', opacity: isSubmitting ? 0.7 : 1 }}
+                  >
+                    {isSubmitting ? 'SUBMITTING...' : (
+                      <>
+                        BOOK A CONSULTATION <span>&rarr;</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
@@ -947,13 +1055,104 @@ export default function Home() {
             </button>
 
             {consultSubmitted ? (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <h3 className="modal-headline" style={{ marginBottom: '16px' }}>
-                  Thank you for reaching out.
+              <div style={{ textAlign: 'center', padding: '24px 8px 12px' }}>
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    backgroundColor: '#103F35',
+                    color: '#FFFFFF',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '18px',
+                    boxShadow: '0 8px 24px rgba(16, 63, 53, 0.25)'
+                  }}
+                >
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '11.5px',
+                    fontWeight: '700',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: '#103F35',
+                    marginBottom: '8px'
+                  }}
+                >
+                  REPORT SUBMITTED SUCCESSFULLY
+                </div>
+
+                <h3 className="modal-headline" style={{ marginBottom: '12px' }}>
+                  Your Report Has Been Submitted Successfully!
                 </h3>
-                <p className="modal-subtext">
-                  Your consultation request has been received. Shrijal&apos;s desk will contact you shortly to schedule your discussion.
+
+                <p
+                  className="modal-subtext"
+                  style={{
+                    fontSize: '15px',
+                    lineHeight: '1.65',
+                    color: '#383531',
+                    maxWidth: '490px',
+                    margin: '0 auto 24px auto'
+                  }}
+                >
+                  A confirmation email has been sent to <strong style={{ color: '#103F35' }}>{consultForm.email}</strong>. You will receive your space review and consultation update within <strong>24 to 48 hours</strong>. Our team will contact you <strong>as soon as possible</strong>.
                 </p>
+
+                <div
+                  style={{
+                    backgroundColor: '#F8F6F1',
+                    border: '1px solid #ECE7DE',
+                    borderRadius: '10px',
+                    padding: '18px 22px',
+                    textAlign: 'left',
+                    marginBottom: '26px',
+                    fontSize: '14px',
+                    lineHeight: '1.6'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Client Name:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.name}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Contact Phone:</span>
+                    <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.phone}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Space Type:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>{consultForm.spaceType}</span>
+                  </div>
+                  {consultForm.city && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #E8E3DA', paddingBottom: '6px' }}>
+                      <span style={{ color: '#6A655C', fontWeight: '500' }}>City:</span>
+                      <span style={{ color: '#1C1C1A', fontWeight: '600' }}>{consultForm.city}</span>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#6A655C', fontWeight: '500' }}>Confirmation Status:</span>
+                    <span style={{ color: '#103F35', fontWeight: '600' }}>Sent to {consultForm.email}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConsultSubmitted(false);
+                    setIsConsultOpen(false);
+                    setConsultForm({ name: '', phone: '', email: '', spaceType: 'Residential Vastu (Apartment, Villa, Living Space)', city: '', enquiry: '' });
+                  }}
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Close &amp; Return To Site &rarr;
+                </button>
               </div>
             ) : (
               <>
@@ -1037,8 +1236,23 @@ export default function Home() {
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                    Book a Consultation <span>&rarr;</span>
+                  {submitError && (
+                    <div style={{ color: '#C33F4B', fontSize: '13.5px', marginBottom: '14px', textAlign: 'center', backgroundColor: '#FDF2F4', padding: '10px 14px', borderRadius: '6px' }}>
+                      {submitError}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    disabled={isSubmitting}
+                    style={{ width: '100%', justifyContent: 'center', opacity: isSubmitting ? 0.7 : 1 }}
+                  >
+                    {isSubmitting ? 'Submitting...' : (
+                      <>
+                        Book a Consultation <span>&rarr;</span>
+                      </>
+                    )}
                   </button>
                 </form>
               </>

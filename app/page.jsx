@@ -209,7 +209,7 @@ export default function Home() {
           </div>
 
           <div className="hero-footer-bar reveal-on-scroll">
-            Rooted in tradition. Considered for modern living. &nbsp;&bull;&nbsp; Gold Medalist in Vastu &nbsp;&bull;&nbsp; Author of <em>The Space on Your Side</em>
+            Rooted in tradition. Considered for modern living. &nbsp;&bull;&nbsp; Gold Medalist in Vastu &nbsp;&bull;&nbsp; Author of <em>When Space Works For You</em>
           </div>
         </div>
       </section>
@@ -559,11 +559,11 @@ export default function Home() {
             <div className="book-content">
               <div className="section-label">07 &bull; THE BOOK</div>
               <h2 className="large-section-title" style={{ marginTop: '8px', marginBottom: '14px' }}>
-                The Space on Your Side
+                When Space Works For You
               </h2>
 
               <div className="book-subtitle-tag" style={{ fontSize: '16.5px', color: '#103F35', fontWeight: 600, marginBottom: '24px' }}>
-                The Modern Vastu of Energy, Light and Flow &nbsp;&bull;&nbsp; By Shrijal Talkar
+                A Modern Approach to the Ancient Science of Vastu &nbsp;&bull;&nbsp; By Shrijal Talkar
               </div>
 
               <div className="book-desc-content">
@@ -571,7 +571,7 @@ export default function Home() {
                   &ldquo;What if Vastu began with curiosity rather than concern?&rdquo;
                 </p>
                 <p style={{ fontSize: '16.5px', lineHeight: '1.75', color: '#4A4944', marginBottom: '20px' }}>
-                  In her book, Shrijal introduces a contemporary perspective on traditional Vastu ideas and the spaces we inhabit. An invitation to observe more closely, ask better questions and reconsider the way we relate to our surroundings.
+                  In her book, <em>When Space Works For You</em>, Shrijal introduces a contemporary perspective on traditional Vastu ideas and the spaces we inhabit. An invitation to observe more closely, ask better questions and reconsider the way we relate to our surroundings.
                 </p>
                 <div className="book-quote-box" style={{ background: '#FFFFFF', borderTop: '1px solid #E6E4DD', borderRight: '1px solid #E6E4DD', borderBottom: '1px solid #E6E4DD', borderLeft: '4px solid #103F35', marginTop: '24px', padding: '16px 20px' }}>
                   <p style={{ fontSize: '14px', marginBottom: '4px', color: '#5A5954' }}>
@@ -610,10 +610,10 @@ export default function Home() {
               />
               <Image
                 src="/images/book-mockup.png"
-                alt="The Space on Your Side by Shrijal Talkar"
-                width={558}
-                height={666}
-                style={{ display: 'block', width: '100%', maxWidth: '420px', height: 'auto', position: 'relative', zIndex: 2 }}
+                alt="When Space Works For You by Shrijal Talkar"
+                width={675}
+                height={930}
+                style={{ display: 'block', width: '100%', maxWidth: '440px', height: 'auto', position: 'relative', zIndex: 2 }}
               />
             </div>
           </div>
@@ -880,7 +880,7 @@ export default function Home() {
                 <div style={{ fontWeight: '600', fontSize: '17px', color: '#FFFFFF', marginBottom: '4px' }}>Shrijal Talkar</div>
                 <div style={{ color: '#E8E5DF', marginBottom: '2px' }}>Modern Vastu Consultant | Author</div>
                 <div style={{ color: '#D6E6DF', fontSize: '13.5px' }}>Gold Medalist in Vastu &bull; Trained under Aashish Patidar</div>
-                <div style={{ color: '#D6E6DF', fontSize: '13.5px' }}>Author of <em style={{ color: '#FFFFFF', fontStyle: 'italic', fontWeight: '500' }}>The Space on Your Side</em></div>
+                <div style={{ color: '#D6E6DF', fontSize: '13.5px' }}>Author of <em style={{ color: '#FFFFFF', fontStyle: 'italic', fontWeight: '500' }}>When Space Works For You</em></div>
               </div>
             </div>
 
@@ -1349,12 +1349,12 @@ export default function Home() {
             </button>
 
             <div className="section-label">THE BOOK</div>
-            <h3 className="modal-headline">The Space on Your Side</h3>
-            <p className="modal-subtext">The Modern Vastu of Energy, Light and Flow &bull; By Shrijal Talkar</p>
+            <h3 className="modal-headline">When Space Works For You</h3>
+            <p className="modal-subtext">A Modern Approach to the Ancient Science of Vastu &bull; By Shrijal Talkar</p>
 
             <div style={{ fontSize: '15px', lineHeight: '1.7', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <p>
-                In <em>The Space on Your Side</em>, Shrijal Talkar strips away superstitious dogma to present the timeless architectural principles of Vastu through a modern, actionable lens.
+                In <em>When Space Works For You</em>, Shrijal Talkar strips away superstitious dogma to present the timeless architectural principles of Vastu through a modern, actionable lens.
               </p>
               <h4 style={{ color: 'var(--text-primary)', marginTop: '8px' }}>Core Chapters:</h4>
               <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>

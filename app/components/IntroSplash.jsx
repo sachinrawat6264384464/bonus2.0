@@ -3,11 +3,19 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function IntroSplash() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [fading, setFading] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('nosplash')) {
+      return;
+    }
+    setVisible(true);
+    setMounted(true);
+
+
     // Lock scroll while splash is active
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Urbanist:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -19,8 +19,8 @@
   --orbit-stroke: #D6D2C7;
   --orbit-dot: #AEA99C;
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --container-max: 1320px;
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -153,15 +153,17 @@ button {
 .btn-outline-nav {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
+  gap: 8px;
+  padding: 10px 22px;
   border: 1px solid var(--border-dark);
   font-size: 13.5px;
   font-weight: 500;
   color: var(--text-primary);
   background: transparent;
   transition: var(--transition-smooth);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  word-spacing: normal;
+  white-space: nowrap;
 }
 
 .btn-outline-nav:hover {
@@ -287,7 +289,7 @@ button {
 
 /* Hero Section */
 .hero-section {
-  min-height: calc(100vh - 80px);
+  min-height: min(calc(100vh - 80px), 860px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -327,12 +329,12 @@ button {
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(52px, 6.2vw, 86px);
+  font-size: clamp(40px, 4.8vw, 64px);
   font-weight: 400;
-  line-height: 1.06;
+  line-height: 1.12;
   letter-spacing: -0.015em;
   color: var(--text-primary);
-  margin-bottom: 36px;
+  margin-bottom: 28px;
   cursor: pointer;
   display: inline-block;
   transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.35s ease;
@@ -450,9 +452,9 @@ button {
 
 .large-section-title {
   font-family: var(--font-serif);
-  font-size: clamp(42px, 5vw, 68px);
+  font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--text-primary);
 }
@@ -1288,8 +1290,8 @@ button {
   font-size: 15.5px;
   line-height: 1.75;
   color: var(--text-secondary);
-  max-width: 500px;
-  margin-bottom: 40px;
+  max-width: 580px;
+  margin-bottom: 28px;
 }
 
 .book-keywords-serif {
@@ -1305,13 +1307,19 @@ button {
   z-index: 2;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .book-mockup-frame img {
-  max-width: 460px;
+  max-width: 440px;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 28px 45px rgba(0, 0, 0, 0.12));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-mockup-frame:hover img {
+  transform: translateY(-6px) scale(1.02);
 }
 
 /* Section 9: 2-Minute Space Check */
@@ -2015,11 +2023,20 @@ button {
 }
 
 /* Spaces 3-Col Grid */
+#services {
+  padding-top: 72px !important;
+  padding-bottom: 72px !important;
+}
+
+#services .split-headline-header {
+  margin-bottom: 24px;
+}
+
 .spaces-three-col {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  border: none;
   margin-top: 0;
   position: relative;
   z-index: 2;
@@ -2027,20 +2044,41 @@ button {
 }
 
 .spaces-card {
-  padding: 48px 40px;
-  border-right: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  border: 1px solid #ECE7DE;
+  border-radius: 12px;
+  padding: 30px 26px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  height: auto;
 }
 
-.spaces-card:first-child {
-  padding-left: 0;
-}
-
+.spaces-card:first-child,
 .spaces-card:last-child {
-  border-right: none;
-  padding-right: 0;
+  padding: 30px 26px;
+  border-right: 1px solid #ECE7DE;
+}
+
+.spaces-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(16, 63, 53, 0.07);
+  border-color: #103F35;
+}
+
+.spaces-card h3 {
+  font-family: var(--font-serif);
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
+  color: #1C1C1A;
+}
+
+.spaces-card p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #5A5954 !important;
+  margin-bottom: 0 !important;
 }
 
 @media (max-width: 900px) {
@@ -3112,10 +3150,9 @@ html, body {
 
 /* 1. Scroll-Driven Reveal System */
 .reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(32px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-revealed {
@@ -3125,10 +3162,9 @@ html, body {
 
 /* Staggered Child Element Reveals */
 .reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-stagger.is-revealed > * {
@@ -3191,15 +3227,29 @@ html, body {
   transform: translateX(5px);
 }
 
-/* 4. Service Cards Elevation & Depth */
-.spaces-card {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
-  border-radius: 4px;
+/* 4. Approach Header Alignment Safeguard */
+#approach {
+  text-align: center !important;
 }
 
-.spaces-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.05);
+#approach .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#approach .reveal-on-scroll {
+  width: 100%;
+  text-align: center !important;
+}
+
+#approach .large-section-title,
+#approach .large-section-title em,
+#approach h2,
+#approach p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* 5. Approach Step Cards Interaction */
@@ -3345,7 +3395,7 @@ html, body {
 
 /* Base state for scroll-reveal elements (only hidden once animations are ready) */
 html.animations-ready .scroll-reveal {
-  opacity: 0;
+  opacity: 1;
   will-change: transform, opacity, filter;
   transition-property: opacity, transform, filter;
   transition-duration: var(--anim-duration, 1350ms);

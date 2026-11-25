@@ -97,6 +97,18 @@ export default function Home() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     revealElements.forEach((el) => observer.observe(el));
 
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetSec = urlParams.get('sec');
+      if (targetSec) {
+        revealElements.forEach((el) => el.classList.add('is-revealed'));
+        setTimeout(() => {
+          const el = document.getElementById(targetSec);
+          if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }, 100);
+      }
+    }
+
     return () => observer.disconnect();
   }, []);
 
@@ -168,7 +180,8 @@ export default function Home() {
               className="btn-outline-nav shrink-0"
               id="nav-consult-btn"
             >
-              <span className="hidden sm:inline">Book a </span>Consultation <span>&rarr;</span>
+              <span>Book a Consultation</span>
+              <span className="btn-arrow" aria-hidden="true">&rarr;</span>
             </button>
           </div>
         </div>
@@ -367,61 +380,37 @@ export default function Home() {
             {/* Residential Vastu Card */}
             <div className="spaces-card">
               <div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-3">
                   Residential Vastu
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   A home should reflect the people who live in it. Explore the layout, orientation and everyday use of your living spaces through a considered Vastu perspective.
                 </p>
               </div>
-
-              <button
-                onClick={() => openSpaceCheckWith('Home')}
-                className="btn-outline w-full justify-between"
-                id="service-home-btn"
-              >
-                EXPLORE HOME VASTU <span>&rarr;</span>
-              </button>
             </div>
 
             {/* Business Vastu Card */}
             <div className="spaces-card">
               <div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-3">
                   Business Vastu
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   From offices to retail environments, examine the relationship between spatial arrangements, circulation and the needs of your business.
                 </p>
               </div>
-
-              <button
-                onClick={() => openSpaceCheckWith('Business')}
-                className="btn-outline w-full justify-between"
-                id="service-business-btn"
-              >
-                EXPLORE BUSINESS VASTU <span>&rarr;</span>
-              </button>
             </div>
 
             {/* New & Existing Properties Card */}
             <div className="spaces-card">
               <div>
-                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-4">
+                <h3 className="font-serif text-3xl font-normal text-[#1C1C1A] mt-0 mb-3">
                   New &amp; Existing
                 </h3>
-                <p className="text-[15.5px] leading-relaxed text-[#5A5954] mb-8">
+                <p className="text-[15.5px] leading-relaxed text-[#5A5954]">
                   Whether planning a new property or reviewing an occupied space, receive guidance that respects your plans, constraints and priorities.
                 </p>
               </div>
-
-              <button
-                onClick={() => setIsConsultOpen(true)}
-                className="btn-outline w-full justify-between"
-                id="service-properties-btn"
-              >
-                DISCUSS YOUR SPACE <span>&rarr;</span>
-              </button>
             </div>
           </div>
         </div>
@@ -431,12 +420,11 @@ export default function Home() {
       <section className="section theme-green" id="approach" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="reveal-on-scroll" style={{ maxWidth: '880px', margin: '0 auto', textAlign: 'center' }}>
-
-            <h2 className="large-section-title" style={{ marginBottom: '16px', color: '#FFFFFF' }}>
+            <h2 className="large-section-title" style={{ marginBottom: '18px', color: '#FFFFFF', textAlign: 'center' }}>
               Understanding comes before<br />
-              <em style={{ color: '#FFFFFF' }}>recommendations.</em>
+              <em style={{ color: '#FFFFFF', textAlign: 'center' }}>recommendations.</em>
             </h2>
-            <p className="header-aside-text" style={{ maxWidth: '640px', margin: '0 auto', color: '#D6E6DF' }}>
+            <p style={{ maxWidth: '660px', margin: '0 auto', color: '#D6E6DF', textAlign: 'center', fontSize: '17px', lineHeight: '1.7' }}>
               No unnecessary fear. No one-size-fits-all prescriptions. Every consultation follows a thoughtful, transparent 4-step path.
             </p>
           </div>
@@ -518,35 +506,7 @@ export default function Home() {
             </div>
 
             <div className="spacecheck-right">
-              <div className="spacecheck-selector-title" style={{ fontSize: '15px', color: '#5A5954', marginBottom: '12px' }}>
-                Select Your Space: Business &bull; Home &bull; Both.
-              </div>
-
-              <div className="selector-options-row">
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Business')}
-                  className={`selector-option-btn ${spaceCheckType === 'Business' ? 'active' : ''}`}
-                >
-                  Business
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Home')}
-                  className={`selector-option-btn ${spaceCheckType === 'Home' ? 'active' : ''}`}
-                >
-                  Home
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSpaceCheckType('Both')}
-                  className={`selector-option-btn ${spaceCheckType === 'Both' ? 'active' : ''}`}
-                >
-                  Both
-                </button>
-              </div>
-
-              <div className="spacecheck-bullets" style={{ marginTop: '20px', borderTop: 'none', paddingTop: '0' }}>
+              <div className="spacecheck-bullets" style={{ marginTop: '0', borderTop: 'none', paddingTop: '0' }}>
                 <div style={{ background: '#FFFFFF', border: '1.5px solid #D5CFC2', padding: '22px 26px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)' }}>
                   <p style={{ fontStyle: 'italic', fontSize: '16px', color: '#1C1C1A', lineHeight: '1.6', marginBottom: '14px' }}>
                     &ldquo;An introduction to looking at your surroundings more carefully&mdash;not a substitute for a personalised consultation.&rdquo;
@@ -581,42 +541,100 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="book-grid reveal-on-scroll">
             <div className="book-content">
-              <h2 className="large-section-title" style={{ marginTop: '0', marginBottom: '14px' }}>
-                When Space Works For You
-              </h2>
-
-              <div className="book-subtitle-tag" style={{ fontSize: '16.5px', color: '#103F35', fontWeight: 600, marginBottom: '24px' }}>
-                A Modern Approach to the Ancient Science of Vastu &nbsp;&bull;&nbsp; By Shrijal Talkar
+              <div className="book-kicker" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                <span style={{ width: '28px', height: '1.5px', backgroundColor: '#103F35' }} aria-hidden="true" />
+                <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#103F35' }}>
+                  The Published Work &bull; By Shrijal Talkar
+                </span>
               </div>
 
+              <h2 className="large-section-title" style={{ marginTop: '0', marginBottom: '16px', lineHeight: '1.15' }}>
+                When Space Works<br />
+                <em style={{ color: '#103F35', fontStyle: 'italic' }}>for You.</em>
+              </h2>
+
+              <p style={{ fontSize: '18px', color: '#103F35', fontWeight: 500, marginBottom: '20px', lineHeight: '1.5' }}>
+                A modern approach to the ancient science of Vastu &bull; bridging traditional wisdom and contemporary architecture.
+              </p>
+
               <div className="book-desc-content">
-                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', fontStyle: 'italic', color: '#103F35', marginBottom: '20px', lineHeight: '1.4' }}>
-                  &ldquo;What if Vastu began with curiosity rather than concern?&rdquo;
+                <p style={{ fontSize: '16px', lineHeight: '1.75', color: '#4A4944', marginBottom: '22px' }}>
+                  What if Vastu began with curiosity rather than fear? In her book, <em>When Space Works For You</em>, Shrijal Talkar strips away superstitious dogma to present timeless spatial principles through an accessible, architectural lens for homes, modern offices, and personal sanctuaries.
                 </p>
-                <p style={{ fontSize: '16.5px', lineHeight: '1.75', color: '#4A4944', marginBottom: '20px' }}>
-                  In her book, <em>When Space Works For You</em>, Shrijal introduces a contemporary perspective on traditional Vastu ideas and the spaces we inhabit. An invitation to observe more closely, ask better questions and reconsider the way we relate to our surroundings.
-                </p>
-                <div className="book-quote-box" style={{ background: '#FFFFFF', borderTop: '1px solid #E6E4DD', borderRight: '1px solid #E6E4DD', borderBottom: '1px solid #E6E4DD', borderLeft: '4px solid #103F35', marginTop: '24px', padding: '16px 20px' }}>
-                  <p style={{ fontSize: '14px', marginBottom: '4px', color: '#5A5954' }}>
-                    Shrijal’s modern Vastu approach is built around one belief:
+
+                {/* 3 Core Pillars */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '26px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#103F35', fontWeight: 700, fontSize: '13px', letterSpacing: '0.05em', paddingTop: '2px' }}>01</span>
+                    <p style={{ fontSize: '14.5px', color: '#4A4944', margin: 0, lineHeight: '1.55' }}>
+                      <strong style={{ color: '#1C1C1A' }}>Spatial Equilibrium:</strong> Harmonizing natural sunlight, air circulation, and functional magnetic axes.
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#103F35', fontWeight: 700, fontSize: '13px', letterSpacing: '0.05em', paddingTop: '2px' }}>02</span>
+                    <p style={{ fontSize: '14.5px', color: '#4A4944', margin: 0, lineHeight: '1.55' }}>
+                      <strong style={{ color: '#1C1C1A' }}>Curiosity Over Concern:</strong> Moving away from irrational taboos into observant, mindful interior layout.
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#103F35', fontWeight: 700, fontSize: '13px', letterSpacing: '0.05em', paddingTop: '2px' }}>03</span>
+                    <p style={{ fontSize: '14.5px', color: '#4A4944', margin: 0, lineHeight: '1.55' }}>
+                      <strong style={{ color: '#1C1C1A' }}>Non-Demolition Remedies:</strong> Practical micro-adjustments, elemental balance, and room zoning that preserve your space.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="book-quote-box" style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #ECE7DE',
+                  borderLeft: '4px solid #103F35',
+                  borderRadius: '10px',
+                  padding: '18px 22px',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+                  marginBottom: '26px'
+                }}>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '21px', fontStyle: 'italic', color: '#103F35', marginBottom: '6px' }}>
+                    &ldquo;Don&apos;t fear your space. Understand it.&rdquo;
                   </p>
-                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontStyle: 'italic', color: '#103F35' }}>
-                    &ldquo;Don’t fear your space. Understand it.&rdquo;
-                  </p>
+                  <div style={{ fontSize: '13px', color: '#6A655C', fontWeight: 500 }}>
+                    &mdash; Shrijal Talkar, <span style={{ color: '#103F35' }}>Gold Medalist in Vastu</span>
+                  </div>
                 </div>
               </div>
 
-              <button
-                onClick={() => setIsBookModalOpen(true)}
-                className="btn-primary"
-                id="see-the-book-btn"
-                style={{ marginTop: '28px' }}
-              >
-                DISCOVER THE BOOK <span>&rarr;</span>
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setIsBookModalOpen(true)}
+                  className="btn-primary"
+                  id="see-the-book-btn"
+                >
+                  DISCOVER THE BOOK &amp; CHAPTERS <span>&rarr;</span>
+                </button>
+                <span style={{ fontSize: '13.5px', color: '#6A655C', fontWeight: 500 }}>
+                  5 Core Chapters &bull; Preview Available
+                </span>
+              </div>
             </div>
 
             <div className="book-mockup-frame" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{
+                position: 'absolute',
+                top: '12px',
+                left: '12px',
+                zIndex: 4,
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #ECE7DE',
+                borderRadius: '30px',
+                padding: '6px 14px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)'
+              }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#103F35' }} />
+                <span style={{ fontSize: '12px', fontWeight: 600, color: '#1C1C1A', letterSpacing: '0.03em' }}>Author&apos;s Publication</span>
+              </div>
+
               <OrbitGraphic
                 size={820}
                 style={{
